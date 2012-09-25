@@ -11,3 +11,4 @@ class UploadFilmsForm(forms.Form):
 	releaseDate = forms.DateTimeField()
 	authors = forms.CharField()
 	genre = forms.CharField()
+	actors = forms.CharField()

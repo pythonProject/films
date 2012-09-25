@@ -14,5 +14,10 @@ class Author(models.Model):
     filmography = models.ManyToManyField(Films)
 
 class genre(models.Model):
-    name = models.CharField(max_length="30")
+    name = models.CharField(max_length=30)
     film = models.ManyToManyField(Films)
+
+class Actors(models.Model):
+    name = models.CharField(max_length=30)
+    filmography = models.ManyToManyField(Films)
+    
