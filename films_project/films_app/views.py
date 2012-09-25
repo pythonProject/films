@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from forms import UploadFilmsForm
 
 def hello(request):
@@ -16,7 +17,7 @@ def UploadForm(request):
 	form = UploadFilmsForm()
 	if request.method == "POST":
 		form = UploadFilmsForm(request.POST)
-		if form.id_valid():
+		if form.is_valid():
 			cd = form.cleaned_data
 			pass
-	return render_to_response("uploadFilm.html", {"form": form})
+	return render_to_response("uploadFilm.html", {"form": form}, context_instance=RequestContext(request))
