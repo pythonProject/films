@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from test_app.views import *
+from films_app.views import *
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
