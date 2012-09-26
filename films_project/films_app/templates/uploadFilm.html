@@ -1,12 +1,52 @@
 {% extends "base.html" %}
 
+<!-- <script type="text/javascript" src="jscript/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jscript/jscripts.js" ></script> -->
+{% block extrahead %}
+<script type="text/javascript" src="jscript/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+function addGenre()
+{
+	$("#addGenreBlock").css("display", "block");
+}
+</script>
+{% endblock %}
 {% block content %} 
 	{% if form.errors %}
 		<p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
 	{% endif %}
 	<form action="" method="POST"> {% csrf_token %}
 		<table>
-			{{ form.as_table }}
+			{{ form.name.errors }}
+			<label for="id_name"> Назва фильма </label>
+			{{ form.name }} <br/>
+			{{ form.director.errors }}
+			<label for="id_director"> Режисёр </label>
+			{{ form.director }}<br/>
+			{{ form.description.errors }}
+			<label for="id_description"> Описание фильма </label>
+			{{ form.description }}<br/>
+			{{ form.link.errors }}
+			<label for="id_link"> Ссылка на фильм </label>
+			{{ form.link }}<br/>
+			{{ form.releaseDate.errors }}
+			<label for="id_releaseDate"> Дата выпуска фильма </label>
+			{{ form.releaseDate }}<br/>
+			{{ form.authors.errors }}
+			<label for="id_authors"> Авторы сценария </label>
+			{{ form.authors }}<br/>
+			{{ form.genre.errors }}
+			<label for="id_genre"> Жанр </label>
+			{{ form.genre }}<br/>
+			<div style="display: none" id="addGenreBlock">
+				{{ form.addGenre.errors }}
+				<label for="id_addGenre"> Добавить новый жанр </label>
+				{{ form.addGenre }}<br/>
+			</div>
+			<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre()" /><br/>
+			{{ form.actors.errors }}
+			<label for="id_actors"> Акторы </label>
+			{{ form.actors }}<br/>
 		</table>
 		<input type="submit" value="Submit">
 	</form>

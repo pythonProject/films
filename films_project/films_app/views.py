@@ -20,4 +20,7 @@ def UploadForm(request):
 		if form.is_valid():
 			cd = form.cleaned_data
 			pass
+	# form = UploadFilmsForm(
+	# 					initial = {"name": "anymals"}
+	# 					)
 	return render_to_response("uploadFilm.html", {"form": form}, context_instance=RequestContext(request))

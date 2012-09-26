@@ -17,4 +17,5 @@ class UploadFilmsForm(forms.Form):
 	releaseDate = forms.DateTimeField(required=False)
 	authors = forms.CharField()
 	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres)
+	addGenre = forms.CharField(label="Добавить жанр")
 	actors = forms.CharField()
