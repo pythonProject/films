@@ -2,16 +2,9 @@
 
 <!-- <script type="text/javascript" src="jscript/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="jscript/jscripts.js" ></script> -->
-{% block extrahead %}
-<script type="text/javascript" src="jscript/jquery-1.8.2.min.js"></script>
-<script type="text/javascript">
-function addGenre()
-{
-	$("#addGenreBlock").css("display", "block");
-}
-</script>
-{% endblock %}
 {% block content %} 
+<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js"></script>
 	{% if form.errors %}
 		<p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
 	{% endif %}
@@ -43,7 +36,7 @@ function addGenre()
 				<label for="id_addGenre"> Добавить новый жанр </label>
 				{{ form.addGenre }}<br/>
 			</div>
-			<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre()" /><br/>
+			<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>
 			{{ form.actors.errors }}
 			<label for="id_actors"> Акторы </label>
 			{{ form.actors }}<br/>
