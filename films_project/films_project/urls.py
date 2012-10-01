@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     (u"^upload/$", UploadForm),
     (u"^createAccount/$", CreateUser),
     (u"^thanks/$", Thanks),
+    (u"^login/$", LoginView),
+    (u"^logged_in/$", Logged_in),
 )
 
 urlpatterns += staticfiles_urlpatterns()

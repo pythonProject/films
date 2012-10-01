@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
-
+{% if error %}
+<p style="color: red">Kiss my ass asshole</p>
+{% endif %}
+{% if form.errors %}
+    <p style="color: red"> Вы ввели не правильные детали {{ form.error|pluralize }}</p>
+{% endif %}
+<form action="" method="Post"> {% csrf_token %}
+{{ form.login.errors }}
+<label for="id_login">Ваш логин</label>
+{{ form.login }}<br/>
+{{ form.password.errors }}
+<label for="id_password">Ваш пароль</label>
+{{ form.password }}<br/>
+<input type="submit" value="Отправить">
+</form>
 {% endblock %}

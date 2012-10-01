@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if error == 1 %}
+<p style="color: red">Вы не емеете доступа к этой странице. Пожалуйста <a href="/login/">войдите в свой аккаунт</a>
+                      или <a href="/createAccount/">зарегистрируйтесь</a> </p>
+{% endif %}
+{% if error == 2 %}
+<p style="color: red">Вы не емеете доступа к этой странице. Пожалуйста <a href="/login/">войдите в свой аккаунт</a>
+                      или <a href="/createAccount/">зарегистрируйтесь</a> </p>
+{% endif %}
+
+{% endblock %}

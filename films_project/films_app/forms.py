@@ -26,3 +26,7 @@ class CreateAccount(forms.Form):
 	email = forms.EmailField()
 	username = forms.CharField(max_length=30)
 	password = forms.CharField(widget = forms.PasswordInput())
+
+class Log_in(forms.Form):
+    login = forms.CharField(max_length = 30)
+    password = forms.CharField(widget=forms.PasswordInput())
