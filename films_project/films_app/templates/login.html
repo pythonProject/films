@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if error %}
-<p style="color: red">Kiss my ass asshole</p>
+<p style="color: red">Вы ввели не правильный логин или пароль</p>
 {% endif %}
 {% if form.errors %}
     <p style="color: red"> Вы ввели не правильные детали {{ form.error|pluralize }}</p>
@@ -16,4 +16,5 @@
 {{ form.password }}<br/>
 <input type="submit" value="Отправить">
 </form>
+<p>Если Вы ещё не зарегистрированы, пожалуйста, <a href="/createAccount/">зарегистрируйтесь</a></p>
 {% endblock %}

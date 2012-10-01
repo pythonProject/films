@@ -26,10 +26,13 @@ def CreateUser(request):
 				account.first_name = cd["first_name"]
 				account.last_name = cd["last_name"]
 				account.save()
+				user = auth.authenticate(username = cd["username"], password = cd["password"])
+				auth.login(request, user)
+				return HttpResponseRedirect("/logged_in/")
 		except IntegrityError:
 			err = "Извините, данный логин уже используеться!"
 			return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
-		return HttpResponseRedirect("/thanks/")
+		# return HttpResponseRedirect("/logged_in/")
     return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
 def Logged_in(request):
