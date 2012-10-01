@@ -7,21 +7,27 @@ from forms import UploadFilmsForm, CreateAccount
 from films_app.models import Films, Author, Genre, Actors
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.db import IntegrityError
 
+def Index(request):
+	return render_to_response("index.html")
 
 def CreateUser(request):
 	createAccountForm = CreateAccount()
-	if request.method == "Post":
-		createAccountForm = CreateAccount(request.POST)
-		if createAccountForm.is_valid():
-			cd = createAccountForm.cleaned_data
-			user = User.objects.create_user(first_name = cd["first_name"],
-											last_name = cd["last_name"],
-											email = cd["email"],
-											username = cd["username"],
-											password = cd["password"])
-			user.save()
-			return HttpResponseRedirect("/thanks/")
+	if request.method == "POST":
+		try:
+			createAccountForm = CreateAccount(request.POST)
+			if createAccountForm.is_valid():
+				cd = createAccountForm.cleaned_data
+				# import ipdb; ipdb.set_trace()
+				account = User.objects.create_user(cd["username"], cd["email"], cd["password"])
+				account.first_name = cd["first_name"]
+				account.last_name = cd["last_name"]
+				account.save()
+		except IntegrityError:
+			err = "Извините, данный логин уже используеться!"
+			return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
+		return HttpResponseRedirect("/thanks/")
 	return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
 def Thanks(request):
