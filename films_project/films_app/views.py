@@ -3,18 +3,29 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import UploadFilmsForm
+from forms import UploadFilmsForm, CreateAccount
 from films_app.models import Films, Author, Genre, Actors
-import 
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 
 
-def hello(request):
-	return render_to_response("hello.html", {"hello": "hello"})
+def CreateUser(request):
+	createAccountForm = CreateAccount()
+	if request.method == "Post":
+		createAccountForm = CreateAccount(request.POST)
+		if createAccountForm.is_valid():
+			cd = createAccountForm.cleaned_data
+			user = User.objects.create_user(first_name = cd["first_name"],
+											last_name = cd["last_name"],
+											email = cd["email"],
+											username = cd["username"],
+											password = cd["password"])
+			user.save()
+			return HttpResponseRedirect("/thanks/")
+	return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
-def reqMeta(request):
-	# import ipdb; ipdb.set_trace()
-	res = request.META.items()
-	return render_to_response("meta.html", {"res": res})
+def Thanks(request):
+	return render_to_response("thanks.html")
 
 def UploadForm(request):
 	form = UploadFilmsForm()

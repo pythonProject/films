@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+	<p style="color: red">Вы не правильно заполнили форму {{ form.error|pluralize }}</p>
+{% endif %}
+<form action="" method="Post"> {% csrf_token %}
+	{{ form.first_name.errors }}
+	<label for="id_first_name"> Введите Ваше имя </label>
+	{{ form.first_name }}
+	{{ form.last_name.errors }}<br/>
+	<label for="id_last_name"> Введите Вашу фамилию </label>
+	{{ form.last_name }}<br/>
+	{{ form.email.errors }}
+	<label for="id_email"> Введите Ваш электронный адрес </label>
+	{{ form.email }}<br/>
+	{{ form.username.errors }}
+	<label for="id_username"> Введите Ваш логин </label>
+	{{ form.username }}<br/>
+	{{ form.password.errors }}
+	<label for="id_password"> Введите Ваш пароль </label>
+	{{ form.password }}<br/>
+	<input type="submit" value="Зарегистрироваться"/>
+</form>
+
+{% endblock %}

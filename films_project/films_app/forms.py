@@ -19,3 +19,10 @@ class UploadFilmsForm(forms.Form):
 	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres)
 	addGenre = forms.CharField(required=False)
 	actors = forms.CharField()
+
+class CreateAccount(forms.Form):
+	first_name = forms.CharField(max_length=30)
+	last_name = forms.CharField(max_length=30)
+	email = forms.EmailField()
+	username = forms.CharField(max_length=30)
+	password = forms.CharField(widget = forms.PasswordInput())
