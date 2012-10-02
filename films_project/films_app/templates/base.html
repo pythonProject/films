@@ -1,13 +1,23 @@
 <html>
-<header>
-<title>{% block title %}{% endblock %}</title>
-<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
-</header>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
+	<link href={{STATIC_URL}}css/base.css type="text/css" rel="stylesheet">
+</head>
 <body>
-{% block content %} {% endblock %}
-{% block footer %} 
-<p>Thanks for visiting our website</p>
-{% endblock %}
+	<div id="main">
+		<div id="header">
+		</div>
+        
+        <div id="menu"> </div>
+        
+		<div id="content">
+			{% block content %} {% endblock %}
+		</div>
+			{% block footer %} 
+		<p>Thanks for visiting our website</p>
+		{% endblock %}
+	</div>
 </body>
 </html>

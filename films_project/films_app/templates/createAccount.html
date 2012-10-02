@@ -5,8 +5,8 @@
 {% if form.errors %}
 	<p style="color: red">Вы не правильно заполнили форму {{ form.error|pluralize }}</p>
 {% endif %}
-<p style="color: red">{{ err }}</p>
-<form action="/createAccount/" method="Post"> {% csrf_token %}
+<p  style="color: red">{{ err }}</p>
+<form class="form" action="/createAccount/" method="Post"> {% csrf_token %}
 	{{ form.first_name.errors }}
 	<label for="id_first_name"> Введите Ваше имя </label>
 	{{ form.first_name }}

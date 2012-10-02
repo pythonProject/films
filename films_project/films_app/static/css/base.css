@@ -1,0 +1,56 @@
+body {
+background-color: #000000;
+/*text-align: center;*/
+width: 1197px;
+margin: 0 auto;
+padding: 0px;
+}
+
+#main {
+outline: solid 2px #F00;
+margin: 0px auto;
+padding: 0;
+}
+
+#header {
+background-image:url(../img/head.png);
+/*outline: solid 1px #3AE2CE;*/
+height: 247px;
+padding:0px;
+margin: 0px auto;
+}
+
+#menu {
+background-image:url(../img/menu.png);
+height: 65px;
+}
+
+#content {
+background-image:url(../img/content.png);
+background-repeat: repeat-y;
+margin: 0px auto 20px;
+padding-top: 20px;
+/*outline: solid 1px #FFDD00;*/
+}
+
+
+p {
+color: #FFF;
+}
+
+
+
+/* ----- CreateAccount -----*/
+
+
+label {
+font: normal 16px Arial;
+color: #FFFFF;
+}
+
+.form {
+	padding-bottom: 20px;
+	/*outline: solid 1px #FFDD00;*/
+	text-align:center;
+	margin-bottom: 2px;
+}
