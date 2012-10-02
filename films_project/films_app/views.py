@@ -10,8 +10,16 @@ from django.http import HttpResponseRedirect
 from django.db import IntegrityError
 from django.contrib import auth
 
+def RequiresLogin(view):
+	def check(request, *args, **kwargs):
+		if not request.user.is_authenticated():
+			return HttpResponseRedirect("/login/")
+		return view(request, *args, **kwargs)
+	return check
+
+
 def Index(request):
-    if request.session:
+    if request.session and request.GET.get('quit', False):
         auth.logout(request)
     return render_to_response("index.html")
 
@@ -36,11 +44,7 @@ def CreateUser(request):
     return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
 def Logged_in(request):
-    if not request.user.is_authenticated():
-        error = 1
-        return render_to_response("error.html", {"error": error})
-    var = request.session
-    return render_to_response("logged_in.html", {"var": var})
+    return render_to_response("logged_in.html")
 
 def LoginView(request):
     form = Log_in()
@@ -49,6 +53,7 @@ def LoginView(request):
         if form.is_valid():
             user = auth.authenticate(username = request.POST["login"], password = request.POST["password"])
             if user is not None:
+            	request.session["user"] = request.POST["login"]
                 auth.login(request, user)
                 return HttpResponseRedirect("/logged_in/")
             else:

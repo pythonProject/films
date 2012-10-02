@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
-from films_app.views import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from films_app import views
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('films_app.views',
     # Examples:
     # url(r'^$', 'test_project.views.home', name='home'),
     # url(r'^test_project/', include('test_project.foo.urls')),
@@ -16,12 +16,15 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (u"^$", Index),
-    (u"^upload/$", UploadForm),
-    (u"^createAccount/$", CreateUser),
-    (u"^thanks/$", Thanks),
-    (u"^login/$", LoginView),
-    (u"^logged_in/$", Logged_in),
+    (u"^$", 'Index'),
+    (u"^upload/$", views.RequiresLogin(views.UploadForm)),
+    (u"^createAccount/$", 'CreateUser'),
+    (u"^thanks/$", 'Thanks'),
+    (u"^login/$", 'LoginView'),
+    (u"^logged_in/$", views.RequiresLogin(views.Logged_in)),
 )
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += patterns('films_app.views.logged_in',
+
+    )
