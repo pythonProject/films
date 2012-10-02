@@ -61,10 +61,6 @@ def LoginView(request):
                 return render_to_response("login.html", {"form": form, "error": error}, context_instance=RequestContext(request))
     return render_to_response("login.html", {"form": form}, context_instance=RequestContext(request))
 
-
-
-
-
 def Thanks(request):
 	return render_to_response("thanks.html")
 
@@ -74,14 +70,9 @@ def UploadForm(request):
 		form = UploadFilmsForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			# form = Films(name = cd["name"], 
-			# 			director = cd["director"], 
-			# 			description = cd["description"], 
-			# 			link = cd["link"], 
-			# 			release_date = cd["releaseDate"],
-			# 			added_date = )
-			pass
-	# form = UploadFilmsForm(
-	# 					initial = {"name": "anymals"}
-	# 					)
+			film = models.Films(name = cd["name"], 
+								director = cd["director"], 
+								description = cd["description"],
+								link = cd["link"],
+								)
 	return render_to_response("uploadFilm.html", {"form": form}, context_instance=RequestContext(request))
