@@ -3,11 +3,12 @@
 
 from django import forms
 from django.forms.widgets import CheckboxSelectMultiple
+from films_app.models import Genre
 
-listOfGenres = (("oleh1", "OLEH1"),
-					("oleh2", "OLEH2"),
-					("oleh3", "OLEH3"),
-					("oleh4", "OLEH4"))
+listOfGenres = {}
+
+for d in Genre.objects.all().values_list():
+	listOfGenres[d[0]] = d[1]
 
 class UploadFilmsForm(forms.Form):
 	name = 	forms.CharField()
@@ -16,7 +17,7 @@ class UploadFilmsForm(forms.Form):
 	link = forms.CharField()
 	releaseDate = forms.DateTimeField(required=False)
 	authors = forms.CharField()
-	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres)
+	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres.items())
 	addGenre = forms.CharField(required=False)
 	actors = forms.CharField()
 

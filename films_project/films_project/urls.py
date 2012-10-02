@@ -25,6 +25,3 @@ urlpatterns = patterns('films_app.views',
 )
 
 urlpatterns += staticfiles_urlpatterns()
-urlpatterns += patterns('films_app.views.logged_in',
-
-    )
