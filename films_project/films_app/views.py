@@ -21,7 +21,7 @@ def RequiresLogin(view):
 def Index(request):
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
-    return render_to_response("index.html")
+    return render_to_response("index.html", context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
@@ -44,7 +44,7 @@ def CreateUser(request):
     return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
 def Logged_in(request):
-    return render_to_response("logged_in.html")
+    return render_to_response("logged_in.html", context_instance=RequestContext(request))
 
 def LoginView(request):
     form = Log_in()
