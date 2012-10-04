@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.db import IntegrityError
 from django.contrib import auth
+import datetime
 
 def RequiresLogin(view):
 	def check(request, *args, **kwargs):
@@ -65,14 +66,20 @@ def Thanks(request):
 	return render_to_response("thanks.html")
 
 def UploadForm(request):
+	authors_list = []
+	for d in Author.objects.all().values_list():
+		authors_list.append(d[1])
 	form = UploadFilmsForm()
 	if request.method == "POST":
 		form = UploadFilmsForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			film = models.Films(name = cd["name"], 
-								director = cd["director"], 
-								description = cd["description"],
-								link = cd["link"],
-								)
-	return render_to_response("uploadFilm.html", {"form": form}, context_instance=RequestContext(request))
+			# film = Films(name = cd["name"], 
+			# 			director = cd["director"], 
+			# 			description = cd["description"],
+			# 			link = cd["link"],
+			# 			user = int(User.objects.get(username = request.session["user"])),
+			# 			release_date = cd.get("release_date", False),
+			# 			)
+			# author = Author(name = )
+	return render_to_response("uploadFilm.html", {"form": form, "authors_list": authors_list}, context_instance=RequestContext(request))

@@ -24,7 +24,15 @@
 			{{ form.releaseDate }}<br/>
 			{{ form.authors.errors }}
 			<label for="id_authors"> Авторы сценария </label>
+			<div style="display: block">
 			{{ form.authors }}<br/>
+			<ul id="authors_list"></ul>
+			<ul style="display:none" id="f">
+				{% for d in authors_list %}
+				<li> {{ d }} </li>
+				{% endfor %}
+			</ul>
+			</div>
 			{{ form.genre.errors }}
 			<label for="id_genre"> Жанр </label>
 			{{ form.genre }}<br/>
