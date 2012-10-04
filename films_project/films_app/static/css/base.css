@@ -20,6 +20,16 @@ padding:0px;
 margin: 0px auto;
 }
 
+
+a.img {
+	display:block;
+	width: 170px;
+	height: 33px;
+	background:url(../img/entry.png);
+	background-repeat: no-repeat;
+	margin-left: 1027px;
+	}
+
 #menu {
 background-image:url(../img/menu.png);
 height: 65px;
@@ -30,11 +40,15 @@ background-image:url(../img/content.png);
 background-repeat: repeat-y;
 margin: 0px auto 20px;
 padding-top: 20px;
-/*outline: solid 1px #FFDD00;*/
+outline: solid 1px #FFDD00;
 }
 
 
 p {
+margin: 0px auto 0;
+padding-top: 40px;
+text-align:center;
+font: normal 20px Arial, Helvetica, sans-serif;
 color: #FFF;
 }
 

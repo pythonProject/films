@@ -8,16 +8,26 @@
 <body>
 	<div id="main">
 		<div id="header">
-		</div>
+            <a class="img" href="../login"></a>
+        </div>
         
-        <div id="menu"> </div>
+        <div id="menu"> 
+        	<p>Главная  	 Онлайн фильм		Трейлер			Поиск</p>
+        </div>
+        
+        <div id="left_menu">
+        </div>
         
 		<div id="content">
 			{% block content %} {% endblock %}
 		</div>
-			{% block footer %} 
-		<p>Thanks for visiting our website</p>
-		{% endblock %}
+        
+        <div id="right_menu">
+        </div>
+        
+                {% block footer %} 
+            	<p>Thanks for visiting our website</p>
+            	{% endblock %}
 	</div>
 </body>
 </html>
