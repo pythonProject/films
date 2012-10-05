@@ -24,7 +24,7 @@ $(document).ready(function()
 			for( var i = 0; i < c; i++)
 			{
 				v = $("#f li").eq(i).text();
-				$("#authors_list").append("<li> <a href='#'>" + v + "</a> </li>");
+				$("#authors_list").append("<li>" + v + "</li>");
 			}
 		}
 	});
@@ -50,20 +50,4 @@ $(document).ready(function()
 				}
 			}
 		});
-	$("ul#authors_list").find("li").hover(
-		function(){$(this).css("color", "red");}, 
-		function(){$(this).css({ 'color': 'blue' });}
-		);
-	// $("#authors_list li").bind("mouseenter", mOver);
-	// $("#authors_list").mouseleave(function()
-	// 	{
-	// 		$(this).find("li").css("background-color", "blue");
-	// 		alert($(this).());
-	// 	});
 });
-// function hOver(){$(this).css("color", "red");}
-// function hOut(){$(this).css("color", "blue");}
-// function mOver()
-// 		{
-// 			$(this).css("background-color", "white");
-// 		}

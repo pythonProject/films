@@ -68,3 +68,12 @@ color: #FFFFF;
 	text-align:center;
 	margin-bottom: 2px;
 }
+
+/*------Upload Film-----------*/
+
+#authors_list li:hover{
+	background-color: red;
+}
+#authors_list li:blur{
+	background-color: blue;
+}
