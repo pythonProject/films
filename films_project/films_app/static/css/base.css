@@ -35,15 +35,40 @@ background-image:url(../img/menu.png);
 height: 65px;
 }
 
-#content {
-background-image:url(../img/content.png);
-background-repeat: repeat-y;
-margin: 0px auto 20px;
-padding-top: 20px;
+#main_content {
+/*background-image:url(../img/content.png);
+background-repeat: repeat-y;*/
+/*margin: 0px auto 20px;
+padding-top: 20px;*/
 outline: solid 1px #FFDD00;
 }
 
+#left_menu {
+background-image:url(../img/left_menu.png);
+background-repeat:repeat-y;
+width: 220px;
+float: left;
+outline: solid 1px #30C;
+}
 
+#content {
+float: left;
+width: 757px;
+background-color: #0E039F;
+outline: solid 1px #6C6;
+}
+
+#right_menu {
+background-image:url(../img/right_menu.png);
+background-repeat:repeat-y;
+width: 220px;
+float:right;
+outline: solid 1px #C6C;
+}
+
+.clear {
+	clear:both;
+}
 p {
 margin: 0px auto 0;
 padding-top: 40px;
