@@ -96,9 +96,9 @@ color: #FFFFF;
 
 /*------Upload Film-----------*/
 
-#authors_list li:hover{
+#f li:hover{
 	background-color: red;
 }
-#authors_list li:blur{
+#f li:blur{
 	background-color: blue;
 }

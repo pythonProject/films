@@ -26,8 +26,8 @@
 			<label for="id_authors"> Авторы сценария </label>
 			<div style="display: block">
 			{{ form.authors }}<br/>
-			<ul id="authors_list"></ul>
-			<ul style="display:none" id="f">
+			<!-- <ul id="authors_list"></ul><br> -->
+			<ul id="f" style="display: none">
 				{% for d in authors_list %}
 				<li> {{ d }} </li>
 				{% endfor %}
