@@ -2,50 +2,51 @@
 
 
 {% block content %} 
-	{% if form.errors %}
-		<p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
-	{% endif %}
-	<form action="" method="POST"> {% csrf_token %}
-		<table>
-			{{ form.name.errors }}
-			<label for="id_name"> Назва фильма </label>
-			{{ form.name }} <br/>
-			{{ form.director.errors }}
-			<label for="id_director"> Режисёр </label>
-			{{ form.director }}<br/>
-			{{ form.description.errors }}
-			<label for="id_description"> Описание фильма </label>
-			{{ form.description }}<br/>
-			{{ form.link.errors }}
-			<label for="id_link"> Ссылка на фильм </label>
-			{{ form.link }}<br/>
-			{{ form.releaseDate.errors }}
-			<label for="id_releaseDate"> Дата выпуска фильма </label>
-			{{ form.releaseDate }}<br/>
-			{{ form.authors.errors }}
-			<label for="id_authors"> Авторы сценария </label>
-			<div style="display: block">
-			{{ form.authors }}<br/>
-			<!-- <ul id="authors_list"></ul><br> -->
-			<ul id="f" style="display: none">
-				{% for d in authors_list %}
-				<li> {{ d }} </li>
-				{% endfor %}
-			</ul>
-			</div>
-			{{ form.genre.errors }}
-			<label for="id_genre"> Жанр </label>
-			{{ form.genre }}<br/>
-			<div style="display: none" id="addGenreBlock">
-				{{ form.addGenre.errors }}
-				<label for="id_addGenre"> Добавить новый жанр </label>
-				{{ form.addGenre }}<br/>
-			</div>
-			<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>
-			{{ form.actors.errors }}
-			<label for="id_actors"> Акторы </label>
-			{{ form.actors }}<br/>
-		</table>
-		<input type="submit" value="Submit">
-	</form>
+    {% if form.errors %}
+        <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
+    {% endif %}
+    <form action="" id="uploadFilmForm" method="POST"> {% csrf_token %}
+        <table>
+            {{ form.name.errors }}
+            <label for="id_name"> Назва фильма </label>
+            {{ form.name }} <br/>
+            {{ form.director.errors }}
+            <label for="id_director"> Режисёр </label>
+            {{ form.director }}<br/>
+            {{ form.description.errors }}
+            <label for="id_description"> Описание фильма </label>
+            {{ form.description }}<br/>
+            {{ form.link.errors }}
+            <label for="id_link"> Ссылка на фильм </label>
+            {{ form.link }}<br/>
+            {{ form.releaseDate.errors }}
+            <label for="id_releaseDate"> Дата выпуска фильма </label>
+            {{ form.releaseDate }}<br/>
+            <ul id="authors_list"></ul>
+            {{ form.add_authors.errors }}
+            <label for="id_add_authors"> Авторы сценария </label>
+            <div style="display: block">
+            {{ form.add_authors }}<br/>
+                <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
+            <ul id="f" style="display: none">
+                {% for d in authors_list %}
+                <li style="list-style-type: none;"> {{ d }} </li>
+                {% endfor %}
+            </ul>
+            </div>
+            {{ form.genre.errors }}
+            <label for="id_genre"> Жанр </label>
+            {{ form.genre }}<br/>
+            <div style="display: none" id="addGenreBlock">
+                {{ form.addGenre.errors }}
+                <label for="id_addGenre"> Добавить новый жанр </label>
+                {{ form.addGenre }}<br/>
+            </div>
+            <input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>
+            {{ form.actors.errors }}
+            <label for="id_actors"> Акторы </label>
+            {{ form.actors }}<br/>
+        </table>
+    </form>
+    <input type="button" value="Отправить" onclick="$('#uploadFilmForm').submit();">
 {% endblock %}

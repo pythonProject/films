@@ -3,12 +3,17 @@
 
 from django import forms
 from django.forms.widgets import CheckboxSelectMultiple
-from films_app.models import Genre
+from films_app.models import Genre, Author
 
 listOfGenres = {}
 
 for d in Genre.objects.all().values_list():
 	listOfGenres[d[0]] = d[1]
+
+#authors = {}
+#
+#def addChoices(ch_id, ch_name):
+#	authors[ch_id] = ch_name
 
 class UploadFilmsForm(forms.Form):
 	name = 	forms.CharField()
@@ -16,7 +21,8 @@ class UploadFilmsForm(forms.Form):
 	description = forms.CharField(widget=forms.Textarea)
 	link = forms.CharField()
 	releaseDate = forms.DateTimeField(required=False)
-	authors = forms.CharField()
+	add_authors = forms.CharField()
+#	list_authors = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, required = False, choices=authors.items())
 	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres.items())
 	addGenre = forms.CharField(required=False)
 	actors = forms.CharField()

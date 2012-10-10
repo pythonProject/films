@@ -6,7 +6,7 @@ from django.template import RequestContext
 from forms import UploadFilmsForm, CreateAccount, Log_in
 from films_app.models import Films, Author, Genre, Actors
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.contrib import auth
 import datetime
@@ -82,4 +82,10 @@ def UploadForm(request):
 			# 			release_date = cd.get("release_date", False),
 			# 			)
 			# author = Author(name = )
-	return render_to_response("uploadFilm.html", {"form": form, "authors_list": authors_list}, context_instance=RequestContext(request))
+#	if request.is_ajax():
+#		if request.method == "POST" and request.POST["name"]:
+#			addChoices(request.POST["id"], request.POST["name"])
+#			import  ipdb; ipdb.set_trace()
+#			return HttpResponse(form.fields["list_authors"])
+	return render_to_response("uploadFilm.html", {"form": form, "authors_list": authors_list}, 
+								context_instance=RequestContext(request))
