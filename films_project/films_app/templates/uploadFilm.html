@@ -32,6 +32,7 @@
                 {% for d in authors_list %}
                 <li style="list-style-type: none;"> {{ d }} </li>
                 {% endfor %}
+            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список авторов" onclick="HideAuthors(this)"/>
             </ul>
             </div>
             {{ form.genre.errors }}

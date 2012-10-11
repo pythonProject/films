@@ -3,6 +3,7 @@ $(document).ready(function()
     var authors_list_loaded = 0;
     $("#id_add_authors").focus(function()
     {
+        $("#hide_authors").css("display", "block");
         if($("#f").css("display") == "none")
             $("#f").css("display", "block");
     });
@@ -101,6 +102,12 @@ function addGenre1()
         $("#addGenreBlock").css("display", "none");
         $("#addGenreButton").val("Добавить жанр");
     }
+}
+
+function HideAuthors(obj)
+{
+    $("#f").css("display", "none");
+    obj.css("display", "none");
 }
 
 function removeAuthor(obj)
