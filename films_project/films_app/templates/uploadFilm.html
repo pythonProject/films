@@ -57,11 +57,13 @@
             {{ form.actors.errors }}
             <label for="id_actors"> Акторы </label>
             {{ form.actors }}<br/>
+            <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
             <ul id="actors_exists" style="display: none;">
                 {% for a in actors_list %}
                     <li style="list-style-type:none;">{{ a }}</li>
                 {% endfor %}
             </ul>
+            <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
         </table>
     </form>
     <input type="button" value="Отправить" onclick="$('#uploadFilmForm').submit();">

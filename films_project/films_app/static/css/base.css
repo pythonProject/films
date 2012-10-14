@@ -97,8 +97,14 @@ color: #FFFFF;
 /*------Upload Film-----------*/
 
 #f li:hover{
-	background-color: red;
+    background-color: red;
 }
 #f li:blur{
-	background-color: blue;
+    background-color: blue;
+}
+#actors_exists li:hover{
+     background-color: red;
+ }
+#actors_exists li:blur{
+    background-color: blue;
 }
