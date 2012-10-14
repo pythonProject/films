@@ -58,12 +58,13 @@ def LoginAjax(request):
             form = Log_in(request.POST)
             if form.is_valid():
                 user = auth.authenticate(username=request.POST["login"], password=request.POST["password"])
+#                import ipdb; ipdb.set_trace()
                 if user is not None:
                     request.session["user"] = request.POST["login"]
                     auth.login(request, user)
-            else:
-                res["error"] = True
-        return HttpResponse(simplejson.dumps(res), mimetype='application/json')
+                else:
+                    res["error"] = True
+    return HttpResponse(simplejson.dumps(res), mimetype='application/json')
 
 
 def LoginView(request):
