@@ -188,7 +188,7 @@ $(document).ready(function()
     });
     $("#login").click(function()
     {
-        $("#login_div").show(1000);
+        $("#login_div").toggle(1000);
     });
 });
 function addGenre1()
@@ -245,4 +245,26 @@ function removeActor(obj)
         }
     }
     obj.parent().detach();
+}
+function checkLogin()
+{
+    $.ajax(
+        {
+            url: '/login_ajax/',
+            type: "POST",
+            dataType: "json",
+            data: "login=" + $("#id_login").val().trim() + "&password=" + $("#id_password").val().trim() + "&csrfmiddlewaretoken=" + $("[name=csrfmiddlewaretoken]").val().trim(),
+//            csrfmiddlewaretoken: "csrfmiddlewaretoken"
+            success: function (data)
+            {
+                if(data.error)
+                {
+                    $("#login_error").css("display","block");
+                }
+                else
+                {
+                    window.location.href = "/logged_in/";
+                }
+            }
+        });
 }

@@ -11,14 +11,15 @@
 		<div id="header">
 
         <div style="display: none; text-align: right;" id="login_div">
-            <form action="/login/" method="POST">{% csrf_token %}
-                {{ form.login.errors }}
+            <form action="/login_ajax/" method="POST">{% csrf_token %}
+                <span style="display: none; color: red;" id="login_error">Вы ввели не правильное имя или пароль</span>
+                {{ form_login.login.errors }}
                 <label for="id_login">Ваш логин</label>
-                {{ form.login }}<br/>
-                {{ form.password.errors }}
+                {{ form_login.login }}<br/>
+                {{ form_login.password.errors }}
                 <label for="id_password">Ваш пароль</label>
-                {{ form.password }}<br/>
-                <input type="submit" value="Отправить">
+                {{ form_login.password }}<br/>
+                <input type="button" value="Отправить" onclick="checkLogin()">
             </form>
 
         </div>

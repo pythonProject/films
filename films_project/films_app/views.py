@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.contrib import auth
 import datetime
+from django.utils import simplejson
 
 def RequiresLogin(view):
     def check(request, *args, **kwargs):
@@ -23,10 +24,11 @@ def Index(request):
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
     form = Log_in()
-    return render_to_response("index.html", {"form": form}, context_instance=RequestContext(request))
+    return render_to_response("index.html", {"form_login": form}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
+    form_login = Log_in()
     if request.method == "POST":
         try:
             createAccountForm = CreateAccount(request.POST)
@@ -43,10 +45,26 @@ def CreateUser(request):
             err = "Извините, данный логин уже используеться!"
             return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
         # return HttpResponseRedirect("/logged_in/")
-    return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
+    return render_to_response("createAccount.html", {"form": createAccountForm, "form_login": form_login}, context_instance=RequestContext(request))
 
 def Logged_in(request):
     return render_to_response("logged_in.html", context_instance=RequestContext(request))
+
+def LoginAjax(request):
+    res = {}
+    res["error"] = False
+    if request.is_ajax():
+        if request.method == "POST":
+            form = Log_in(request.POST)
+            if form.is_valid():
+                user = auth.authenticate(username=request.POST["login"], password=request.POST["password"])
+                if user is not None:
+                    request.session["user"] = request.POST["login"]
+                    auth.login(request, user)
+            else:
+                res["error"] = True
+        return HttpResponse(simplejson.dumps(res), mimetype='application/json')
+
 
 def LoginView(request):
     form = Log_in()
@@ -60,7 +78,8 @@ def LoginView(request):
                 return HttpResponseRedirect("/logged_in/")
             else:
                 error = 2
-                return render_to_response("login.html", {"form": form, "error": error}, context_instance=RequestContext(request))
+                return render_to_response("login.html", {"form": form, "error": error},
+                                            context_instance=RequestContext(request))
     return render_to_response("login.html", {"form": form}, context_instance=RequestContext(request))
 
 def Thanks(request):
