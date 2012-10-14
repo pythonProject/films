@@ -66,26 +66,35 @@ def Thanks(request):
 	return render_to_response("thanks.html")
 
 def UploadForm(request):
-	authors_list = []
-	for d in Author.objects.all().values_list():
-		authors_list.append(d[1])
-	form = UploadFilmsForm()
-	if request.method == "POST":
-		form = UploadFilmsForm(request.POST)
-		if form.is_valid():
-			cd = form.cleaned_data
-			# film = Films(name = cd["name"], 
-			# 			director = cd["director"], 
-			# 			description = cd["description"],
-			# 			link = cd["link"],
-			# 			user = int(User.objects.get(username = request.session["user"])),
-			# 			release_date = cd.get("release_date", False),
-			# 			)
-			# author = Author(name = )
-#	if request.is_ajax():
-#		if request.method == "POST" and request.POST["name"]:
-#			addChoices(request.POST["id"], request.POST["name"])
-#			import  ipdb; ipdb.set_trace()
-#			return HttpResponse(form.fields["list_authors"])
-	return render_to_response("uploadFilm.html", {"form": form, "authors_list": authors_list}, 
-								context_instance=RequestContext(request))
+    authors_list = []
+    list_genres = []
+    actors_list = []
+    for a in Actors.objects.all().values_list():
+        actors_list.append(a[1])
+    for d in Author.objects.all().values_list():
+        authors_list.append(d[1])
+    for g in Genre.objects.all().values_list():
+        list_genres.append(g[1])
+    form = UploadFilmsForm()
+    if request.method == "POST":
+        form = UploadFilmsForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            # film = Films(name = cd["name"],
+            # 			director = cd["director"],
+            # 			description = cd["description"],
+            # 			link = cd["link"],
+            # 			user = int(User.objects.get(username = request.session["user"])),
+            # 			release_date = cd.get("release_date", False),
+            # 			)
+            # author = Author(name = )
+    #	if request.is_ajax():
+    #		if request.method == "POST" and request.POST["name"]:
+    #			addChoices(request.POST["id"], request.POST["name"])
+    #			import  ipdb; ipdb.set_trace()
+    #			return HttpResponse(form.fields["list_authors"])
+    return render_to_response("uploadFilm.html", {"form": form,
+                                                  "authors_list": authors_list,
+                                                  "list_genres": list_genres,
+                                                  "actors_list": actors_list},
+                                    context_instance=RequestContext(request))

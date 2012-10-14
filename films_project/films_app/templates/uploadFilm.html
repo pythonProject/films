@@ -35,18 +35,33 @@
             <input type="button" id="hide_authors" style="display: none;" value="Скрыть список авторов" onclick="HideAuthors(this)"/>
             </ul>
             </div>
-            {{ form.genre.errors }}
-            <label for="id_genre"> Жанр </label>
-            {{ form.genre }}<br/>
+            <!--{{ form.genre.errors }}-->
+            <!--<label for="id_genre"> Жанр </label>-->
+            <!--{{ form.genre }}<br/>-->
+            <ul id="list_genres">
+            {% for g in list_genres %}
+
+                    <li style="list-style-type: none;"><input type="checkbox" id="{{ g }}"/> {{ g }}</li>
+
+            {% endfor %}
+            </ul>
             <div style="display: none" id="addGenreBlock">
                 {{ form.addGenre.errors }}
                 <label for="id_addGenre"> Добавить новый жанр </label>
                 {{ form.addGenre }}<br/>
+                <span style="color: red; display: none;" id="form_is_empty">Извините, но Вы не можете отправить пустую форму</span>
+                <span style="color: red; display: none;" id="added_genre">Данный жанр уже добавлен</span>
             </div>
             <input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>
+            <ul id="actors_list"></ul>
             {{ form.actors.errors }}
             <label for="id_actors"> Акторы </label>
             {{ form.actors }}<br/>
+            <ul id="actors_exists" style="display: none;">
+                {% for a in actors_list %}
+                    <li style="list-style-type:none;">{{ a }}</li>
+                {% endfor %}
+            </ul>
         </table>
     </form>
     <input type="button" value="Отправить" onclick="$('#uploadFilmForm').submit();">

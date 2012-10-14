@@ -5,10 +5,10 @@ from django import forms
 from django.forms.widgets import CheckboxSelectMultiple
 from films_app.models import Genre, Author
 
-listOfGenres = {}
-
-for d in Genre.objects.all().values_list():
-	listOfGenres[d[0]] = d[1]
+#listOfGenres = {}
+#
+#for d in Genre.objects.all().values_list():
+#	listOfGenres[d[0]] = d[1]
 
 #authors = {}
 #
@@ -23,7 +23,7 @@ class UploadFilmsForm(forms.Form):
 	releaseDate = forms.DateTimeField(required=False)
 	add_authors = forms.CharField()
 #	list_authors = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, required = False, choices=authors.items())
-	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres.items())
+#	genre = forms.MultipleChoiceField(widget=CheckboxSelectMultiple, choices=listOfGenres.items())
 	addGenre = forms.CharField(required=False)
 	actors = forms.CharField()
 

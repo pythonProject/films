@@ -1,19 +1,10 @@
 $(document).ready(function()
 {
-    var authors_list_loaded = 0;
     $("#id_add_authors").focus(function()
     {
         $("#hide_authors").css("display", "block");
         if($("#f").css("display") == "none")
             $("#f").css("display", "block");
-    });
-    $("#f").children("li").blur(function()
-    {
-        $("#f").css("display", "none");
-        for(var i = 0; i < $("#f li").length; i++)
-        {
-            $("#f li").eq(i).css("display", "none");
-        }
     });
     $("#id_add_authors").keyup(function(e)
         {
@@ -86,8 +77,41 @@ $(document).ready(function()
         });
     $("#f li").click(function()
     {
-        $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' id='id_" + $(this).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $(this).text() + "'>" + $(this).text() + "</span></li>");
+        $("#authors_list").append("<li><input type='checkbox' id='id_" + $(this).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $(this).text() + "'>" + $(this).text() + "</span></li>");
         $(this).css("display", "none");
+    });
+    $("#id_actors").focus(function()
+    {
+        $("#actors_exists").css("display", "block");
+    });
+    $("#id_addGenre").keyup(function(e)
+    {
+        $("#form_is_empty").css("display", "none");
+        $("#added_genre").css("display", "none");
+        var c = 0;
+//        alert($("#id_addGenre").val());
+        if(e.which == 13)
+        {
+            if($("#id_addGenre").val() == "")
+            {
+                $("#form_is_empty").css("display", "block");
+                c++;
+            }
+            for(var i = 0; i < $("#list_genres li").length; i++)
+            {
+//                alert($("#list_genres li").eq(i).text());
+                if($("#id_addGenre").val().trim() == $("#list_genres li").eq(i).text())
+                {
+                    $("#added_genre").css("display", "block");
+                    c++;
+                }
+            }
+            if(c == 0)
+            {
+                $("#list_genres").append("<li style='list-style-type: none;'><input type='checkbox' checked='checked' id='" + $("#id_addGenre").val() + "' />" + $("#id_addGenre").val() + "</li>");
+                $("#id_addGenre").val("");
+            }
+        }
     });
 });
 function addGenre1()
@@ -102,6 +126,7 @@ function addGenre1()
         $("#addGenreBlock").css("display", "none");
         $("#addGenreButton").val("Добавить жанр");
     }
+
 }
 
 function HideAuthors(obj)
