@@ -9,7 +9,7 @@
 <body>
 	<div id="main">
 		<div id="header">
-            <a class="img" href="#" id="login"></a>
+
         <div style="display: none; text-align: right;" id="login_div">
             <form action="/login/" method="POST">{% csrf_token %}
                 {{ form.login.errors }}
@@ -20,7 +20,9 @@
                 {{ form.password }}<br/>
                 <input type="submit" value="Отправить">
             </form>
+
         </div>
+            <a class="img" href="#" id="login"></a>
         </div>
 
         <div id="menu"> 
