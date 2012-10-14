@@ -9,9 +9,20 @@
 <body>
 	<div id="main">
 		<div id="header">
-            <a class="img" href="../login"></a>
+            <a class="img" href="#" id="login"></a>
+        <div style="display: none; text-align: right;" id="login_div">
+            <form action="/login/" method="POST">{% csrf_token %}
+                {{ form.login.errors }}
+                <label for="id_login">Ваш логин</label>
+                {{ form.login }}<br/>
+                {{ form.password.errors }}
+                <label for="id_password">Ваш пароль</label>
+                {{ form.password }}<br/>
+                <input type="submit" value="Отправить">
+            </form>
         </div>
-        
+        </div>
+
         <div id="menu"> 
         	<p>Главная  	 Онлайн фильм		Трейлер			Поиск</p>
         </div>

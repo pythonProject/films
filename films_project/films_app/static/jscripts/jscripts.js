@@ -186,6 +186,10 @@ $(document).ready(function()
             }
         }
     });
+    $("#login").click(function()
+    {
+        $("#login_div").show(1000);
+    });
 });
 function addGenre1()
 {

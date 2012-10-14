@@ -12,36 +12,37 @@ from django.contrib import auth
 import datetime
 
 def RequiresLogin(view):
-	def check(request, *args, **kwargs):
-		if not request.user.is_authenticated():
-			return HttpResponseRedirect("/login/")
-		return view(request, *args, **kwargs)
-	return check
+    def check(request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect("/login/")
+        return view(request, *args, **kwargs)
+    return check
 
 
 def Index(request):
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
-    return render_to_response("index.html", context_instance=RequestContext(request))
+    form = Log_in()
+    return render_to_response("index.html", {"form": form}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
     if request.method == "POST":
-		try:
-			createAccountForm = CreateAccount(request.POST)
-			if createAccountForm.is_valid():
-				cd = createAccountForm.cleaned_data
-				account = User.objects.create_user(cd["username"], cd["email"], cd["password"])
-				account.first_name = cd["first_name"]
-				account.last_name = cd["last_name"]
-				account.save()
-				user = auth.authenticate(username = cd["username"], password = cd["password"])
-				auth.login(request, user)
-				return HttpResponseRedirect("/logged_in/")
-		except IntegrityError:
-			err = "Извините, данный логин уже используеться!"
-			return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
-		# return HttpResponseRedirect("/logged_in/")
+        try:
+            createAccountForm = CreateAccount(request.POST)
+            if createAccountForm.is_valid():
+                cd = createAccountForm.cleaned_data
+                account = User.objects.create_user(cd["username"], cd["email"], cd["password"])
+                account.first_name = cd["first_name"]
+                account.last_name = cd["last_name"]
+                account.save()
+                user = auth.authenticate(username = cd["username"], password = cd["password"])
+                auth.login(request, user)
+                return HttpResponseRedirect("/logged_in/")
+        except IntegrityError:
+            err = "Извините, данный логин уже используеться!"
+            return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
+        # return HttpResponseRedirect("/logged_in/")
     return render_to_response("createAccount.html", {"form": createAccountForm}, context_instance=RequestContext(request))
 
 def Logged_in(request):
@@ -54,7 +55,7 @@ def LoginView(request):
         if form.is_valid():
             user = auth.authenticate(username = request.POST["login"], password = request.POST["password"])
             if user is not None:
-            	request.session["user"] = request.POST["login"]
+                request.session["user"] = request.POST["login"]
                 auth.login(request, user)
                 return HttpResponseRedirect("/logged_in/")
             else:
@@ -63,7 +64,7 @@ def LoginView(request):
     return render_to_response("login.html", {"form": form}, context_instance=RequestContext(request))
 
 def Thanks(request):
-	return render_to_response("thanks.html")
+    return render_to_response("thanks.html")
 
 def UploadForm(request):
     authors_list = []
