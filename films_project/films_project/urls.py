@@ -22,6 +22,7 @@ urlpatterns = patterns('films_app.views',
     (u"^thanks/$", 'Thanks'),
     (u"^login/$", 'LoginView'),
     (u"^logged_in/$", views.RequiresLogin(views.Logged_in)),
+    (u"^login_ajax/", views.LoginAjax),
 )
 
 urlpatterns += staticfiles_urlpatterns()
