@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% block header %}
 
+{% endblock %}
 
 {% block content %} 
     {% if form.errors %}
@@ -7,23 +9,23 @@
     {% endif %}
     <form action="" id="uploadFilmForm" method="POST"> {% csrf_token %}
             {{ form.name.errors }}
-            <label for="id_name"> Назва фильма </label>
-            {{ form.name }} <br/>
+            <label for="id_name"> <div class="question">Назва фильма </div></label> 
+            {{ form.name }}<br/>
             {{ form.director.errors }}
-            <label for="id_director"> Режисёр </label>
+            <label for="id_director"> <div class="question">Режисёр </div></label>
             {{ form.director }}<br/>
             {{ form.description.errors }}
-            <label for="id_description"> Описание фильма </label>
+            <label for="id_description"><div class="question"> Описание фильма </div></label>
             {{ form.description }}<br/>
             {{ form.link.errors }}
-            <label for="id_link"> Ссылка на фильм </label>
+            <label for="id_link"> <div class="question">Ссылка на фильм </div></label>
             {{ form.link }}<br/>
             {{ form.releaseDate.errors }}
-            <label for="id_releaseDate"> Дата выпуска фильма </label>
+            <label for="id_releaseDate"> <div class="question">Дата выпуска фильма </div></label>
             {{ form.releaseDate }}<br/>
             <ul id="authors_list"></ul>
             {{ form.add_authors.errors }}
-            <label for="id_add_authors"> Авторы сценария </label>
+            <label for="id_add_authors"><div class="question"> Авторы сценария </div></label>
             <div style="display: block">
             {{ form.add_authors }}<br/>
                 <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
