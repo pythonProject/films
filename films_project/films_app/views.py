@@ -98,22 +98,19 @@ def UploadForm(request):
         list_genres.append(g[1])
     form = UploadFilmsForm()
     if request.method == "POST":
+        import ipdb; ipdb.set_trace()
         form = UploadFilmsForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            # film = Films(name = cd["name"],
-            # 			director = cd["director"],
-            # 			description = cd["description"],
-            # 			link = cd["link"],
-            # 			user = int(User.objects.get(username = request.session["user"])),
-            # 			release_date = cd.get("release_date", False),
-            # 			)
-            # author = Author(name = )
-    #	if request.is_ajax():
-    #		if request.method == "POST" and request.POST["name"]:
-    #			addChoices(request.POST["id"], request.POST["name"])
-    #			import  ipdb; ipdb.set_trace()
-    #			return HttpResponse(form.fields["list_authors"])
+#            film = Films(name = cd["name"],
+#                        director = cd["director"],
+#                        description = cd["description"],
+#                        link = cd["link"],
+#                        user = int(User.objects.get(username = request.session["user"])),
+#                        release_date = cd.get("release_date", False),
+#                        image = cd.get("image"),
+#                        )
+#            author = Author(name = request.POST)
     return render_to_response("uploadFilm.html", {"form": form,
                                                   "authors_list": authors_list,
                                                   "list_genres": list_genres,

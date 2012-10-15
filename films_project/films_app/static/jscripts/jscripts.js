@@ -19,7 +19,7 @@ $(document).ready(function()
                 {
                     if($("#f li").eq(i).text().trim() === str & $("#f li").eq(i).css("display") !== "none")
                     {
-                        $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' id='id_" + $("#f li").eq(i).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#f li").eq(i).text() + "'>" + $("#f li").eq(i).text() + "</span></li>");
+                        $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' name='author_" + $("#f li").eq(i).text() + "' id='id_" + $("#f li").eq(i).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#f li").eq(i).text() + "'>" + $("#f li").eq(i).text() + "</span></li>");
                         $("#f li").eq(i).css("display", "none");
                         am++;
                         break;
@@ -34,7 +34,7 @@ $(document).ready(function()
                     }
                     if(amount == 0)
                     {
-                        $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' id='id_" + $("#id_add_authors").val() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#id_add_authors").val() + "'>" + $("#id_add_authors").val() + "</span></li>");
+                        $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' name='author_" + $("#id_add_authors").val() + "' id='id_" + $("#id_add_authors").val() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#id_add_authors").val() + "'>" + $("#id_add_authors").val() + "</span></li>");
                     }
                     else
                     {
@@ -77,7 +77,7 @@ $(document).ready(function()
         });
     $("#f li").click(function()
     {
-        $("#authors_list").append("<li><input type='checkbox' id='id_" + $(this).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $(this).text() + "'>" + $(this).text() + "</span></li>");
+        $("#authors_list").append("<li><input type='checkbox' id='id_" + $(this).text() + "' checked='checked' name='author_" + $(this).text() + "' onChange='removeAuthor($(this))' /> <span id='id_" + $(this).text() + "'>" + $(this).text() + "</span></li>");
         $(this).css("display", "none");
     });
     $("#id_actors").focus(function()
@@ -99,7 +99,7 @@ $(document).ready(function()
         }
         if(!err)
         {
-            $("#actors_list").append("<li style='list-style-type:none;'><input type='checkbox' onChange='removeActor($(this))' checked='checked' id='" + $(this).text().trim() + "'/>" + $(this).text().trim() + "</li>");
+            $("#actors_list").append("<li style='list-style-type:none;'><input type='checkbox' onChange='removeActor($(this))' checked='checked' name='actor_" + $(this).text().trim() + "' id='" + $(this).text().trim() + "'/>" + $(this).text().trim() + "</li>");
             $(this).css("display", "none");
         }
     });
@@ -126,7 +126,7 @@ $(document).ready(function()
             }
             if(!err)
             {
-                $("#actors_list").append("<li style='list-style-type:none;'><input type='checkbox' onChange='removeActor($(this))' checked='checked' id='" + $("#id_actors").val().trim() + "'/>" + $("#id_actors").val().trim() + "</li>");
+                $("#actors_list").append("<li style='list-style-type:none;'><input type='checkbox' onChange='removeActor($(this))' checked='checked' name='actor_" + $("#id_actors").val().trim() + "' id='" + $("#id_actors").val().trim() + "'/>" + $("#id_actors").val().trim() + "</li>");
                 $("#id_actors").val("");
                 for(var i = 0; i < $("#actors_exists li").length; i++)
                 {
@@ -181,7 +181,7 @@ $(document).ready(function()
             }
             if(c == 0)
             {
-                $("#list_genres").append("<li style='list-style-type: none;'><input type='checkbox' checked='checked' id='" + $("#id_addGenre").val() + "' />" + $("#id_addGenre").val() + "</li>");
+                $("#list_genres").append("<li style='list-style-type: none;'><input type='checkbox' checked='checked' name='genre_" + $("#id_addGenre").val() + "' id='" + $("#id_addGenre").val() + "' />" + $("#id_addGenre").val() + "</li>");
                 $("#id_addGenre").val("");
             }
         }
@@ -189,6 +189,10 @@ $(document).ready(function()
     $("#login").click(function()
     {
         $("#login_div").toggle(1000);
+    });
+    $("#submit_id").live('click', function()
+    {
+        $("#uploadFilmForm").submit();
     });
 });
 function addGenre1()

@@ -6,7 +6,6 @@
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
     <form action="" id="uploadFilmForm" method="POST"> {% csrf_token %}
-        <table>
             {{ form.name.errors }}
             <label for="id_name"> Назва фильма </label>
             {{ form.name }} <br/>
@@ -35,13 +34,10 @@
             <input type="button" id="hide_authors" style="display: none;" value="Скрыть список авторов" onclick="HideAuthors(this)"/>
             </ul>
             </div>
-            <!--{{ form.genre.errors }}-->
-            <!--<label for="id_genre"> Жанр </label>-->
-            <!--{{ form.genre }}<br/>-->
             <ul id="list_genres">
             {% for g in list_genres %}
 
-                    <li style="list-style-type: none;"><input type="checkbox" id="{{ g }}"/> {{ g }}</li>
+                    <li style="list-style-type: none;"><input type="checkbox" id="{{ g }}" name="genre_{{ g }}"/> {{ g }}</li>
 
             {% endfor %}
             </ul>
@@ -64,7 +60,9 @@
                 {% endfor %}
             </ul>
             <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
-        </table>
+            {{ form.image.errors }}
+            <label for="id_image">Картинка</label>
+            {{ form.image }}
     </form>
-    <input type="button" value="Отправить" onclick="$('#uploadFilmForm').submit();">
+    <input type="button" value="Отправить" id="submit_id">
 {% endblock %}

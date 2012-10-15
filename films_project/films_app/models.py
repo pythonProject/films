@@ -8,6 +8,7 @@ class Films(models.Model):
     user = models.IntegerField()
     release_date = models.DateField()
     added_date = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to='images')
 
 class Author(models.Model):
     name = models.CharField(max_length=50)
