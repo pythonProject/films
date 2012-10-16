@@ -21,7 +21,7 @@
                 {{ form_login.password.errors }}
                 <label for="id_password">Ваш пароль</label>
                 {{ form_login.password }}<br/>
-                <input type="button" value="Отправить" onclick="checkLogin()">
+                <input type="button" value="Отправить" onClick="checkLogin()">
             </form>
 
         </div>
@@ -36,14 +36,21 @@
             <div id="left_menu">
             </div>
             
-            <div id="content">
-                {% block content %} {% endblock %}
+            <div id="content1">
+                <div id="content">
+                    {% block content %} {% endblock %}
+                </div>   
+                
+                <div id="page_number">
+                </div>
             </div>
+                
+            
             
             <div id="right_menu">
             </div>
          </div>
-        <div class="clear">
+        <div class="clear" id="footer">
                 {% block footer %} 
             	<p>Thanks for visiting our website</p>
             	{% endblock %}
