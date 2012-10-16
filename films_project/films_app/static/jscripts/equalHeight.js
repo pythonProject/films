@@ -14,5 +14,5 @@ $(document).ready(function() {
  );
  columns.height(tallestcolumn);
  }
- setEqualHeight($("#left_menu,#content, #right_menu"));
+ setEqualHeight($("#left_menu,#content1, #right_menu"));
 });
