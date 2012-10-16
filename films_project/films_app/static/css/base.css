@@ -99,14 +99,49 @@ color: #FFF;
 }
 
 
+/*------ Login ------*/
+.login {
+background-image:url(../img/login.png);
+height: 197px;
+width: 1200px;
+background-repeat: no-repeat;
+text-align: left;
+padding-left: 15px;
+padding-top: 15px;
+margin-top: 35px;
+float: right;
+/*outline:solid 1px #0F0;*/
+}
 
+.label_login {
+font: bold 10px Arial;
+color: #ffffff;
+display:block;
+position: relative;
+}
+
+.inputIcon {
+position: absolute;
+left: 140px;
+top: 17px;
+}
+
+.button_login {
+text-align: left;
+}
+
+a.vxod {
+background-image:url(../img/vxod.png);
+width: 67px;
+height: 29px;
+}
 /* ----- CreateAccount -----*/
 
 
-label {
+/*label {
 font: normal 16px Arial;
 color: #FFFFF;
-}
+}*/
 
 .form {
 	padding-bottom: 20px;

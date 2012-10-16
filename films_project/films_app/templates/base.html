@@ -12,17 +12,25 @@
 	<div id="main">
 		<div id="header">
 
-        <div style="display: none; text-align: right;" id="login_div">
+        <div class="login" style="display: none;" id="login_div">
+        	<!--<img src="{{ STATIC_URL }}img/login.png">-->
             <form action="/login_ajax/" method="POST">{% csrf_token %}
-                <span style="display: none; color: red;" id="login_error">Вы ввели не правильное имя или пароль</span>
+                <span style="display: none; color: red;" id="login_error">Вы ввели не правильное <br>имя или пароль</span>
                 {{ form_login.login.errors }}
-                <label for="id_login">Ваш логин</label>
+                <label class="label_login" for="id_login">Ваш логин <br>
                 {{ form_login.login }}<br/>
+                <img class="inputIcon" src="../static/img/user_16.png">
+                </label>
+                
                 {{ form_login.password.errors }}
-                <label for="id_password">Ваш пароль</label>
+                <label class="label_login" for="id_password">Ваш пароль<br>
                 {{ form_login.password }}<br/>
-                <input type="button" value="Отправить" onClick="checkLogin()">
-            </form>
+                <img class="inputIcon" src="../static/img/key_16.png">
+                </label>
+                                         
+                <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">
+             </form>
+            <!--<a class="vxod" href="logged_in.html"></a>-->
 
         </div>
             <a class="img" href="#" id="login"></a>
