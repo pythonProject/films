@@ -15,7 +15,7 @@ padding: 0;
 #header {
 background-image:url(../img/head.png);
 /*outline: solid 1px #3AE2CE;*/
-height: 247px;
+height: 274px;
 padding:0px;
 margin: 0px auto;
 }
@@ -46,7 +46,7 @@ outline: solid 1px #FFDD00;
 #left_menu {
 background-image:url(../img/left_menu.png);
 background-repeat:repeat-y;
-width: 220px;
+width: 223px;
 float: left;
 outline: solid 1px #30C;
 }
@@ -54,14 +54,14 @@ outline: solid 1px #30C;
 #content {
 float: left;
 width: 757px;
-background-color: #0E039F;
+background-image:url(../img/content.png);
 outline: solid 1px #6C6;
 }
 
 #right_menu {
 background-image:url(../img/right_menu.png);
 background-repeat:repeat-y;
-width: 220px;
+width: 217px;
 float:right;
 outline: solid 1px #C6C;
 }
