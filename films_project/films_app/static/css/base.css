@@ -103,7 +103,7 @@ color: #FFF;
 .login {
 background-image:url(../img/login.png);
 height: 197px;
-width: 1200px;
+/*width: 1200px;*/
 background-repeat: no-repeat;
 text-align: left;
 padding-left: 15px;

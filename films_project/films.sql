@@ -387,6 +387,7 @@ CREATE TABLE `films_app_films` (
   `user` int(11) NOT NULL,
   `release_date` date NOT NULL,
   `added_date` date NOT NULL,
+  `image` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

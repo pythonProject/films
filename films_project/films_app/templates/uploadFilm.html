@@ -7,7 +7,7 @@
     {% if form.errors %}
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
-    <form action="" id="uploadFilmForm" method="POST"> {% csrf_token %}
+    <form action="" id="uploadFilmForm" method="POST" enctype="multipart/form-data"> {% csrf_token %}
             {{ form.name.errors }}
             <label for="id_name"> <div class="question">Назва фильма </div></label> 
             {{ form.name }}<br/>
@@ -36,6 +36,7 @@
             <input type="button" id="hide_authors" style="display: none;" value="Скрыть список авторов" onclick="HideAuthors(this)"/>
             </ul>
             </div>
+            Жанры
             <ul id="list_genres">
             {% for g in list_genres %}
 
@@ -50,7 +51,7 @@
                 <span style="color: red; display: none;" id="form_is_empty">Извините, но Вы не можете отправить пустую форму</span>
                 <span style="color: red; display: none;" id="added_genre">Данный жанр уже добавлен</span>
             </div>
-            <input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>
+            <!--<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>-->
             <ul id="actors_list"></ul>
             {{ form.actors.errors }}
             <label for="id_actors"> Акторы </label>

@@ -11,6 +11,7 @@ from django.db import IntegrityError
 from django.contrib import auth
 import datetime
 from django.utils import simplejson
+from films_project import settings
 
 def RequiresLogin(view):
     def check(request, *args, **kwargs):
@@ -40,11 +41,11 @@ def CreateUser(request):
                 account.save()
                 user = auth.authenticate(username = cd["username"], password = cd["password"])
                 auth.login(request, user)
+                request.session["user"] = request.POST["username"]
                 return HttpResponseRedirect("/logged_in/")
         except IntegrityError:
             err = "Извините, данный логин уже используеться!"
             return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
-        # return HttpResponseRedirect("/logged_in/")
     return render_to_response("createAccount.html", {"form": createAccountForm, "form_login": form_login}, context_instance=RequestContext(request))
 
 def Logged_in(request):
@@ -58,7 +59,6 @@ def LoginAjax(request):
             form = Log_in(request.POST)
             if form.is_valid():
                 user = auth.authenticate(username=request.POST["login"], password=request.POST["password"])
-#                import ipdb; ipdb.set_trace()
                 if user is not None:
                     request.session["user"] = request.POST["login"]
                     auth.login(request, user)
@@ -86,10 +86,31 @@ def LoginView(request):
 def Thanks(request):
     return render_to_response("thanks.html")
 
+def devideGenres(genre):
+    return genre.split("_")[1]
+
+def devideAuthors(author):
+    return author.split("_")[1]
+
+def devideActors(actor):
+    return actor.split("_")[1]
+
 def UploadForm(request):
     authors_list = []
     list_genres = []
     actors_list = []
+    for i in request.POST.items():
+        if i[1] == "on":
+            if "author" in i[0]:
+                author = Author(name = i[0].split("_")[1])
+                author.save()
+            elif "genre" in i[0]:
+                genre = Genre(name = i[0].split("_")[1])
+                genre.save()
+            else :
+                actor = Actors(name = i[0].split("_")[1])
+                actor.save()
+
     for a in Actors.objects.all().values_list():
         actors_list.append(a[1])
     for d in Author.objects.all().values_list():
@@ -98,21 +119,25 @@ def UploadForm(request):
         list_genres.append(g[1])
     form = UploadFilmsForm()
     if request.method == "POST":
-        import ipdb; ipdb.set_trace()
-        form = UploadFilmsForm(request.POST)
+        form = UploadFilmsForm(request.POST, request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
-#            film = Films(name = cd["name"],
-#                        director = cd["director"],
-#                        description = cd["description"],
-#                        link = cd["link"],
-#                        user = int(User.objects.get(username = request.session["user"])),
-#                        release_date = cd.get("release_date", False),
-#                        image = cd.get("image"),
-#                        )
-#            author = Author(name = request.POST)
+            film = Films(name = cd["name"],
+                        director = cd["director"],
+                        description = cd["description"],
+                        link = cd["link"],
+                        user = int(User.objects.filter(username = request.session["user"]).values("id")[0]["id"]),
+                        release_date = datetime.datetime.now().strftime("%Y-%m-%d"),
+                        added_date = datetime.datetime.now().strftime("%Y-%m-%d"),
+                        image = request.FILES["image"],
+                        )
+            film.save()
+            return HttpResponseRedirect("/uploaded/")
     return render_to_response("uploadFilm.html", {"form": form,
                                                   "authors_list": authors_list,
                                                   "list_genres": list_genres,
                                                   "actors_list": actors_list},
                                     context_instance=RequestContext(request))
+
+def uploaded(request):
+    return render_to_response("uploaded.html")
