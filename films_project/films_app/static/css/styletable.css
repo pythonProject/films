@@ -14,11 +14,12 @@ color:#ff9000;
 font-weight: bold;
 }
 #id_name, #id_director, #id_link, #id_releaseDate {
-border: 1px solid #000000;
+border: 1px solid #aaa;
 height: 27px;
 background-image: url(../img/gradient.png);
 background-repeat: repeat-x;
 width: 400px;
+padding: 0 7px;
 }
 #id_name:focus, #id_director:focus, #id_link:focus, #id_releaseDate:focus {
 border: 1px solid #000000;
@@ -28,4 +29,21 @@ background: none;background-color: #ffffff;
 border: 1px solid #000000;
 
 width: 400px;
+}
+#addGenreButton, #hide_authors, #hideActors{
+     background: url(../img/background.jpg) bottom repeat-x #9eabb3;
+     padding: 5px 10px 5px 10px;
+     text-align: center;
+     font-weight: bold;
+     color: #fff;
+     text-decoration: none; border: 1px inset #aaa;
+     border-radius: 8px; width: auto; border-radius: 8px;  border-radius: 8px;  border-radius: 8px;
+     box-shadow: 1px 1px 1px #666;  box-shadow: 1px 1px 1px #666;  box-shadow: 1px 1px 1px #666;
+     text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
+      border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;
+      
+}
+
+label, input{
+     cursor: pointer;
 }
