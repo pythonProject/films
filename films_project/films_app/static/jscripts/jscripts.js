@@ -21,6 +21,7 @@ $(document).ready(function()
                     {
                         $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' name='author_" + $("#f li").eq(i).text() + "' id='id_" + $("#f li").eq(i).text() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#f li").eq(i).text() + "'>" + $("#f li").eq(i).text() + "</span></li>");
                         $("#f li").eq(i).css("display", "none");
+                        $("#id_add_authors").val("");
                         am++;
                         break;
                     }
@@ -35,6 +36,7 @@ $(document).ready(function()
                     if(amount == 0)
                     {
                         $("#authors_list").append("<li style='list-style-type: none'><input type='checkbox' name='author_" + $("#id_add_authors").val() + "' id='id_" + $("#id_add_authors").val() + "' checked='checked' onChange='removeAuthor($(this))' /> <span id='id_" + $("#id_add_authors").val() + "'>" + $("#id_add_authors").val() + "</span></li>");
+                        $("#id_add_authors").val("");
                     }
                     else
                     {
@@ -271,3 +273,19 @@ function checkLogin()
             }
         });
 }
+$('#id_releaseDate').DatePicker({
+    format:'Y-m-d',
+    date: $('#id_releaseDate').val(),
+    current: $('#id_releaseDate').val(),
+    starts: 1,
+    position: 'r',
+    onBeforeShow: function(){
+        $('#id_releaseDatee').DatePickerSetDate($('#id_releaseDate').val(), true);
+    },
+    onChange: function(formated, dates){
+        $('#id_releaseDate').val(formated);
+        if ($('#closeOnSelect input').attr('checked')) {
+            $('#id_releaseDate').DatePickerHide();
+        }
+    }
+});

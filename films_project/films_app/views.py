@@ -99,18 +99,9 @@ def UploadForm(request):
     authors_list = []
     list_genres = []
     actors_list = []
-    for i in request.POST.items():
-        if i[1] == "on":
-            if "author" in i[0]:
-                author = Author(name = i[0].split("_")[1])
-                author.save()
-            elif "genre" in i[0]:
-                genre = Genre(name = i[0].split("_")[1])
-                genre.save()
-            else :
-                actor = Actors(name = i[0].split("_")[1])
-                actor.save()
-
+    genre = []
+    author = []
+    actor = []
     for a in Actors.objects.all().values_list():
         actors_list.append(a[1])
     for d in Author.objects.all().values_list():
@@ -122,16 +113,44 @@ def UploadForm(request):
         form = UploadFilmsForm(request.POST, request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
+            if not cd["releaseDate"]:
+                cd["releaseDate"] = "1000-01-01"
+            else:
+                cd["releaseDate"] = cd["releaseDate"].strftime("%Y-%m-%d")
             film = Films(name = cd["name"],
                         director = cd["director"],
                         description = cd["description"],
                         link = cd["link"],
                         user = int(User.objects.filter(username = request.session["user"]).values("id")[0]["id"]),
-                        release_date = datetime.datetime.now().strftime("%Y-%m-%d"),
+                        release_date = cd["releaseDate"],
                         added_date = datetime.datetime.now().strftime("%Y-%m-%d"),
                         image = request.FILES["image"],
                         )
             film.save()
+            for i in request.POST.items():
+                if i[1] == "on":
+                    if "author" in i[0]:
+                        author_temp = Author.objects.filter(name = i[0].split("_")[1].strip())
+                        if author_temp:
+                            author.append(author_temp.values_list()[0][0])
+                        else:
+                            author_temp = Author(name = i[0].split("_")[1].strip())
+                            author_temp.save()
+                            author.append(author_temp.id)
+                    elif "genre" in i[0]:
+                        genre_tmp = Genre.objects.filter(name = i[0].split("_")[1])
+                        genre.append(genre_tmp.values_list()[0][0])
+                    else :
+                        actor_temp = Actors.objects.filter(name = i[0].split("_")[1].strip())
+                        if actor_temp:
+                            actor.append(actor_temp.values_list()[0][0])
+                        else:
+                            actor_temp = Actors(name = i[0].split("_")[1].strip())
+                            actor_temp.save()
+                            actor.append(actor_temp.id)
+            film.genre.add(*genre)
+            film.authors.add(*author)
+            film.actors.add(*actor)
             return HttpResponseRedirect("/uploaded/")
     return render_to_response("uploadFilm.html", {"form": form,
                                                   "authors_list": authors_list,
