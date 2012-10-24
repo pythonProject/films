@@ -1,5 +1,14 @@
 from django.db import models
 
+class Author(models.Model):
+    name = models.CharField(max_length=50)
+
+class Genre(models.Model):
+    name = models.CharField(max_length=30)
+
+class Actors(models.Model):
+    name = models.CharField(max_length=30)
+
 class Films(models.Model):
     name = models.CharField(max_length=50)
     director = models.CharField(max_length=50)
@@ -9,16 +18,8 @@ class Films(models.Model):
     release_date = models.DateField()
     added_date = models.DateField()
     image = models.ImageField(upload_to='images/')
+    authors = models.ManyToManyField(Author)
+    genre = models.ManyToManyField(Genre)
+    actors = models.ManyToManyField(Actors)
 
-class Author(models.Model):
-    name = models.CharField(max_length=50)
-    filmography = models.ManyToManyField(Films)
 
-class Genre(models.Model):
-    name = models.CharField(max_length=30)
-    film = models.ManyToManyField(Films)
-
-class Actors(models.Model):
-    name = models.CharField(max_length=30)
-    filmography = models.ManyToManyField(Films)
-    

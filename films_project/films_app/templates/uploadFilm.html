@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block header %}
+<link href="{{ STATIC_URL }}css/autocomplete.css" type="text/css" rel="stylesheet" />
 
 {% endblock %}
 
@@ -21,20 +22,23 @@
             <label for="id_link"> <div class="question">Ссылка на фильм </div></label>
             {{ form.link }}<br/>
             {{ form.releaseDate.errors }}
+{#            <div class="wrapper">#}
             <label for="id_releaseDate"> <div class="question">Дата выпуска фильма </div></label>
-            {{ form.releaseDate }}<br/>
+            <span class="inputDate">{{ form.releaseDate }}</span>
             <ul id="authors_list"></ul>
             {{ form.add_authors.errors }}
+            <div class="autocomplete">
             <label for="id_add_authors"><div class="question"> Авторы сценария </div></label>
-            <div style="display: block">
             {{ form.add_authors }}<br/>
                 <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
-            <ul id="f" style="display: none">
+            <!--<div class="autocomplete">-->
+            <ul id="f" class="ui-autocomplete" style="display: none">
                 {% for d in authors_list %}
-                <li style="list-style-type: none;"> {{ d }} </li>
+                <li class="ac-item"> {{ d }} </li>
                 {% endfor %}
-            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список авторов" onclick="HideAuthors(this)"/>
+            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
             </ul>
+            <!--</div>-->
             </div>
             Жанры
             <ul id="list_genres">

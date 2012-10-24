@@ -1,6 +1,13 @@
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" />
+{#    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />#}
+    <script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jscripts/datepicker.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jscripts/eye.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jscripts/utils.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jscripts/layout.js?ver=1.0.2"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/equalHeight.js"> </script>
