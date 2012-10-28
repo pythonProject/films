@@ -22,10 +22,24 @@ def RequiresLogin(view):
 
 
 def Index(request):
+    page1 = 0
+    page2 = 0
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
+    if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
+        try:
+            if int(Films.objects.order_by("-id")[0].id) < 10:
+                page2 = int(Films.objects.order_by("-id")[0].id)
+            else:
+                page2 = 10
+        except IndexError:
+            pass
+    films_list = Films.objects.all()[page1:page2]
+    for i in films_list:
+        i.release_date = str(i.release_date.year) + "-" + str(i.release_date.month)+ "-" + str(i.release_date.day)
     form = Log_in()
-    return render_to_response("index.html", {"form_login": form}, context_instance=RequestContext(request))
+    return render_to_response("index.html", {"form_login": form,
+                                             "films_list": films_list}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()

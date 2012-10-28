@@ -3,6 +3,44 @@
 {% block content %}
 
 <a href="/createAccount/"> Зарегистрироваться </a><br/>
-<a href="/login/">Зайти на свой аккаунт</a>
+<a href="/login/">Зайти на свой аккаунт</a><br/>
+
+    {% for films in films_list %}
+        <img src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
+        <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;">{{ films.name }} </span><br/>
+        <span style="color: #ffffff;">Режисёр:</span> <span style="color: #ffffff;">{{ films.director }}</span><br/>
+        <span style="color: #ffffff;">Авторы:</span> <span style="color: #ffffff;">
+            {% for author in films.authors.values %}
+                {% if forloop.last %}
+                    {{ author.name }}
+                {% else %}
+                    {{ author.name }},
+                {% endif %}
+            {% endfor %}
+        </span><br/>
+        {% if films.release_date != "1000-1-1" %}
+            <span style="color: #ffffff;">Дата выпуска фильма:</span>
+            <span style="color: #ffffff;">{{ films.release_date }}</span><br/>
+        {% endif %}
+        <span style="color: #ffffff;">Жанры:</span>
+        <span style="color: #ffffff;">
+        {% for genre in films.genre.values %}
+            {% if forloop.last %}
+                {{ genre.name }}
+            {% else %}
+                {{ genre.name }},
+            {% endif %}
+        {% endfor %}
+        <span style="color: #ffffff;">Акторы:</span>
+        {% for actor in films.actors.values %}
+            <span style="color: #ffffff;">{{ actor.name }}</span>
+        {% endfor %}<br/>
+        <span style="color: #ffffff;">Описание:</span> <span style="color: #ffffff;">{{ films.description }} </span><br/>
+
+        </span>
+
+        <hr/>
+    {% endfor %}
+
 
 {% endblock %}
