@@ -30,7 +30,7 @@
             {% else %}
                 {{ genre.name }},
             {% endif %}
-        {% endfor %}
+        {% endfor %}<br/>
         <span style="color: #ffffff;">Акторы:</span>
         {% for actor in films.actors.values %}
             <span style="color: #ffffff;">{{ actor.name }}</span>
@@ -41,6 +41,9 @@
 
         <hr/>
     {% endfor %}
+{% for i in page_count %}
+<a href="/?&page={{ i }}"> {{ i }} </a>
+{% endfor %}
 
 
 {% endblock %}
