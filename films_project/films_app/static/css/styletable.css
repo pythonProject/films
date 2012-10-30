@@ -5,7 +5,8 @@ a:visited {
 color:#ff9300;
 }
 a:hover{
-color:#f00107;} 
+color:#f00107;
+} 
 label, input{
      cursor: pointer;
 }
@@ -15,7 +16,7 @@ color: #FFF;
 }
 
 /*стили полей*/
-#id_name, #id_director, #id_link, #id_releaseDate {
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors {
  background: url(../img/gradient.png)  repeat-x #9eabb3;
      padding: 5px 10px 5px 10px;    
      font-weight: normal;
@@ -27,16 +28,16 @@ color: #FFF;
      text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
       border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;
 }
-#id_name:focus, #id_director:focus, #id_link:focus, #id_releaseDate:focus {
+#id_name:focus, #id_director:focus, #id_link:focus, #id_releaseDate:focus, #id_add_authors:focus {
 border: 1px solid #000000;
 background: none;background-color: #ffffff;
 }
 
 
-input[type=text]{
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors[type=text]{
    width:400px;
 }
-input, #hide_authors {margin: 5px 0px;}
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #hide_authors, #id_description {margin: 0px 0px 10px 0px;}
 
 
 input{   
@@ -54,7 +55,7 @@ input{
 }
 
 
-#id_name, #id_director, #id_link, #id_releaseDate {
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors {
     transition: all 0.30s ease-in-out;-webkit-transition: all 0.30s ease-in-out;-moz-transition: all 0.30s ease-in-out;
     outline:none;
 }
