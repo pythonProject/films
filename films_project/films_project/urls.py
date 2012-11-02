@@ -18,14 +18,14 @@ urlpatterns = patterns('films_app.views',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (u"^$", 'Index'),
     (u"^upload/$", views.RequiresLogin(views.UploadForm)),
     (u"^createAccount/$", 'CreateUser'),
     (u"^thanks/$", 'Thanks'),
     (u"^login/$", 'LoginView'),
     (u"^logged_in/$", views.RequiresLogin(views.Logged_in)),
     (u"^login_ajax/", views.LoginAjax),
-    (u"^uploaded/$", views.uploaded)
+    (u"^uploaded/$", views.uploaded),
+    (u"^", 'Index'),
 )
 
 #urlpatterns += patterns('',

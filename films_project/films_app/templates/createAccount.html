@@ -8,19 +8,19 @@
 <p  style="color: red">{{ err }}</p>
 <form class="form" action="/createAccount/" method="Post"> {% csrf_token %}
 	{{ form.first_name.errors }}
-	<label for="id_first_name"> Введите Ваше имя </label>
+	<label for="id_first_name" > <div class="question">Введите Ваше имя </div></label>
 	{{ form.first_name }}
 	{{ form.last_name.errors }}<br/>
-	<label for="id_last_name"> Введите Вашу фамилию </label>
+	<label for="id_last_name"> <div class="question">Введите Вашу фамилию </div></label>
 	{{ form.last_name }}<br/>
 	{{ form.email.errors }}
-	<label for="id_email"> Введите Ваш электронный адрес </label>
+	<label for="id_email"> <div class="question">Введите Ваш электронный адрес</div> </label>
 	{{ form.email }}<br/>
 	{{ form.username.errors }}
-	<label for="id_username"> Введите Ваш логин </label>
+	<label for="id_username"> <div class="question">Введите Ваш логин </div></label>
 	{{ form.username }}<br/>
 	{{ form.password.errors }}
-	<label for="id_password"> Введите Ваш пароль </label>
+	<label for="id_password"> <div class="question">Введите Ваш пароль </div></label>
 	{{ form.password }}<br/>
 	<input type="submit" value="Зарегистрироваться"/>
 </form>
