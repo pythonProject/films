@@ -3,7 +3,7 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import UploadFilmsForm, CreateAccount, Log_in
+from forms import UploadFilmsForm, CreateAccount, Log_in, Search
 from films_app.models import Films, Author, Genre, Actors
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
@@ -22,11 +22,26 @@ def RequiresLogin(view):
 
 
 def Index(request):
-    films_on_page = 3
+    search_form = Search()
+    films_on_page = 5
     page1 = 0
     page2 = 0
     page_count = []
+    films_list = []
     films_count = int(Films.objects.order_by("-id")[0].id)
+    form = []
+    release_dates = []
+    release_dates_original = Films.objects.values("release_date")
+    for i in release_dates_original:
+        if i["release_date"].year not in release_dates:
+            release_dates.append(i["release_date"].year)
+    release_date_min = release_dates[0]
+    release_date_max = release_dates[0]
+    for release_date in release_dates:
+        if release_date > release_date_max:
+            release_date_max = release_date
+        if release_date < release_date_min:
+            release_date_min = release_date
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
     if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
@@ -44,13 +59,31 @@ def Index(request):
         [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 2)]
     else:
         [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 1)]
-    films_list = Films.objects.all()[page1:page2]
+    if request.method == "POST":
+        search_form = Search(request.POST)
+        if search_form.is_valid():
+            form = search_form.cleaned_data
+        film = Films.objects.all()
+        if form["author"]:
+            import ipdb; ipdb.set_trace()
+            for i in film:
+                if i.authors.filter(name = form["author"]):
+                    films_list.append(i)
+        if form["name"] and form["name"] != "":
+            films_list = Films.objects.filter(name = form["name"])
+
+    else:
+        films_list = Films.objects.all()[page1:page2]
     for i in films_list:
         i.release_date = str(i.release_date.year) + "-" + str(i.release_date.month)+ "-" + str(i.release_date.day)
     form = Log_in()
     return render_to_response("index.html", {"form_login": form,
                                              "films_list": films_list,
-                                             "page_count": page_count}, context_instance=RequestContext(request))
+                                             "page_count": page_count,
+                                             "search_form": search_form,
+                                             "release_dates": release_dates,
+                                             "release_date_max": release_date_max,
+                                             "release_date_min": release_date_min}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()

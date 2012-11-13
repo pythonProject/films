@@ -4,7 +4,45 @@
 
 <a href="/createAccount/"> Зарегистрироваться </a><br/>
 <a href="/login/">Зайти на свой аккаунт</a><br/>
+    {% if search_form.errors %}
+        <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
+    {% endif %}
+<form action="/" id="searchForm" method="POST">{% csrf_token %}
+    {{ search_form.name.errors }}
+    <label for="id_name">Введите назву фильма:</label>
+    {{ search_form.name }}
+    {{ search_form.author.errors }}<br/>
+    <label for="id_author">Введите автора сценария</label>
+    {{ search_form.author }}
+    {{ search_form.actor.errors }}<br/>
+    <label for="id_actor">Введите актора</label>
+    {{ search_form.actor }}<br/>
+    {{ search_form.director.errors }}<br/>
+    <label for="id_director">Введите режисёра</label>
+    {{ search_form.director }}<br/>
+    Выберите начальную дату:
+    <select>
+        {% for date in release_dates %}
+            {% if date == release_date_min %}
+                <option selected="selected">{{ date }}</option>
+            {% else %}
+                <option>{{ date }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    Выберите конечную дату поиска
+    <select>
+        {% for date in release_dates %}
+            {% if date == release_date_max %}
+                <option selected="selected">{{ date }}</option>
+            {% else %}
+                <option>{{ date }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
 
+    <input type="submit" value="Искать"/>
+</form>
     {% for films in films_list %}
         <img src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
         <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;">{{ films.name }} </span><br/>
@@ -33,7 +71,11 @@
         {% endfor %}<br/>
         <span style="color: #ffffff;">Акторы:</span>
         {% for actor in films.actors.values %}
-            <span style="color: #ffffff;">{{ actor.name }}</span>
+            {% if forloop.last %}
+                <span style="color: #ffffff;">{{ actor.name }}</span>
+            {% else %}
+                <span style="color: #ffffff;">{{ actor.name }},</span>
+            {% endif %}
         {% endfor %}<br/>
         <span style="color: #ffffff;">Описание:</span> <span style="color: #ffffff;">{{ films.description }} </span><br/>
 
