@@ -196,6 +196,10 @@ $(document).ready(function()
     {
         $("#uploadFilmForm").submit();
     });
+    $("#submit_search").live('click', function()
+    {
+        $("#searchForm").submit();
+    });
 });
 function addGenre1()
 {

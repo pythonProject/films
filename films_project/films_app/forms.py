@@ -29,7 +29,7 @@ class Log_in(forms.Form):
 
 class Search(forms.Form):
     name = forms.CharField(required=False)
-    author = forms.CharField(required=False)
-    actor = forms.CharField(required=False)
+    add_authors = forms.CharField(required=False)
+    actors = forms.CharField(required=False)
     director = forms.CharField(required=False)
 

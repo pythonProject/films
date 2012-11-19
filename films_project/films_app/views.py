@@ -20,15 +20,25 @@ def RequiresLogin(view):
         return view(request, *args, **kwargs)
     return check
 
+def page_count_func(request, films_count, films_on_page):
+    page_count = []
+    if films_count % films_on_page > 0:
+        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 2)]
+    else:
+        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 1)]
+    return page_count
 
 def Index(request):
+    authors = Author.objects.values("name")
+    actors = Actors.objects.values("name")
+    search_query = "Films.objects"
     search_form = Search()
     films_on_page = 5
     page1 = 0
     page2 = 0
     page_count = []
     films_list = []
-    films_count = int(Films.objects.order_by("-id")[0].id)
+    films_count = None
     form = []
     release_dates = []
     release_dates_original = Films.objects.values("release_date")
@@ -44,46 +54,48 @@ def Index(request):
             release_date_min = release_date
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
-    if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
-        try:
-            if films_count < films_on_page:
-                page2 = int(Films.objects.order_by("-id")[0].id)
-            else:
-                page2 = films_on_page
-        except IndexError:
-            pass
-    else:
-        page1 = int(request.GET["page"]) * films_on_page - films_on_page
-        page2 = int(request.GET["page"]) * films_on_page
-    if films_count % films_on_page > 0:
-        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 2)]
-    else:
-        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 1)]
     if request.method == "POST":
         search_form = Search(request.POST)
         if search_form.is_valid():
             form = search_form.cleaned_data
-        film = Films.objects.all()
-        if form["author"]:
-            import ipdb; ipdb.set_trace()
-            for i in film:
-                if i.authors.filter(name = form["author"]):
-                    films_list.append(i)
-        if form["name"] and form["name"] != "":
-            films_list = Films.objects.filter(name = form["name"])
-
+        if form["name"] != "":
+            search_query += ".filter(name='" + form["name"].strip() + "')"
+        if form["director"] != "":
+            search_query += ".filter(director='" + form["director"].strip() + "')"
+        for item in request.POST:
+            if "author_" in item:
+                search_query += ".filter(authors__name__exact='" + devideAuthors(item).strip() + "')"
+            if "actor_" in item:
+                search_query += ".filter(actors__name__exact='" + devideActors(item).strip() + "')"
+        films_list = eval(search_query)
+        films_count = films_list.count()
     else:
+        films_count = int(Films.objects.order_by("-id")[0].id)
+        if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
+            try:
+                if films_count < films_on_page:
+                    page2 = int(Films.objects.order_by("-id")[0].id)
+                else:
+                    page2 = films_on_page
+            except IndexError:
+                pass
+        else:
+            page1 = int(request.GET["page"]) * films_on_page - films_on_page
+            page2 = int(request.GET["page"]) * films_on_page
         films_list = Films.objects.all()[page1:page2]
     for i in films_list:
         i.release_date = str(i.release_date.year) + "-" + str(i.release_date.month)+ "-" + str(i.release_date.day)
     form = Log_in()
+    page_count = page_count_func(request, films_count = films_count, films_on_page = films_on_page)
     return render_to_response("index.html", {"form_login": form,
                                              "films_list": films_list,
                                              "page_count": page_count,
                                              "search_form": search_form,
                                              "release_dates": release_dates,
                                              "release_date_max": release_date_max,
-                                             "release_date_min": release_date_min}, context_instance=RequestContext(request))
+                                             "release_date_min": release_date_min,
+                                             "authors": authors,
+                                             "actors":actors}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()

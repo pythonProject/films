@@ -1,4 +1,5 @@
 from django.db import models
+from signals import makeThumbnails
 
 class Author(models.Model):
     name = models.CharField(max_length=50)
@@ -22,4 +23,4 @@ class Films(models.Model):
     genre = models.ManyToManyField(Genre)
     actors = models.ManyToManyField(Actors)
 
-
+models.signals.post_save.connect(makeThumbnails, sender=Films)
