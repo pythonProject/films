@@ -263,7 +263,7 @@ function checkLogin()
             url: '/login_ajax/',
             type: "POST",
             dataType: "json",
-            data: "?login=" + $("#id_login").val().trim() + "&password=" + $("#id_password").val().trim() + "&csrfmiddlewaretoken=" + $("[name=csrfmiddlewaretoken]").val().trim() + "&is_ajax=True",
+            data: "login=" + $("#id_login").val().trim() + "&password=" + $("#id_password").val().trim() + "&csrfmiddlewaretoken=" + $("[name=csrfmiddlewaretoken]").val().trim() + "&is_ajax=True",
             success: function (data)
             {
                 if(data.error)

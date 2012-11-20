@@ -129,7 +129,6 @@ def Logged_in(request):
     return render_to_response("logged_in.html", context_instance=RequestContext(request))
 
 def LoginAjax(request):
-#    import ipdb; ipdb.set_trace()
     res = {}
     res["error"] = False
     if request.is_ajax():
