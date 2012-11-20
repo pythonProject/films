@@ -45,8 +45,12 @@ def Index(request):
     for i in release_dates_original:
         if i["release_date"].year not in release_dates:
             release_dates.append(i["release_date"].year)
-    release_date_min = release_dates[0]
-    release_date_max = release_dates[0]
+    try:
+        release_date_min = release_dates[0]
+        release_date_max = release_dates[0]
+    except IndexError:
+        release_date_max = "0"
+        release_date_min = "0"
     for release_date in release_dates:
         if release_date > release_date_max:
             release_date_max = release_date
@@ -70,7 +74,10 @@ def Index(request):
         films_list = eval(search_query)
         films_count = films_list.count()
     else:
-        films_count = int(Films.objects.order_by("-id")[0].id)
+        try:
+            films_count = int(Films.objects.order_by("-id")[0].id)
+        except IndexError:
+            films_count = 0
         if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
             try:
                 if films_count < films_on_page:

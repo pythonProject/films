@@ -43,27 +43,28 @@
     {{ search_form.director.errors }}<br/>
     <label for="id_director">Введите режисёра</label>
     {{ search_form.director }}<br/>
-    Выберите начальную дату:
-    <select>
-        {% for date in release_dates %}
-            {% if date == release_date_min %}
-                <option selected="selected">{{ date }}</option>
-            {% else %}
-                <option>{{ date }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-    Выберите конечную дату поиска
-    <select>
-        {% for date in release_dates %}
-            {% if date == release_date_max %}
-                <option selected="selected">{{ date }}</option>
-            {% else %}
-                <option>{{ date }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-
+    {% if release_dates %}
+        Выберите начальную дату:
+        <select>
+            {% for date in release_dates %}
+                {% if date == release_date_min %}
+                    <option selected="selected">{{ date }}</option>
+                {% else %}
+                    <option>{{ date }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        Выберите конечную дату поиска
+        <select>
+            {% for date in release_dates %}
+                {% if date == release_date_max %}
+                    <option selected="selected">{{ date }}</option>
+                {% else %}
+                    <option>{{ date }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endif %}
     <input type="button" value="Искать" id="submit_search">
 </form>
     {% for films in films_list %}
