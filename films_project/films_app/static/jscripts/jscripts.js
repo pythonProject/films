@@ -293,3 +293,22 @@ $('#id_releaseDate').DatePicker({
         }
     }
 });
+function ChangePage(page)
+{
+    var arr = document.location.href.split("&");
+    if(arr[0].indexOf("page=") != -1)
+    {
+        arr[0] = arr[0].split("=")[0] + "=" + page.toString();
+    }
+    else
+    {
+        var arr1 = arr[0].split("?");
+        arr1[0] = arr1[0] + "?page=" + page.toString();
+        if(arr.length > 1)
+            arr[0] = arr1[0] + "&" + arr1[1];
+        else
+            arr[0] = arr1[0];
+    }
+    var url = arr.join("&");
+    document.location.href = url;
+}

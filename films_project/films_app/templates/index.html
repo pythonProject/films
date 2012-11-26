@@ -10,7 +10,7 @@
     {% if search_form.errors %}
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
-<form action="/" id="searchForm" method="POST">{% csrf_token %}
+<form action="/" id="searchForm" method="GET">{% csrf_token %}
     {{ search_form.name.errors }}
     <label for="id_name">Введите назву фильма:</label>
     {{ search_form.name }}
@@ -45,7 +45,7 @@
     {{ search_form.director }}<br/>
     {% if release_dates %}
         Выберите начальную дату:
-        <select>
+        <select name="start_date">
             {% for date in release_dates %}
                 {% if date == release_date_min %}
                     <option selected="selected">{{ date }}</option>
@@ -55,7 +55,7 @@
             {% endfor %}
         </select>
         Выберите конечную дату поиска
-        <select>
+        <select name="end_date">
             {% for date in release_dates %}
                 {% if date == release_date_max %}
                     <option selected="selected">{{ date }}</option>
@@ -67,6 +67,7 @@
     {% endif %}
     <input type="button" value="Искать" id="submit_search">
 </form>
+    <a href="/">Отменить фильтр</a><br/>
     {% for films in films_list %}
         <img src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
         <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;">{{ films.name }} </span><br/>
@@ -108,7 +109,9 @@
         <hr/>
     {% endfor %}
 {% for i in page_count %}
-<a href="/?&page={{ i }}"> {{ i }} </a>
+    {% if i != 0 %}
+            <a href="" onclick="ChangePage({{ i }}); return false" id="page"> {{ i }} </a>
+    {% endif %}
 {% endfor %}
 
 
