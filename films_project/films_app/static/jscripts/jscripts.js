@@ -196,6 +196,10 @@ $(document).ready(function()
     {
         $("#uploadFilmForm").submit();
     });
+    $("#submit_search").live('click', function()
+    {
+        $("#searchForm").submit();
+    });
 });
 function addGenre1()
 {
@@ -259,7 +263,7 @@ function checkLogin()
             url: '/login_ajax/',
             type: "POST",
             dataType: "json",
-            data: "?login=" + $("#id_login").val().trim() + "&password=" + $("#id_password").val().trim() + "&csrfmiddlewaretoken=" + $("[name=csrfmiddlewaretoken]").val().trim() + "&is_ajax=True",
+            data: "login=" + $("#id_login").val().trim() + "&password=" + $("#id_password").val().trim() + "&csrfmiddlewaretoken=" + $("[name=csrfmiddlewaretoken]").val().trim() + "&is_ajax=True",
             success: function (data)
             {
                 if(data.error)
@@ -289,3 +293,22 @@ $('#id_releaseDate').DatePicker({
         }
     }
 });
+function ChangePage(page)
+{
+    var arr = document.location.href.split("&");
+    if(arr[0].indexOf("page=") != -1)
+    {
+        arr[0] = arr[0].split("=")[0] + "=" + page.toString();
+    }
+    else
+    {
+        var arr1 = arr[0].split("?");
+        arr1[0] = arr1[0] + "?page=" + page.toString();
+        if(arr.length > 1)
+            arr[0] = arr1[0] + "&" + arr1[1];
+        else
+            arr[0] = arr1[0];
+    }
+    var url = arr.join("&");
+    document.location.href = url;
+}

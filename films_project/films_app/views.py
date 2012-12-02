@@ -3,7 +3,7 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import UploadFilmsForm, CreateAccount, Log_in
+from forms import UploadFilmsForm, CreateAccount, Log_in, Search
 from films_app.models import Films, Author, Genre, Actors
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
@@ -11,7 +11,7 @@ from django.db import IntegrityError
 from django.contrib import auth
 import datetime
 from django.utils import simplejson
-from films_project import settings
+from django.core.cache import cache
 
 def RequiresLogin(view):
     def check(request, *args, **kwargs):
@@ -20,37 +20,102 @@ def RequiresLogin(view):
         return view(request, *args, **kwargs)
     return check
 
+def FilmsList(request, films_on_page = 10):
+    films_count = Films.objects.order_by("-id")[0].id
+    if films_count > films_on_page and request.GET.get("page") and int(request.GET.get("page", False)) != 1:
+        films_list = Films.objects.all()[int(request.GET.get("page", False)) * films_on_page - films_on_page:
+                                         int(request.GET.get("page", False)) * films_on_page ]
+    else:
+        films_list = Films.objects.all()[:films_on_page]
+    return films_list, range((films_count / films_on_page) + 1 if films_count % films_on_page == 0 \
+                                                   else (films_count / films_on_page) + 2), False
+
+def search_func(request, films_on_page = 10):
+    if request.GET.get("page", False) and int(request.GET.get("page", False)) != 1:
+        query_page = "[int(request.GET.get('page', False)) * films_on_page - films_on_page:int(request.GET.get('page', False)) * films_on_page ]"
+    else:
+        query_page = "[:films_on_page]"
+    search_query = "Films.objects"
+    search_form = Search(request.GET)
+    if search_form.is_valid():
+        form = search_form.cleaned_data
+    if form["name"] != "":
+        search_query += ".filter(name='" + form["name"].strip() + "')"
+    if form["director"] != "":
+        search_query += ".filter(director='" + form["director"].strip() + "')"
+    for item in request.GET:
+        if "author_" in item:
+            search_query += ".filter(authors__name__exact='" + devideAuthors(item).strip() + "')"
+        if "actor_" in item:
+            search_query += ".filter(actors__name__exact='" + devideActors(item).strip() + "')"
+#    import ipdb; ipdb.set_trace()
+    search_query += ".filter(release_date__range=('"+ request.GET["start_date"] + "-01-01','" + request.GET["end_date"] + "-12-31'))"
+#    search_query += ".filter(release_date__lte = '"+ request.GET["end_date"] + "-01-01" +"')"
+    films_list = eval(search_query + query_page)
+    films_count = eval(search_query).count()
+    return films_list, range((films_count / films_on_page) + 1 if films_count % films_on_page == 0\
+                                                               else (films_count / films_on_page) + 2), True
+
+def CheckSearch(request):
+    for item in request.GET:
+        if "actor_" in item:
+            return True
+        if "author_" in item:
+            return True
+    if "name" in request.GET:
+        return True
+    if "director" in request.GET:
+        return True
+    return False
 
 def Index(request):
-    films_on_page = 3
-    page1 = 0
-    page2 = 0
-    page_count = []
-    films_count = int(Films.objects.order_by("-id")[0].id)
+    authors = Author.objects.values("name")
+    actors = Actors.objects.values("name")
+    search_form = Search()
+    films_on_page = 2
+    release_dates = []
+    release_dates_original = Films.objects.values("release_date")
+    for i in release_dates_original:
+        if i["release_date"].year not in release_dates:
+            release_dates.append(i["release_date"].year)
+    try:
+        release_date_min = release_dates[0]
+        release_date_max = release_dates[0]
+    except IndexError:
+        release_date_max = "0"
+        release_date_min = "0"
+    for release_date in release_dates:
+        if release_date > release_date_max:
+            release_date_max = release_date
+        if release_date < release_date_min:
+            release_date_min = release_date
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
-    if not request.GET.get('page', False) or request.GET.get("page", False) == 1:
-        try:
-            if films_count < films_on_page:
-                page2 = int(Films.objects.order_by("-id")[0].id)
+    if CheckSearch(request):
+        films_list, page_count, search = search_func(request, films_on_page)
+    else:
+        if request.GET.get("search", False):
+            if request.GET.get("page", False) and int(request.GET.get("page", False)) != 1:
+                films_list = request.session["search_res"][int(request.GET.get('page', False)) * films_on_page - films_on_page:int(request.GET.get('page', False)) * films_on_page ]
             else:
-                page2 = films_on_page
-        except IndexError:
-            pass
-    else:
-        page1 = int(request.GET["page"]) * films_on_page - films_on_page
-        page2 = int(request.GET["page"]) * films_on_page
-    if films_count % films_on_page > 0:
-        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 2)]
-    else:
-        [page_count.append(i) for i in range(1, int(films_count / films_on_page) + 1)]
-    films_list = Films.objects.all()[page1:page2]
+                films_list = request.session["search_res"][:films_on_page]
+            page_count = range((request.session["films_count"] / films_on_page) + 1 if request.session["films_count"] % films_on_page == 0\
+                                                else (request.session["films_count"] / films_on_page) + 2)
+        else:
+            films_list, page_count, search = FilmsList(request, films_on_page = films_on_page)
     for i in films_list:
         i.release_date = str(i.release_date.year) + "-" + str(i.release_date.month)+ "-" + str(i.release_date.day)
     form = Log_in()
     return render_to_response("index.html", {"form_login": form,
                                              "films_list": films_list,
-                                             "page_count": page_count}, context_instance=RequestContext(request))
+                                             "page_count": page_count,
+                                             "search_form": search_form,
+                                             "release_dates": release_dates,
+                                             "release_date_max": release_date_max,
+                                             "release_date_min": release_date_min,
+                                             "authors": authors,
+                                             "search": search,
+                                             "actors":actors}, context_instance=RequestContext(request))
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
@@ -77,7 +142,6 @@ def Logged_in(request):
     return render_to_response("logged_in.html", context_instance=RequestContext(request))
 
 def LoginAjax(request):
-#    import ipdb; ipdb.set_trace()
     res = {}
     res["error"] = False
     if request.is_ajax():
@@ -142,7 +206,7 @@ def UploadForm(request):
             if not cd["releaseDate"]:
                 cd["releaseDate"] = "1000-01-01"
             else:
-                cd["releaseDate"] = cd["releaseDate"].strftime("%Y-%m-%d")
+                cd["releaseDate"] = datetime.date(cd["releaseDate"].year, cd["releaseDate"].month, cd["releaseDate"].day).strftime("%Y-%m-%d")
             film = Films(name = cd["name"],
                         director = cd["director"],
                         description = cd["description"],

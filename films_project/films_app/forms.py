@@ -26,3 +26,10 @@ class CreateAccount(forms.Form):
 class Log_in(forms.Form):
     login = forms.CharField(max_length = 30)
     password = forms.CharField(widget=forms.PasswordInput())
+
+class Search(forms.Form):
+    name = forms.CharField(required=False)
+    add_authors = forms.CharField(required=False)
+    actors = forms.CharField(required=False)
+    director = forms.CharField(required=False)
+
