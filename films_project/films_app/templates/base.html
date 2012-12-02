@@ -18,29 +18,41 @@
 <body>
 	<div id="main">
 		<div id="header">
-
-        <div class="login" style="display: none;" id="login_div">
-        	<!--<img src="{{ STATIC_URL }}img/login.png">-->
-            <form action="/login_ajax/" method="POST">{% csrf_token %}
-                <span style="display: none; color: red;" id="login_error">Вы ввели не правильное <br>имя или пароль</span>
-                {{ form_login.login.errors }}
-                <label class="label_login" for="id_login">Ваш логин <br>
-                {{ form_login.login }}<br/>
-                <img class="inputIcon" src="../static/img/user_16.png">
-                </label>
+        		
+                                              
+               <!-- <div class="login" style="display: none;" align="right" id="login_div">-->
+                  
+                                        
+                    <form class="login" style="display: none;" id="login_div" action="/login_ajax/" method="POST">{% csrf_token %}
+                        <span style="display: none; color: red;" id="login_error">Вы ввели не правильное <br>имя или пароль</span>
+                        {{ form_login.login.errors }}
+                        <label class="label_login" for="id_login">Ваш логин <br>
+                        {{ form_login.login }}<br/>
+                        <img class="inputIcon" src="../static/img/user_16.png">
+                        </label>
+                        
+                        {{ form_login.password.errors }}
+                        <label class="label_login" for="id_password">Ваш пароль<br>
+                        {{ form_login.password }}<br/>
+                        <img class="inputIcon" src="../static/img/key_16.png">
+                        </label>
+                                                 
+                        <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">
+                     </form>
+                                        
+                    
+        
+                <!--</div>-->
                 
-                {{ form_login.password.errors }}
-                <label class="label_login" for="id_password">Ваш пароль<br>
-                {{ form_login.password }}<br/>
-                <img class="inputIcon" src="../static/img/key_16.png">
-                </label>
-                                         
-                <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">
-             </form>
-            <!--<a class="vxod" href="logged_in.html"></a>-->
+                <!--<div class="clear">
+       			</div>-->
+           		
+                <a class="img" href="#" id="login"></a>
+                
 
         </div>
-            <a class="img" href="#" id="login"></a>
+        
+        <div class="clear">
         </div>
 
         <div id="menu"> 
@@ -65,7 +77,9 @@
             <div id="right_menu">
             </div>
          </div>
-        <div class="clear" id="footer">
+        <div class="clear">
+        </div>
+        <div id="footer">
                 {% block footer %} 
             	<p>Thanks for visiting our website</p>
             	{% endblock %}
