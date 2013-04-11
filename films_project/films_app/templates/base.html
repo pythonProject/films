@@ -1,8 +1,10 @@
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" />
-{#    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />#}
+ <!--   <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" />
+        <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}css/styletable.css" type="text/css" rel="stylesheet" />
+{#    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />#} -->
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/datepicker.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/eye.js"></script>
@@ -11,12 +13,11 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/equalHeight.js"> </script>
-	<link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet" />
-    <link href="{{ STATIC_URL }}css/styletable.css" type="text/css" rel="stylesheet" />
+	<link href="{{ STATIC_URL }}css/style.css" type="text/css" rel="stylesheet" />
     {% block header %}{% endblock %}
 </head>
 <body>
-	<div id="main">
+	<div id="wrapper">
 		<div id="header">
         		
                                               
@@ -55,15 +56,12 @@
         <div class="clear">
         </div>
 
-        <div id="menu"> 
-        	<p>Главная  	 Онлайн фильм		Трейлер			Поиск</p>
-        </div>
         
-        <div id="main_content">
+        
             <div id="left_menu">
             </div>
             
-            <div id="content1">
+            <div id="content_block">
                 <div id="content">
                     {% block content %} {% endblock %}
                 </div>   
@@ -76,7 +74,7 @@
             
             <div id="right_menu">
             </div>
-         </div>
+         
         <div class="clear">
         </div>
         <div id="footer">

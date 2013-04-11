@@ -1,0 +1,229 @@
+@import url(reset.css);
+
+#wrapper {
+	width: 1024px;
+	height: 1800px;
+	margin: 0 auto;
+	outline: 1px solid #cccccc;
+}
+
+#topLine {
+	background-image: url(../images/TopLine.png);
+	background-repeat: repeat-x;
+	height: 18px;
+}
+
+/* Начало блока header */
+
+#header {
+	height: 157px;
+	position: relative;
+	outline: 0px solid #cc0000;
+}
+
+#logo {
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	height:82px;
+	width: 243px;
+	top: 35px;
+	left: 55px;
+}
+
+#logo a {
+	display: block;
+	height:82px;
+	cursor: pointer;
+}
+
+#faq {
+	background-image: url(../images/faq.png);
+	background-repeat: no-repeat;
+	height: 163px;
+	width: 82px;
+	position: absolute;
+	top: -17px;
+	right: 44px;
+}
+
+#faq a {
+	display: block;
+	height:163px;
+	cursor: pointer;
+}
+
+#nov {
+	height: 25px;
+	width: 535px;
+	outline: 0px solid #cc0000;
+	position: absolute;
+	top: 65px;
+	left: 348px;
+}
+
+#nov li {
+	float: left;
+}
+
+#nov li a {
+	text-decoration: none;
+	margin-right: 5px;
+	font: 16px Arial, sans-serif;
+	color: #3f3f3f;
+}
+
+#nov li a.active, #nov li a:hover {
+	color: #2c789c;
+}
+
+/* Конец блока header */
+
+
+
+/* Начало блока people */
+
+#people {
+	height: 400px;
+	outline: 0px solid #cc0000;
+	background-image: url(../images/peopleFon.jpg);
+	background-repeat: no-repeat;
+	background-position: 84px 54px;
+	position: relative;
+}
+
+#peopleT {
+	text-align: right;
+	height: 50px;
+	width: 340px;
+	position: absolute;
+	top:210px;
+	right:636px;
+	outline: 0px solid #cccccc;
+	z-index: 2;
+}
+
+#peopleT h1 {
+	font: bold 24px Arial, sans-serif;
+	color: #1d1e1b;
+}
+
+#peopleT p {
+	font: normal 16px Arial, sans-serif;
+	color: #2c789c;
+}
+
+#peopleImg {
+	background-image: url(../images/peopleImg.png);
+	height: 392px;
+	width: 396px;
+	position: absolute;
+	top: 0px;
+	right: 36px;
+	z-index: 5;
+}
+
+#peopleLine {
+	height: 95px;
+	width: 1024px;
+	background-image: url(../images/peopleLine.png);
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	background-repeat: repeat-y;
+	outline: 0px solid #cccccc;
+	z-index: 3;
+}
+
+/* Конец блока people */
+
+
+/* Конец блока blockColor */
+
+#blockColor {
+	outline: 1px solid #cccccc;
+	height: 146px;
+	background-image: url(../images/ColorLine.png);
+	background-repeat: repeat-y;
+	z-index: 1;
+}
+
+#bColors {
+	/*height: 146px;*/
+	width: 936px;
+	outline: 0px solid #800056;
+	/*z-index: 2;*/
+	position: relative;
+	left: 40px;
+}
+
+#ColorBlue {
+	background-image: url(../images/colorBlue.png);
+	/*height: 147px;*/
+	width: 330px;
+	background-repeat: no-repeat;
+	outline: 0px solid #cccccc;
+	right: 603px;
+	position: absolute;
+	z-index: 3;
+}
+
+#ColorYellow {
+	background-image: url(../images/colorYellow.png);
+	width: 338px;
+	outline: 0px solid #FF00AE;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0px;
+	right: 284px;
+	z-index: 2;
+	
+}
+
+#ColorGreen {
+	background-image: url(../images/colorGreen.png);
+	width: 305px;
+	outline: 0px solid #FF00AE;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 0;
+}
+
+#bColors h1, p, a {
+	font: normal 19px Arial, sans-serif;
+	color: #ffffff;
+	margin-top: 18px;
+	margin-left: 23px;
+}
+
+#bColors p {
+	font: normal 16px Arial, sans-serif;
+	margin-top: 10px;
+	margin-right: 15px;
+	padding-bottom: 5px;
+}
+
+#bColors img {
+	float: right;
+	margin-top: 10px;
+	margin-right: 32px
+}
+
+#bColors a {
+	background-image: url(../images/colorButton.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+	color: #7a7a7a;
+	text-decoration: none;
+	font: normal 16px Arial, sans-serif;
+	display: block;
+	height: 26px;
+	width: 99px;
+	padding: 4px 5px 0px 10px;
+	margin-top: 0px;
+	margin-bottom: 4px;
+}
+
+/* Конец блока blockColor */

@@ -1,0 +1,38 @@
+@import url(reset.css);
+
+body {
+	background-color: #000000;
+}
+#wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	outline: 1px solid #cccccc;
+	background-color: #6B84CB;
+	background-image: url(../img/border.png);
+	background-repeat: repeat-y;
+}
+
+
+/* Начало блока header */
+
+#header {
+	background-image: url(../img/border_header.png);
+	background-repeat: repeat-x;
+	width: 1200px;
+	height: 200px;
+	outline: 1px solid #ffffff;
+}
+
+/* Конец блока header */
+
+/* Начало блока header */
+
+#footer {
+	background-image: url(../img/border_footer.png);
+	background-repeat: repeat-x;
+	width: 1200px;
+	height: 200px;
+	outline: 1px solid #ffffff;
+}
+
+/* Конец блока header */
