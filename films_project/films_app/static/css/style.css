@@ -1,17 +1,24 @@
 @import url(reset.css);
+@import url(styletable.css);
 
 body {
 	background-color: #000000;
+	margin: 0 auto;
 }
+
 #wrapper {
 	width: 1200px;
-	margin: 0 auto;
 	outline: 1px solid #cccccc;
 	background-color: #6B84CB;
 	background-image: url(../img/border.png);
 	background-repeat: repeat-y;
+	margin: 0 auto;
+	position: relative;
 }
 
+.clear {
+	clear: both;
+}
 
 /* Начало блока header */
 
@@ -19,14 +26,143 @@ body {
 	background-image: url(../img/border_header.png);
 	background-repeat: repeat-x;
 	width: 1200px;
-	height: 200px;
-	outline: 1px solid #ffffff;
+	height: 311px;
+	outline: 1px solid #D0FF00;
+	position: relative;
 }
+
+#header_img {
+	background-image: url(../img/header_img.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 30px;
+	left: 95px;
+	height: 281px;
+	width: 1011px;
+	outline: 0px solid #cc0000;
+	z-index: 1;
+}
+
+.img_login {
+	background:url(../img/img_login.png);
+	background-repeat: no-repeat;
+}
+
+.img_logout {
+	background:url(../img/img_logout.png);
+	background-repeat: no-repeat;
+}
+
+
+.img_login, .img_logout  {
+	display:block;
+	width: 170px;
+	height: 33px;
+	margin-left: 995px;
+	margin-top: 0px;
+	padding-top: 0px;
+	outline: 0px solid #9C6;
+	position: absolute;
+	z-index: 3;
+}
+
+.login {
+	background-image:url(../img/login_block.png);
+	height: 158px;
+	width: 199px;
+	background-repeat: no-repeat;
+	margin-left: 980px;
+	text-align: left;
+	padding-left: 15px;
+	padding-top: 30px;
+	margin-bottom: 0px;
+	/*float: left;*/
+	outline:solid 0px #0F0;
+	position: absolute;
+	z-index: 2;
+}
+
+.label_login {
+	font: bold 10px Arial;
+	color: #ffffff;
+	display:block;
+	position: relative;
+}
+
+.inputIcon {
+	position: absolute;
+	left: 140px;
+	top: 17px;
+}
+
+#button_login, #button_register{
+	display: block;
+	height: 29px;
+	float: left;
+	margin-top: 2px;
+}
+
+#button_login {	
+	width: 67px;
+	background-image: url(../img/entry.png);
+}
+
+#button_register {
+	width: 101px;
+	background-image: url(../img/registration.png);
+	margin-left: 5px;
+}
+
+#login_error, #emptyField {
+	text-align: center;
+	margin-left: 5px;
+	margin-top: 2px;
+}
+
 
 /* Конец блока header */
 
-/* Начало блока header */
+/* Начало блока search */
+#search {
+	height: 35px;
+	width: 750px;
+	outline: solid 1px #D0FF00;
+	position: relative;
+	top: -25px;
+	left: 242px;
+	z-index: 2;
+}
 
+#search_main_bt, #search_bt {
+	height: 35px;
+	width: 111px;
+}
+
+#search_bt {
+	float: right;
+}
+
+#icon {
+	position: absolute;
+	left: 613px;
+	top: 10px;
+}
+
+#search input {
+	position: absolute;
+	top: 5px;
+	left: 115px;
+	width: 520px;
+}
+
+/* Конец блока search */
+
+
+/* Начало блока search */
+/* Конец блока search */
+
+
+/* Начало блока header */
 #footer {
 	background-image: url(../img/border_footer.png);
 	background-repeat: repeat-x;

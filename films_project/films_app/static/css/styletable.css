@@ -17,7 +17,7 @@ color: #FFF;
 
 /*стили полей*/
 #id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors {
- background: url(../img/gradient.png)  repeat-x #9eabb3;
+ background: url(../img/gradient.png)  repeat-x #fbfbe7;
      padding: 5px 10px 5px 10px;    
      font-weight: normal;
      color: #1B1B1B;
@@ -41,7 +41,7 @@ background: none;background-color: #ffffff;
 
 
 input{   
-    background: url(../img/gradient.png)  repeat-x #9eabb3;
+    background: url(../img/gradient.png)  repeat-x #fbfbe7;
      padding: 5px 10px 5px 10px;    
      font-weight: normal;
      color: #1B1B1B;
@@ -70,7 +70,7 @@ box-shadow: 0 0 5px rgba(81, 255, 255, 1);
 
 /*стили кнопок*/
 #addGenreButton, #hide_authors, #hideActors { 
-background: url(../img/background.jpg) bottom repeat-x #9eabb3;
+background: url(../img/background.jpg) bottom repeat-x #fbfbe7;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;
@@ -84,7 +84,7 @@ background: url(../img/background.jpg) bottom repeat-x #9eabb3;
 
 
 #addGenreButton:hover, #hide_authors:hover, #hideActors:hover { 
- background: url(../img/background2.jpg)  repeat-x #9eabb3;
+ background: url(../img/background2.jpg)  repeat-x #FBFAD2;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;

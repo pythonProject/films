@@ -191,6 +191,15 @@ $(document).ready(function()
     $("#login").click(function()
     {
         $("#login_div").toggle(1000);
+        //$("#login").attr("class", "img_logout") ? $("#login").attr("class") == "img_login" : $("#login").attr("class", "img_login");
+        if($("#login").attr("class") == "img_login")
+        {
+            $("#login").attr("class", "img_logout");
+        }
+        else
+        {
+            $("#login").attr("class", "img_login");
+        }
     });
     $("#submit_id").live('click', function()
     {
@@ -258,6 +267,16 @@ function removeActor(obj)
 }
 function checkLogin()
 {
+    if($("#id_login").val() == "" || $("#id_password").val() == "")
+    {
+        $("#emptyField").css("display", "block");
+        $("#login_error").css("display","none");
+        return;
+    }
+    else
+    {
+        $("#emptyField").css("display", "none");
+    }
     $.ajax(
         {
             url: '/login_ajax/',
