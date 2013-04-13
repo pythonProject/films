@@ -162,9 +162,9 @@ body {
 /* Начало блока main_content */
 
 #left_menu, #right_menu {
-	width: 226px;
+	width: 230px;
 	/*height: 200px;*/
-	outline: solid 1px #00cc00;
+	/*outline: solid 1px #00cc00;*/
 }
 
 #left_menu, #content_block {
@@ -175,14 +175,31 @@ body {
  	float: right;
  }
 
-.l_r_MenuBorder {
-	width: 175px;
-	height: 250px;
-	margin-left: 38px;
+.BlockBorder {
 	background-color: #576AAD;
 	border-radius: 8px;
-	border: 3px solid #59668A;
+	border: 5px solid #7588c1;
+	border-right: 2px solid #899dd5;
+	border-bottom: 2px solid #899dd5;
+}
 
+#genre, #top_20 {
+	height: 250px;
+	width: 180px;
+}
+
+#content_block {
+	min-width: 740px;
+	/*margin-left: 5px;*/
+	/*outline: solid 1px #00cc00;*/
+}
+
+#genre {
+	margin-left: 38px;
+}
+
+#top_20 {
+	margin-left: 10px;
 }
 /* Конец блока main_content */
 

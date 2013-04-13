@@ -50,7 +50,7 @@
         
 
         <div id="search">
-            <a id="search_main_bt" href="#" onClick="checkLogin()">
+            <a id="search_main_bt" href="base" onClick="checkLogin()">
                 <img id="search_main_bt" src="{{ STATIC_URL }}img/search_main_bt.png">
             </a>
             <input type="text" >
@@ -62,13 +62,13 @@
         
         <div id="main_content">
             <div id="left_menu" >
-                <div id="genre" class="l_r_MenuBorder">
+                <div id="genre" class="BlockBorder">
                     <p>Жанры</p> 
                 </div>
             </div>
             
             <div id="content_block">
-                <div id="content">
+                <div id="content" class="BlockBorder">
                     {% block content %} {% endblock %}
                 </div>   
                 
@@ -77,6 +77,9 @@
             </div>
                         
             <div id="right_menu">
+                <div id="top_20" class="BlockBorder">
+                    <p>Top - 20</p> 
+                </div>
             </div>
          
         <div class="clear">

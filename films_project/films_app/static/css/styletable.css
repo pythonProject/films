@@ -34,7 +34,7 @@ background: none;background-color: #ffffff;
 }
 
 
-#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors[type=text]{
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors[type=text], #id_actors{
    width:400px;
 }
 #id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #hide_authors, #id_description {margin: 0px 0px 10px 0px;}
@@ -70,7 +70,7 @@ box-shadow: 0 0 5px rgba(81, 255, 255, 1);
 
 /*стили кнопок*/
 #addGenreButton, #hide_authors, #hideActors { 
-background: url(../img/background.jpg) bottom repeat-x #fbfbe7;
+background: url(../img/background.jpg) bottom repeat-x #576AAC;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;
@@ -84,7 +84,7 @@ background: url(../img/background.jpg) bottom repeat-x #fbfbe7;
 
 
 #addGenreButton:hover, #hide_authors:hover, #hideActors:hover { 
- background: url(../img/background2.jpg)  repeat-x #FBFAD2;
+ background: url(../img/background2.jpg)  repeat-x #8A98C6;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;
