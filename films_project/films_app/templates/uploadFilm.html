@@ -42,9 +42,11 @@
             </div>
             Жанры
             <table id="list_genres">
-            {% for g in list_genres %}
+            {% for i in list_genres %}
                     <tr>
-                        <td>{{ forloop.counter }}<input type="checkbox" id="{{ g }}" name="genre_{{ g }}"/> {{ g }}</td>
+                        {% for g in i %}
+                            <td><input type="checkbox" id="{{ g.name }}" name="genre_{{ g.name }}"/> {{ g.name }}</td>
+                        {% endfor %}
                     </tr>
             {% endfor %}
             </table>
