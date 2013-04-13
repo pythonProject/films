@@ -21,7 +21,10 @@ def RequiresLogin(view):
     return check
 
 def FilmsList(request, films_on_page = 10):
-    films_count = Films.objects.order_by("-id")[0].id
+    try:
+        films_count = Films.objects.order_by("-id")[0].id
+    except IndexError:
+        films_count = 0
     if films_count > films_on_page and request.GET.get("page") and int(request.GET.get("page", False)) != 1:
         films_list = Films.objects.all()[int(request.GET.get("page", False)) * films_on_page - films_on_page:
                                          int(request.GET.get("page", False)) * films_on_page ]
