@@ -27,7 +27,7 @@ body {
 	background-repeat: repeat-x;
 	width: 1200px;
 	height: 311px;
-	outline: 1px solid #D0FF00;
+	/*outline: 1px solid #D0FF00;*/
 	position: relative;
 }
 
@@ -127,7 +127,7 @@ body {
 #search {
 	height: 35px;
 	width: 750px;
-	outline: solid 1px #D0FF00;
+	/*outline: solid 1px #D0FF00;*/
 	position: relative;
 	top: -25px;
 	left: 242px;
@@ -141,11 +141,12 @@ body {
 
 #search_bt {
 	float: right;
+	/*outline: solid 1px #D0FF00;*/
 }
 
 #icon {
 	position: absolute;
-	left: 613px;
+	left: 610px;
 	top: 10px;
 }
 
@@ -162,7 +163,7 @@ body {
 /* Начало блока main_content */
 
 #left_menu, #right_menu {
-	width: 230px;
+	/*width: 230px;*/
 	/*height: 200px;*/
 	/*outline: solid 1px #00cc00;*/
 }
@@ -184,13 +185,14 @@ body {
 }
 
 #genre, #top_20 {
-	height: 250px;
+	/*height: 250px;*/
 	width: 180px;
 }
 
 #content_block {
-	min-width: 740px;
-	/*margin-left: 5px;*/
+	width: 740px;
+	margin-left: 5px;
+	/*margin-bottom: 135px;*/
 	/*outline: solid 1px #00cc00;*/
 }
 
@@ -198,8 +200,24 @@ body {
 	margin-left: 38px;
 }
 
+#content {
+	padding-left: 25px;
+	padding-top: 25px;
+	padding-bottom: 35px;
+	margin-bottom: 60px;
+}
+
 #top_20 {
-	margin-left: 10px;
+	margin-right: 38px;
+}
+
+#page_number {
+	position: absolute;
+	bottom: 75px;
+	height: 70px;
+	width: 735px;
+	outline: solid 1px #00cc00;
+	margin-top: 20px;
 }
 /* Конец блока main_content */
 
@@ -209,8 +227,22 @@ body {
 	background-image: url(../img/border_footer.png);
 	background-repeat: repeat-x;
 	width: 1200px;
-	height: 200px;
+	height: 100px;
 	outline: 1px solid #ffffff;
+}
+
+#cola, #popcorn {
+	position:absolute;
+}
+
+#cola {
+	bottom: 105px;
+	left: 101px;
+}
+
+#popcorn {
+	bottom: 95px;
+	right: 170px;
 }
 
 /* Конец блока header */

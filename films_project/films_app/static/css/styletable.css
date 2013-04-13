@@ -13,6 +13,7 @@ label, input{
 .question{
 font: bold 15px Arial, Helvetica, sans-serif;
 color: #FFF;
+padding-top: 5px;
 }
 
 /*стили полей*/
@@ -40,15 +41,14 @@ background: none;background-color: #ffffff;
 #id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #hide_authors, #id_description {margin: 0px 0px 10px 0px;}
 
 
-input{   
+input {   
     background: url(../img/gradient.png)  repeat-x #fbfbe7;
      padding: 5px 10px 5px 10px;    
      font-weight: normal;
      color: #1B1B1B;
      text-decoration: none; border: 1px inset #1B1B1B;
      text-align: left;
-     border-radius: 8px; 
-     
+     border-radius: 8px;      
      text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
       border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;
       
@@ -109,4 +109,16 @@ border: 1px solid #000000;
 width: 400px;
 }
 
+#list_genres {
+    font: normal 12px Arial, Helvetica, sans-serif;
+    color: #FFF;
+}
 
+#list_genres td {
+    width: 140px;
+    height: 25px;
+}
+
+label {
+    width: 400px;
+}
