@@ -187,7 +187,7 @@ def devideActors(actor):
 
 def UploadForm(request):
     authors_list = []
-    list_genres = []
+    list_genres = [[]]
     actors_list = []
     genre = []
     author = []
@@ -196,8 +196,8 @@ def UploadForm(request):
         actors_list.append(a[1])
     for d in Author.objects.all().values_list():
         authors_list.append(d[1])
-    for g in Genre.objects.all().values_list():
-        list_genres.append(g[1])
+    g = Genre.objects.all().values()
+    list_genres = [g[i: i + 4] for i in range(0, len(g), 4)]
     form = UploadFilmsForm()
     if request.method == "POST":
         form = UploadFilmsForm(request.POST, request.FILES)
