@@ -10,9 +10,10 @@
     {% endif %}
     <form action="" id="uploadFilmForm" method="POST" enctype="multipart/form-data"> {% csrf_token %}
             {{ form.name.errors }}
-            <label for="id_name"> <div class="question">Назва фильма </div></label> 
+            <label for="id_name"> <div class="question">Название фильма </div></label> 
             {{ form.name }}<br/>
             {{ form.director.errors }}
+
             <label for="id_director"> <div class="question">Режисёр </div></label>
             {{ form.director }}<br/>
             {{ form.description.errors }}
@@ -40,7 +41,7 @@
             </ul>
             <!--</div>-->
             </div>
-            Жанры
+            <div class="question"> Жанры </div>
             <table id="list_genres">
             {% for i in list_genres %}
                     <tr>
@@ -60,7 +61,7 @@
             <!--<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>-->
             <ul id="actors_list"></ul>
             {{ form.actors.errors }}
-            <label for="id_actors"> Акторы </label>
+            <label for="id_actors"><div class="question"> Акторы </div> </label>
             {{ form.actors }}<br/>
             <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
             <ul id="actors_exists" style="display: none;">
@@ -70,7 +71,7 @@
             </ul>
             <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
             {{ form.image.errors }}
-            <label for="id_image">Картинка</label>
+            <label for="id_image"><div class="question">Картинка</div></label>
             {{ form.image }}
     </form>
     <input type="button" value="Отправить" id="submit_id">
