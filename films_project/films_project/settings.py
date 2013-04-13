@@ -1,5 +1,6 @@
 # Django settings for films_project project.
 import os
+from django.conf import global_settings
 
 def rel(*x):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
@@ -13,7 +14,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+#CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
 DATABASES = {
     'default': {
@@ -51,7 +52,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = "D:/work/pythonDevelopment/films/films_project/films_app/static/media/"
+MEDIA_ROOT = "D:/work/pythonDevelopment/films/films_project/media/"
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -62,16 +63,16 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = "D:/work/pythonDevelopment/films/films_project/films_app/static"
+STATIC_ROOT = "D:/work/pythonDevelopment/films/films_project/static"
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-# STATICFILES_DIRS = (
-#     "D:/work/pythonDevelopment/films/films_project/films_project/static",
-#     )
+STATICFILES_DIRS = (
+     "D:/work/pythonDevelopment/films/films_project/films_app/static",
+     )
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -113,6 +114,10 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "films_app.context_processors.genre_list",
+    )
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'films_app'
+    'films_app',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

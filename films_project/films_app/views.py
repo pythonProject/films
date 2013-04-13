@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from forms import UploadFilmsForm, CreateAccount, Log_in, Search
 from films_app.models import Films, Author, Genre, Actors
@@ -51,9 +51,10 @@ def search_func(request, films_on_page = 10):
             search_query += ".filter(authors__name__exact='" + devideAuthors(item).strip() + "')"
         if "actor_" in item:
             search_query += ".filter(actors__name__exact='" + devideActors(item).strip() + "')"
-#    import ipdb; ipdb.set_trace()
-    search_query += ".filter(release_date__range=('"+ request.GET["start_date"] + "-01-01','" + request.GET["end_date"] + "-12-31'))"
-#    search_query += ".filter(release_date__lte = '"+ request.GET["end_date"] + "-01-01" +"')"
+    if "genre" in request.GET:
+        search_query += ".filter(genre__name='" + request.GET["genre"] + "')"
+    if "start_date" in request.GET:
+        search_query += ".filter(release_date__range=('"+ request.GET["start_date"] + "-01-01','" + request.GET["end_date"] + "-12-31'))"
     films_list = eval(search_query + query_page)
     films_count = eval(search_query).count()
     return films_list, range((films_count / films_on_page) + 1 if films_count % films_on_page == 0\
@@ -69,7 +70,13 @@ def CheckSearch(request):
         return True
     if "director" in request.GET:
         return True
+    if "genre" in request.GET:
+        return True
     return False
+
+def getGenresList():
+    g = Genre.objects.all().values()
+    return [g[i: i + 4] for i in range(0, len(g), 4)]
 
 def Index(request):
     authors = Author.objects.values("name")
@@ -109,7 +116,7 @@ def Index(request):
     for i in films_list:
         i.release_date = str(i.release_date.year) + "-" + str(i.release_date.month)+ "-" + str(i.release_date.day)
     form = Log_in()
-    return render_to_response("index.html", {"form_login": form,
+    return render(request, "index.html", {"form_login": form,
                                              "films_list": films_list,
                                              "page_count": page_count,
                                              "search_form": search_form,
@@ -118,7 +125,7 @@ def Index(request):
                                              "release_date_min": release_date_min,
                                              "authors": authors,
                                              "search": search,
-                                             "actors":actors}, context_instance=RequestContext(request))
+                                             "actors":actors})
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
@@ -139,10 +146,10 @@ def CreateUser(request):
         except IntegrityError:
             err = "Извините, данный логин уже используеться!"
             return render_to_response("createAccount.html", {"form": createAccountForm, "err": err}, context_instance=RequestContext(request))
-    return render_to_response("createAccount.html", {"form": createAccountForm, "form_login": form_login}, context_instance=RequestContext(request))
+    return render(request, "createAccount.html", {"form": createAccountForm, "form_login": form_login})
 
 def Logged_in(request):
-    return render_to_response("logged_in.html", context_instance=RequestContext(request))
+    return render(request, "logged_in.html")
 
 def LoginAjax(request):
     res = {}
@@ -174,10 +181,10 @@ def LoginView(request):
                 error = 2
                 return render_to_response("login.html", {"form": form, "error": error},
                                             context_instance=RequestContext(request))
-    return render_to_response("login.html", {"form": form}, context_instance=RequestContext(request))
+    return render(request, "login.html", {"form": form})
 
 def Thanks(request):
-    return render_to_response("thanks.html")
+    return render(request, "thanks.html")
 
 def devideGenres(genre):
     return genre.split("_")[1]
@@ -190,7 +197,6 @@ def devideActors(actor):
 
 def UploadForm(request):
     authors_list = []
-    list_genres = [[]]
     actors_list = []
     genre = []
     author = []
@@ -199,8 +205,7 @@ def UploadForm(request):
         actors_list.append(a[1])
     for d in Author.objects.all().values_list():
         authors_list.append(d[1])
-    g = Genre.objects.all().values()
-    list_genres = [g[i: i + 4] for i in range(0, len(g), 4)]
+    list_genres = getGenresList()
     form = UploadFilmsForm()
     if request.method == "POST":
         form = UploadFilmsForm(request.POST, request.FILES)
@@ -245,11 +250,10 @@ def UploadForm(request):
             film.authors.add(*author)
             film.actors.add(*actor)
             return HttpResponseRedirect("/uploaded/")
-    return render_to_response("uploadFilm.html", {"form": form,
+    return render(request, "uploadFilm.html", {"form": form,
                                                   "authors_list": authors_list,
                                                   "list_genres": list_genres,
-                                                  "actors_list": actors_list},
-                                    context_instance=RequestContext(request))
+                                                  "actors_list": actors_list})
 
 def uploaded(request):
-    return render_to_response("uploaded.html")
+    return render(request, "uploaded.html")
