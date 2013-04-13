@@ -14,18 +14,18 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/equalHeight.js"> </script>
 	<link href="{{ STATIC_URL }}css/style.css" type="text/css" rel="stylesheet" />
+    <!-- <link href="{{ STATIC_URL }}css/styletable.css" type="text/css" rel="stylesheet" /> -->
     {% block header %}{% endblock %}
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
         		
+                <div id="header_img"> </div>
                                               
-               <!-- <div class="login" style="display: none;" align="right" id="login_div">-->
-                  
-                                        
-                    <form class="login" style="display: none;" id="login_div" action="/login_ajax/" method="POST">{% csrf_token %}
-                        <span style="display: none; color: red;" id="login_error">Вы ввели не правильное <br>имя или пароль</span>
+                    <form class="login" id="login_div" style="display: none;" action="/login_ajax/" method="POST">{% csrf_token %}
+                        <span style="display: none; color: red;" id="login_error">Вы ввели не правильный <br>логин или пароль</span>
+                        <span style="color: red; display: none;" id="emptyField">Не указан логин <br>или пароль</span>
                         {{ form_login.login.errors }}
                         <label class="label_login" for="id_login">Ваш логин <br>
                         {{ form_login.login }}<br/>
@@ -37,28 +37,34 @@
                         {{ form_login.password }}<br/>
                         <img class="inputIcon" src="../static/img/key_16.png">
                         </label>
-                                                 
-                        <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">
-                     </form>
-                                        
-                    
-        
-                <!--</div>-->
-                
-                <!--<div class="clear">
-       			</div>-->
-           		
-                <a class="img" href="#" id="login"></a>
+                        
+                        <a id="button_login" href="#" onClick="checkLogin()"></a>
+                        <a id="button_register" href="/createAccount/"></a>                          
+                        <!-- <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">  -->
+                    </form>
+           		   
+               <a class="img_login" href="#" id="login"></a>
                 
 
         </div>
         
-        <div class="clear">
-        </div>
 
+        <div id="search">
+            <a id="search_main_bt" href="#" onClick="checkLogin()">
+                <img id="search_main_bt" src="{{ STATIC_URL }}img/search_main_bt.png">
+            </a>
+            <input type="text" >
+            <img id="icon" src="../static/img/search_16.png">
+            <a id="search_main_bt" href="#" onClick="checkLogin()">
+                <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png">
+            </a>
+        </div>
         
-        
-            <div id="left_menu">
+        <div id="main_content">
+            <div id="left_menu" >
+                <div id="genre" class="l_r_MenuBorder">
+                    <p>Жанры</p> 
+                </div>
             </div>
             
             <div id="content_block">
@@ -69,14 +75,15 @@
                 <div id="page_number">
                 </div>
             </div>
-                
-            
-            
+                        
             <div id="right_menu">
             </div>
          
         <div class="clear">
         </div>
+
+        </div>
+
         <div id="footer">
                 {% block footer %} 
             	<p>Thanks for visiting our website</p>

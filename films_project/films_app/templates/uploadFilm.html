@@ -41,13 +41,13 @@
             <!--</div>-->
             </div>
             Жанры
-            <ul id="list_genres">
+            <table id="list_genres">
             {% for g in list_genres %}
-
-                    <li style="list-style-type: none;"><input type="checkbox" id="{{ g }}" name="genre_{{ g }}"/> {{ g }}</li>
-
+                    <tr>
+                        <td>{{ forloop.counter }}<input type="checkbox" id="{{ g }}" name="genre_{{ g }}"/> {{ g }}</td>
+                    </tr>
             {% endfor %}
-            </ul>
+            </table>
             <div style="display: none" id="addGenreBlock">
                 {{ form.addGenre.errors }}
                 <label for="id_addGenre"> Добавить новый жанр </label>
