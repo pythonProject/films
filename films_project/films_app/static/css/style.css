@@ -168,7 +168,7 @@ body {
 
 
 #main_content {
-	/*outline: solid 1px #FF00AE;*/
+	outline: solid 1px #FF00AE;
 }
 
 #left_menu, #content_block {
@@ -188,10 +188,6 @@ body {
 	margin-bottom: 7px;
 }
 
-#top_20 {
-	height: 450px;
-}
-
 #genre, #top_20 {
 	/*height: 250px;*/
 	width: 180px;
@@ -201,21 +197,21 @@ body {
 	width: 730px;
 	margin-left: 10px;
 	/*margin-bottom: 135px;*/
-	/*outline: solid 1px #00cc00;*/
+	outline: solid 1px #00cc00;
 }
 
 #genre {
 	margin-left: 38px;
 }
 
-#genre a:link {
+a:link, a:visited  {
 	text-decoration: none;
 	color: #FFF8B0;
 }
 
-#genre a:hover {
+a:hover {
 	text-decoration: none;
-	color: #FFFAD2;
+	color: #C62B32;
 }
 
 ol {
@@ -231,40 +227,42 @@ ol {
 	color: #9F0620;
 	font: italic 18px Arial, sans-serif;
 	padding-top: 10px;
-	padding-bottom: 7px;
+	/*padding-bottom: 7px;*/
 }
 
 #content {
 	padding-left: 25px;
 	padding-top: 25px;
 	padding-bottom: 5px;
-	margin-bottom: 0px;
+	margin-bottom: 3px;
 }
 
 #top_20 {
 	margin-right: 38px;
+	height: 450px;
 }
 
 #page_number {
 	/*position: absolute;*/
 	/*bottom: 75px;*/
-	height: 70px;
-	width: 725px;
+	/*height: 70px;*/
+	width: 723px;
 	/*outline: solid 1px #00cc00;*/
 	margin-top: 20px;
 }
+
 /* Конец блока main_content */
 
 
-/* Начало блока header */
+/* Начало блока footer */
 #footer {
 	background-image: url(../img/border_footer.png);
 	background-repeat: repeat-x;
 	width: 1200px;
 	height: 132px;
 	outline: 1px solid #ffffff;
-/*	position: absolute;
-	bottom: -200px;*/
+	/*position: absolute;
+	bottom: 0px;*/
 }
 
 #cola, #popcorn {
@@ -272,12 +270,12 @@ ol {
 }
 
 #cola {
-	bottom: 55px;
+	bottom: 5px;
 	left: 101px;
 }
 
 #popcorn {
-	bottom: 45px;
+	bottom: 5px;
 	right: 170px;
 }
 
