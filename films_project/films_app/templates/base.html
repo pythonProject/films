@@ -43,7 +43,7 @@
                         <!-- <input class="button_login" type="button" value="Отправить" onClick="checkLogin()">  -->
                     </form>
            		{% if user.is_authenticated %}
-                <a class="exit" href="/?quit=True">Manya Sonechko</a>
+                <a class="exit" href="/?quit=True"></a>
                 {% else %}
                <a class="img_login" href="#" id="login"></a>
                 {% endif %}
@@ -63,8 +63,8 @@
 
             <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png" usemap="#map_search">
             <map name="map_search">
-                <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="createAccount/"></area>
-                <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="createAccount/" title="Расширеный поиск"></area>
+                <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="createAccount/"> </area>
+                <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="createAccount/" title="Расширеный поиск"> </area>
             </map>
 
         </div>
@@ -73,11 +73,11 @@
             <div id="left_menu" >
                 <div id="genre" class="BlockBorder">
                     <p>Жанры</p>
-                    <table>
+                    <ol>
                     {% for g in GENRE_LIST %}
-                        <tr><td><a href="/?&genre={{ g.name }}">{{ g.name }}</a>  {{ g.films_set.count }}</td></tr>
+                        <li id="imgList"><a href="/?&genre={{ g.name }}">{{ g.name }}</a>  {{ g.films_set.count }}</li>
                     {% endfor %}
-                    </table>
+                    </ol>
                 </div>
             </div>
             
@@ -92,6 +92,9 @@
             </div>
                         
             <div id="right_menu">
+                <div id="top_20" class="BlockBorder">
+                    <p>Top - 20</p> 
+                </div>
                 <div id="top_20" class="BlockBorder">
                     <p>Top - 20</p> 
                 </div>

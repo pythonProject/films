@@ -53,8 +53,12 @@ body {
 	background-repeat: no-repeat;
 }
 
+.exit {
+	background:url(../img/exit.png);
+	background-repeat: no-repeat;
+}
 
-.img_login, .img_logout  {
+.img_login, .img_logout, .exit {
 	display:block;
 	width: 170px;
 	height: 33px;
@@ -162,10 +166,9 @@ body {
 
 /* Начало блока main_content */
 
-#left_menu, #right_menu {
-	/*width: 230px;*/
-	/*height: 200px;*/
-	/*outline: solid 1px #00cc00;*/
+
+#main_content {
+	/*outline: solid 1px #FF00AE;*/
 }
 
 #left_menu, #content_block {
@@ -182,6 +185,11 @@ body {
 	border: 5px solid #7588c1;
 	border-right: 2px solid #899dd5;
 	border-bottom: 2px solid #899dd5;
+	margin-bottom: 7px;
+}
+
+#top_20 {
+	height: 450px;
 }
 
 #genre, #top_20 {
@@ -190,8 +198,8 @@ body {
 }
 
 #content_block {
-	width: 740px;
-	margin-left: 5px;
+	width: 730px;
+	margin-left: 10px;
 	/*margin-bottom: 135px;*/
 	/*outline: solid 1px #00cc00;*/
 }
@@ -200,11 +208,37 @@ body {
 	margin-left: 38px;
 }
 
+#genre a:link {
+	text-decoration: none;
+	color: #FFF8B0;
+}
+
+#genre a:hover {
+	text-decoration: none;
+	color: #FFFAD2;
+}
+
+ol {
+	list-style-image:  url(../img/listGenre.png);
+	padding-left: 24px;
+	padding-top: 1px;
+	line-height: 1.5;
+	font: normal 16px Arial,sans-serif;
+}
+
+#genre p, #top_20 p {
+	text-align: center;
+	color: #9F0620;
+	font: italic 18px Arial, sans-serif;
+	padding-top: 10px;
+	padding-bottom: 7px;
+}
+
 #content {
 	padding-left: 25px;
 	padding-top: 25px;
-	padding-bottom: 35px;
-	margin-bottom: 60px;
+	padding-bottom: 5px;
+	margin-bottom: 0px;
 }
 
 #top_20 {
@@ -212,11 +246,11 @@ body {
 }
 
 #page_number {
-	position: absolute;
-	bottom: 75px;
+	/*position: absolute;*/
+	/*bottom: 75px;*/
 	height: 70px;
-	width: 735px;
-	outline: solid 1px #00cc00;
+	width: 725px;
+	/*outline: solid 1px #00cc00;*/
 	margin-top: 20px;
 }
 /* Конец блока main_content */
@@ -227,8 +261,10 @@ body {
 	background-image: url(../img/border_footer.png);
 	background-repeat: repeat-x;
 	width: 1200px;
-	height: 100px;
+	height: 132px;
 	outline: 1px solid #ffffff;
+/*	position: absolute;
+	bottom: -200px;*/
 }
 
 #cola, #popcorn {
@@ -236,12 +272,12 @@ body {
 }
 
 #cola {
-	bottom: 105px;
+	bottom: 55px;
 	left: 101px;
 }
 
 #popcorn {
-	bottom: 95px;
+	bottom: 45px;
 	right: 170px;
 }
 
