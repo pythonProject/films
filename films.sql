@@ -358,9 +358,9 @@ CREATE TABLE `films_app_films` (
   `release_date` date NOT NULL,
   `added_date` date NOT NULL,
   `image` varchar(100) NOT NULL,
-  `dislike` int(11) NOT NULL,
-  `like` int(11) NOT NULL,
-  `examinations` int(11) NOT NULL,
+  `dislike` int(11),
+  `like` int(11),
+  `examinations` int(11),
   `content` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

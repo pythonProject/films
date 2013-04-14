@@ -223,6 +223,7 @@ def UploadForm(request):
                         release_date = cd["releaseDate"],
                         added_date = datetime.datetime.now().strftime("%Y-%m-%d"),
                         image = request.FILES["image"],
+                        content = request.FILES["content"],
                         )
             film.save()
             for i in request.POST.items():

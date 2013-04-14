@@ -73,6 +73,9 @@
             {{ form.image.errors }}
             <label for="id_image"><div class="question">Картинка</div></label>
             {{ form.image }}
+            {{ form.content.errors }}
+            <label for="id_content"><div class="question">Видео</div></label>
+            {{ form.content }}
     </form>
     <input type="button" value="Отправить" id="submit_id">
 {% endblock %}

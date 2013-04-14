@@ -3,6 +3,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from films_app import views
 from films_project import settings
 import django
+from django.conf.urls.static import static
+import settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -35,3 +37,4 @@ urlpatterns = patterns('films_app.views',
 #)
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
