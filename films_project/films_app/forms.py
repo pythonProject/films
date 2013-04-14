@@ -15,6 +15,7 @@ class UploadFilmsForm(forms.Form):
     addGenre = forms.CharField(required=False)
     actors = forms.CharField(required=False)
     image = forms.ImageField()
+    content = forms.FileField()
 
 class CreateAccount(forms.Form):
     first_name = forms.CharField(max_length=30)
