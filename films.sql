@@ -84,7 +84,7 @@ CREATE TABLE `auth_permission` (
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_1bb8f392` (`content_type_id`),
   CONSTRAINT `content_type_id_refs_id_728de91f` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add films',7,'add_films'),(20,'Can change films',7,'change_films'),(21,'Can delete films',7,'delete_films'),(22,'Can add author',8,'add_author'),(23,'Can change author',8,'change_author'),(24,'Can delete author',8,'delete_author'),(25,'Can add genre',9,'add_genre'),(26,'Can change genre',9,'change_genre'),(27,'Can delete genre',9,'delete_genre');
+INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add author',7,'add_author'),(20,'Can change author',7,'change_author'),(21,'Can delete author',7,'delete_author'),(22,'Can add genre',8,'add_genre'),(23,'Can change genre',8,'change_genre'),(24,'Can delete genre',8,'delete_genre'),(25,'Can add actors',9,'add_actors'),(26,'Can change actors',9,'change_actors'),(27,'Can delete actors',9,'delete_actors'),(28,'Can add films',10,'add_films'),(29,'Can change films',10,'change_films'),(30,'Can delete films',10,'delete_films'),(31,'Can add comments',11,'add_comments'),(32,'Can change comments',11,'change_comments'),(33,'Can delete comments',11,'delete_comments');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'administrator','','','ollieportnin@gmail.com','pbkdf2_sha256$10000$IM0N1UBOdflw$Easc1PesxSrUUVteB2eSryHExtLV/J8pE1B6Oye3fAc=',1,1,1,'2012-09-24 20:07:45','2012-09-24 20:07:45');
+INSERT INTO `auth_user` VALUES (1,'oleh','','','oleh@oleh.com','pbkdf2_sha256$10000$jtE6St6X3i2m$FY0qrgtaz+S30q4lXanPnMTGMFqWAzjmdsJipwaqieQ=',1,1,1,'2013-04-14 11:25:13','2013-04-14 11:25:13');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'films','films_app','films'),(8,'author','films_app','author'),(9,'genre','films_app','genre');
+INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'author','films_app','author'),(8,'genre','films_app','genre'),(9,'actors','films_app','actors'),(10,'films','films_app','films'),(11,'comments','films_app','comments');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,6 +238,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('6c3c6d3edf8bda490bcaafa741ed5afd','ZDdjZTI3ODIxNzUzNWRjMjE5NGU1ZmUxZGQ1MGJkZDA5MzBmODE2YjqAAn1xAS4=\n','2013-04-28 11:57:44');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +268,29 @@ INSERT INTO `django_site` VALUES (1,'example.com','example.com');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `films_app_actors`
+--
+
+DROP TABLE IF EXISTS `films_app_actors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `films_app_actors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `films_app_actors`
+--
+
+LOCK TABLES `films_app_actors` WRITE;
+/*!40000 ALTER TABLE `films_app_actors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_actors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `films_app_author`
 --
 
@@ -290,32 +314,31 @@ LOCK TABLES `films_app_author` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `films_app_author_filmography`
+-- Table structure for table `films_app_comments`
 --
 
-DROP TABLE IF EXISTS `films_app_author_filmography`;
+DROP TABLE IF EXISTS `films_app_comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `films_app_author_filmography` (
+CREATE TABLE `films_app_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author_id` int(11) NOT NULL,
-  `films_id` int(11) NOT NULL,
+  `content` varchar(50) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `film_id` int(11) NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `author_id` (`author_id`,`films_id`),
-  KEY `films_app_author_filmography_337b96ff` (`author_id`),
-  KEY `films_app_author_filmography_4cfcba90` (`films_id`),
-  CONSTRAINT `author_id_refs_id_6bf174d8` FOREIGN KEY (`author_id`) REFERENCES `films_app_author` (`id`),
-  CONSTRAINT `films_id_refs_id_78ba1a25` FOREIGN KEY (`films_id`) REFERENCES `films_app_films` (`id`)
+  UNIQUE KEY `film_id` (`film_id`),
+  CONSTRAINT `film_id_refs_id_469075a1` FOREIGN KEY (`film_id`) REFERENCES `films_app_films` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `films_app_author_filmography`
+-- Dumping data for table `films_app_comments`
 --
 
-LOCK TABLES `films_app_author_filmography` WRITE;
-/*!40000 ALTER TABLE `films_app_author_filmography` DISABLE KEYS */;
-/*!40000 ALTER TABLE `films_app_author_filmography` ENABLE KEYS */;
+LOCK TABLES `films_app_comments` WRITE;
+/*!40000 ALTER TABLE `films_app_comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -334,6 +357,11 @@ CREATE TABLE `films_app_films` (
   `user` int(11) NOT NULL,
   `release_date` date NOT NULL,
   `added_date` date NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `dislike` int(11) NOT NULL,
+  `like` int(11) NOT NULL,
+  `examinations` int(11) NOT NULL,
+  `content` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -348,6 +376,93 @@ LOCK TABLES `films_app_films` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `films_app_films_actors`
+--
+
+DROP TABLE IF EXISTS `films_app_films_actors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `films_app_films_actors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `films_id` int(11) NOT NULL,
+  `actors_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `films_id` (`films_id`,`actors_id`),
+  KEY `films_app_films_actors_4cfcba90` (`films_id`),
+  KEY `films_app_films_actors_72c54a84` (`actors_id`),
+  CONSTRAINT `films_id_refs_id_2ab6651f` FOREIGN KEY (`films_id`) REFERENCES `films_app_films` (`id`),
+  CONSTRAINT `actors_id_refs_id_3fc22377` FOREIGN KEY (`actors_id`) REFERENCES `films_app_actors` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `films_app_films_actors`
+--
+
+LOCK TABLES `films_app_films_actors` WRITE;
+/*!40000 ALTER TABLE `films_app_films_actors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_films_actors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `films_app_films_authors`
+--
+
+DROP TABLE IF EXISTS `films_app_films_authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `films_app_films_authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `films_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `films_id` (`films_id`,`author_id`),
+  KEY `films_app_films_authors_4cfcba90` (`films_id`),
+  KEY `films_app_films_authors_337b96ff` (`author_id`),
+  CONSTRAINT `films_id_refs_id_1dc6fe3a` FOREIGN KEY (`films_id`) REFERENCES `films_app_films` (`id`),
+  CONSTRAINT `author_id_refs_id_3444e331` FOREIGN KEY (`author_id`) REFERENCES `films_app_author` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `films_app_films_authors`
+--
+
+LOCK TABLES `films_app_films_authors` WRITE;
+/*!40000 ALTER TABLE `films_app_films_authors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_films_authors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `films_app_films_genre`
+--
+
+DROP TABLE IF EXISTS `films_app_films_genre`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `films_app_films_genre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `films_id` int(11) NOT NULL,
+  `genre_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `films_id` (`films_id`,`genre_id`),
+  KEY `films_app_films_genre_4cfcba90` (`films_id`),
+  KEY `films_app_films_genre_728ee30` (`genre_id`),
+  CONSTRAINT `films_id_refs_id_4b0a8a0d` FOREIGN KEY (`films_id`) REFERENCES `films_app_films` (`id`),
+  CONSTRAINT `genre_id_refs_id_db50bf5` FOREIGN KEY (`genre_id`) REFERENCES `films_app_genre` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `films_app_films_genre`
+--
+
+LOCK TABLES `films_app_films_genre` WRITE;
+/*!40000 ALTER TABLE `films_app_films_genre` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_films_genre` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `films_app_genre`
 --
 
@@ -358,7 +473,7 @@ CREATE TABLE `films_app_genre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,36 +482,8 @@ CREATE TABLE `films_app_genre` (
 
 LOCK TABLES `films_app_genre` WRITE;
 /*!40000 ALTER TABLE `films_app_genre` DISABLE KEYS */;
+INSERT INTO `films_app_genre` VALUES (1,'аниме'),(2,'биографический'),(3,'боевик'),(4,'вестерн'),(5,'военный'),(6,'детектив'),(7,'детский'),(8,'документальный'),(9,'драма'),(10,'исторический'),(11,'комедия'),(12,'короткометражный'),(13,'криминал'),(14,'мелодрама'),(15,'мистика'),(16,'мультфильм'),(17,'мюзикл'),(18,'научный'),(19,'приключения'),(21,'реалити-шоу'),(22,'семейный'),(23,'спорт'),(24,'триллер'),(25,'ужасы'),(26,'фантастика'),(27,'фэнтези');
 /*!40000 ALTER TABLE `films_app_genre` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `films_app_genre_film`
---
-
-DROP TABLE IF EXISTS `films_app_genre_film`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `films_app_genre_film` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `genre_id` int(11) NOT NULL,
-  `films_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `genre_id` (`genre_id`,`films_id`),
-  KEY `films_app_genre_film_728ee30` (`genre_id`),
-  KEY `films_app_genre_film_4cfcba90` (`films_id`),
-  CONSTRAINT `genre_id_refs_id_7dc86b3` FOREIGN KEY (`genre_id`) REFERENCES `films_app_genre` (`id`),
-  CONSTRAINT `films_id_refs_id_257c5fdb` FOREIGN KEY (`films_id`) REFERENCES `films_app_films` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `films_app_genre_film`
---
-
-LOCK TABLES `films_app_genre_film` WRITE;
-/*!40000 ALTER TABLE `films_app_genre_film` DISABLE KEYS */;
-/*!40000 ALTER TABLE `films_app_genre_film` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -408,4 +495,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-09-24 23:20:06
+-- Dump completed on 2013-04-14 14:59:34

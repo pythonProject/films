@@ -22,5 +22,15 @@ class Films(models.Model):
     authors = models.ManyToManyField(Author)
     genre = models.ManyToManyField(Genre)
     actors = models.ManyToManyField(Actors)
+    dislike = models.IntegerField()
+    like = models.IntegerField()
+    examinations = models.IntegerField()
+    content = models.FileField(upload_to="movies/")
+
+class Comments(models.Model):
+    content = models.CharField(max_length=50)
+    user = models.CharField(max_length=50)
+    film = models.OneToOneField(Films)
+    date = models.DateField()
 
 models.signals.post_save.connect(makeThumbnails, sender=Films)
