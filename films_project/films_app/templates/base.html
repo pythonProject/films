@@ -1,8 +1,8 @@
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
- <!--   <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" />
-        <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet" />
+       <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" />
+<!--        <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet" />
         <link href="{{ STATIC_URL }}css/styletable.css" type="text/css" rel="stylesheet" />
 {#    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />#} -->
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/jquery.js"></script>
@@ -57,9 +57,16 @@
             </a>
             <input type="text" >
             <img id="icon" src="../static/img/search_16.png">
-            <a id="search_main_bt" href="#" onClick="checkLogin()">
+            <!-- <a id="search_main_bt" href="#" onClick="checkLogin()">
                 <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png">
-            </a>
+            </a> -->
+
+            <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png" usemap="#map_search">
+            <map name="map_search">
+                <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="createAccount/"></area>
+                <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="createAccount/" title="Расширеный поиск"></area>
+            </map>
+
         </div>
         
         <div id="main_content">
@@ -79,7 +86,8 @@
                     {% block content %} {% endblock %}
                 </div>   
                 
-                <div id="page_number">
+                <div id="page_number" class="BlockBorder">
+                    gshhdfhdj
                 </div>
             </div>
                         
@@ -95,6 +103,8 @@
         </div>
 
         <div id="footer">
+            <img id="cola" src="{{ STATIC_URL }}img/cola.png">
+            <img id="popcorn" src="{{ STATIC_URL }}img/popcorn.png">
                 {% block footer %} 
             	<p>Thanks for visiting our website</p>
             	{% endblock %}
