@@ -1,11 +1,11 @@
 a:link {
-color: #fef900;
+color: #FFF8B0;
 }
 a:visited {
-color:#ff9300;
+color:#989807;
 }
 a:hover{
-color:#f00107;
+color:#FFFAD2;
 } 
 label, input{
      cursor: pointer;
