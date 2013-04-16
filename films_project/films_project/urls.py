@@ -27,6 +27,8 @@ urlpatterns = patterns('films_app.views',
     (u"^logged_in/$", views.RequiresLogin(views.Logged_in)),
     (u"^login_ajax/", views.LoginAjax),
     (u"^uploaded/$", views.uploaded),
+    (u"^watching/$", views.watching),
+    (u"^like/$", views.like),
     (u"^", 'Index'),
 )
 

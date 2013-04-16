@@ -79,26 +79,7 @@ def getGenresList():
     return [g[i: i + 4] for i in range(0, len(g), 4)]
 
 def Index(request):
-    authors = Author.objects.values("name")
-    actors = Actors.objects.values("name")
-    search_form = Search()
     films_on_page = 2
-    release_dates = []
-    release_dates_original = Films.objects.values("release_date")
-    for i in release_dates_original:
-        if i["release_date"].year not in release_dates:
-            release_dates.append(i["release_date"].year)
-    try:
-        release_date_min = release_dates[0]
-        release_date_max = release_dates[0]
-    except IndexError:
-        release_date_max = "0"
-        release_date_min = "0"
-    for release_date in release_dates:
-        if release_date > release_date_max:
-            release_date_max = release_date
-        if release_date < release_date_min:
-            release_date_min = release_date
     if request.session and request.GET.get('quit', False):
         auth.logout(request)
     if CheckSearch(request):
@@ -118,14 +99,7 @@ def Index(request):
     form = Log_in()
     return render(request, "index.html", {"form_login": form,
                                              "films_list": films_list,
-                                             "page_count": page_count,
-                                             "search_form": search_form,
-                                             "release_dates": release_dates,
-                                             "release_date_max": release_date_max,
-                                             "release_date_min": release_date_min,
-                                             "authors": authors,
-                                             "search": search,
-                                             "actors":actors})
+                                             "page_count": page_count})
 
 def CreateUser(request):
     createAccountForm = CreateAccount()
@@ -258,3 +232,31 @@ def UploadForm(request):
 
 def uploaded(request):
     return render(request, "uploaded.html")
+
+def watching(request):
+    movie = request.GET.get("movie", False)
+    if movie:
+        film = Films.objects.get(name = movie)
+    return render(request, "watching.html", locals())
+
+def like(request):
+    res = {"error": False}
+    if request.is_ajax():
+        film = Films.objects.get(name = request.GET["name"])
+        if request.GET.get("action", False) == "like":
+            if film.like == None:
+                film.like = 0
+            film.like += 1
+        elif request.GET.get("action", False) == "dislike":
+            if film.dislike == None:
+                film.dislike = 0
+            film.dislike += 1
+        else:
+            if film.examinations == None:
+                film.examinations = 0
+            film.examinations += 1
+        film.save()
+        return HttpResponse(simplejson.dumps(res), mimetype = "application/json")
+    res["error"] = True
+    return HttpResponse(simplejson.dumps(res), mimetype = "application/json")
+

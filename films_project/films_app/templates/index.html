@@ -12,67 +12,10 @@
     {% if search_form.errors %}
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
-<form action="/" id="searchForm" method="GET">{% csrf_token %}
-    {{ search_form.name.errors }}
-    <label for="id_name">Введите назву фильма:</label>
-    {{ search_form.name }}
-    <ul id="authors_list"></ul>
-    {{ search_form.add_authors.errors }}
-    <div class="autocomplete">
-        <label for="id_add_authors"><div class="question"> Авторы сценария </div></label>
-        {{ search_form.add_authors }}<br/>
-        <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
-        <!--<div class="autocomplete">-->
-        <ul id="f" class="ui-autocomplete" style="display: none">
-            {% for d in authors %}
-                <li class="ac-item"> {{ d.name }} </li>
-            {% endfor %}
-            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
-        </ul>
-        <!--</div>-->
-    </div>
-    <ul id="actors_list"></ul>
-    {{ search_form.actors.errors }}
-    <label for="id_actors"> Акторы </label>
-    {{ search_form.actors }}<br/>
-    <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
-    <ul id="actors_exists" style="display: none;">
-        {% for a in actors %}
-            <li style="list-style-type:none;">{{ a.name }}</li>
-        {% endfor %}
-    </ul>
-    <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
-    {{ search_form.director.errors }}<br/>
-    <label for="id_director">Введите режисёра</label>
-    {{ search_form.director }}<br/>
-    {% if release_dates %}
-        Выберите начальную дату:
-        <select name="start_date">
-            {% for date in release_dates %}
-                {% if date == release_date_min %}
-                    <option selected="selected">{{ date }}</option>
-                {% else %}
-                    <option>{{ date }}</option>
-                {% endif %}
-            {% endfor %}
-        </select>
-        Выберите конечную дату поиска
-        <select name="end_date">
-            {% for date in release_dates %}
-                {% if date == release_date_max %}
-                    <option selected="selected">{{ date }}</option>
-                {% else %}
-                    <option>{{ date }}</option>
-                {% endif %}
-            {% endfor %}
-        </select>
-    {% endif %}
-    <input type="button" value="Искать" id="submit_search">
-</form>
-    <a href="/">Отменить фильтр</a><br/>
+
     {% for films in films_list %}
         <img src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
-        <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;">{{ films.name }} </span><br/>
+        <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;"><a href="/watching/?movie={{ films.name }}">{{ films.name }}</a> </span><br/>
         <span style="color: #ffffff;">Режисёр:</span> <span style="color: #ffffff;">{{ films.director }}</span><br/>
         <span style="color: #ffffff;">Авторы:</span> <span style="color: #ffffff;">
             {% for author in films.authors.values %}

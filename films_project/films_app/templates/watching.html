@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block header %}
+<script language="JavaScript" src="{{ STATIC_URL }}jscripts/uppod_flash.js"></script>
+<script language="JavaScript" src="{{ STATIC_URL }}jscripts/swfobject.js"></script>
+{% endblock %}
+{% block content %}
+    <script type="text/javascript">
+        var flashvars = {"uid":"myplayer",
+                         "m":"video",
+                         "pl":"{'playlist':[{'file':'{{ STATIC_URL }}media/{{ film.content.name }}','comment':'{{ film.content.name }}'}]}"};/* +
+                                 "{'file':'http://uppod.net/sample.flv','comment':'Пример2'}," +
+                                 "{'file':'http://uppod.net/red_sea.flv','comment':'Пример3'}]}"};*/
+        var params = {id:"myplayer",
+                      allowFullScreen:"true",
+                      allowScriptAccess:"always"};
+        new swfobject.embedSWF("{{ STATIC_URL }}jscripts/uppod.swf", "myplayer", "400", "300", "9.0.115", false, flashvars, params);
+    </script>
+    <div id="myplayer"></div>
+    <div><a href="#" onclick="Like('{{ film.name }}', '+')">Like </a>
+        <span id="like">{% if film.like == None %} 0 {% else %}{{ film.like }} {% endif %}</span>
+    </div>
+    <div><a href="#" onclick="Like('{{ film.name }}', '-')">Dislike </a>
+        <span id="dislike">{% if film.dislike == None %} 0 {% else %}{{ film.dislike }} {% endif %}</span>
+    </div>
+    <div>Количество просмотров
+        <span id="examinations">
+            {% if film.examinations == None %}
+                0
+            {% else %}
+                {{ film.examinations }}
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

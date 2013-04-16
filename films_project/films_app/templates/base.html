@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
@@ -64,11 +65,70 @@
             <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png" usemap="#map_search">
             <map name="map_search">
                 <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="createAccount/"> </area>
-                <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="createAccount/" title="Расширеный поиск"> </area>
+                <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="#" title="Расширеный поиск" id="ExtSearch"> </area>
             </map>
-
-        </div>
-        
+        </div> <!-- Search form Manya needs to check -->
+            {% if request.path != "/upload/" %}
+            <div id="searchFormExt" style="display: none;">
+                <form action="/" id="searchForm" method="GET">{% csrf_token %}
+                    {{ search_form.name.errors }}
+                    <label for="id_name" value="dsfsdfdsf">Введите назву фильма:</label>
+                    {{ search_form.name }}
+                    <ul id="authors_list"></ul>
+                    {{ search_form.add_authors.errors }}
+                    <div class="autocomplete">
+                        <label for="id_add_authors"><div class="question"> Авторы сценария </div></label>
+                        {{ search_form.add_authors }}<br/>
+                        <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
+                        <ul id="f" class="ui-autocomplete" style="display: none">
+                            {% for d in authors %}
+                                <li class="ac-item"> {{ d.name }} </li>
+                            {% endfor %}
+                            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
+                        </ul>
+                    </div>
+                    <ul id="actors_list"></ul>
+                    {{ search_form.actors.errors }}
+                    <label for="id_actors"> Акторы </label>
+                    {{ search_form.actors }}<br/>
+                    <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
+                    <ul id="actors_exists" style="display: none;">
+                        {% for a in actors %}
+                            <li style="list-style-type:none;">{{ a.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
+                    {{ search_form.director.errors }}<br/>
+                    <label for="id_director">Введите режисёра</label>
+                    {{ search_form.director }}<br/>
+                    {% if release_dates %}
+                        Выберите начальную дату:
+                        <select name="start_date">
+                            {% for date in release_dates %}
+                                {% if date == release_date_min %}
+                                    <option selected="selected">{{ date }}</option>
+                                {% else %}
+                                    <option>{{ date }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        Выберите конечную дату поиска
+                        <select name="end_date">
+                            {% for date in release_dates %}
+                                {% if date == release_date_max %}
+                                    <option selected="selected">{{ date }}</option>
+                                {% else %}
+                                    <option>{{ date }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                    <input type="button" value="Искать" id="submit_search">
+                </form>
+                <a href="/">Отменить фильтр</a><br/>
+            </div>
+        {% endif %}
+        <!-- Here should be the search div -->
         <div id="main_content">
             <div id="left_menu" >
                 <div id="genre" class="BlockBorder">

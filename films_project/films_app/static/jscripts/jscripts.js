@@ -201,6 +201,10 @@ $(document).ready(function()
             $("#login").attr("class", "img_login");
         }
     });
+    $("#ExtSearch").click(function()
+    {
+        $("#searchFormExt").toggle(1000);
+    });
     $("#submit_id").live('click', function()
     {
         $("#uploadFilmForm").submit();
@@ -330,4 +334,30 @@ function ChangePage(page)
     }
     var url = arr.join("&");
     document.location.href = url;
+}
+
+function Like(film, action){
+    var act = action == "+" ? "like": "dislike";
+    $.ajax({
+            url: '/like/',
+            type: "GET",
+            dataType: "json",
+            data: "name=" + film + "&action=" + act,
+            success: function (data)
+            {
+                if(!data.error)
+                {
+                    if(act == "like")
+                    {
+                        var likes = parseInt($("#like").text()) + 1;
+                        $("#like").text(likes);
+                    }
+                    else
+                    {
+                        var dislikes = parseInt($("#dislike").text()) + 1;
+                        $("#dislike").text(dislikes);
+                    }
+                }
+            }
+        });
 }
