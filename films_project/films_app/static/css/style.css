@@ -8,7 +8,7 @@ body {
 
 #wrapper {
 	width: 1200px;
-	outline: 1px solid #cccccc;
+	/*outline: 1px solid #cccccc;*/
 	background-color: #6B84CB;
 	background-image: url(../img/border.png);
 	background-repeat: repeat-y;
@@ -158,7 +158,19 @@ body {
 	position: absolute;
 	top: 5px;
 	left: 115px;
-	width: 520px;
+	width: 500px;
+}
+
+#searchForm {
+	position: relative;
+	top: 0px;
+	left: 200px;
+}
+
+#searchForm label {
+	font: bold 15px Arial, Helvetica, sans-serif;
+	color: #FFF;
+	padding-top: 5px;
 }
 
 /* Конец блока search */
@@ -168,7 +180,7 @@ body {
 
 
 #main_content {
-	outline: solid 1px #FF00AE;
+	/*outline: solid 1px #FF00AE;*/
 }
 
 #left_menu, #content_block {
@@ -197,7 +209,7 @@ body {
 	width: 730px;
 	margin-left: 10px;
 	/*margin-bottom: 135px;*/
-	outline: solid 1px #00cc00;
+	/*outline: solid 1px #00cc00;*/
 }
 
 #genre {
@@ -233,8 +245,8 @@ ol {
 #content {
 	padding-left: 25px;
 	padding-top: 25px;
-	padding-bottom: 5px;
-	margin-bottom: 3px;
+	padding-bottom: 35px;
+	margin-bottom: 5px;
 }
 
 #top_20 {
@@ -260,7 +272,7 @@ ol {
 	background-repeat: repeat-x;
 	width: 1200px;
 	height: 132px;
-	outline: 1px solid #ffffff;
+	/*outline: 1px solid #ffffff;*/
 	/*position: absolute;
 	bottom: 0px;*/
 }
@@ -279,4 +291,8 @@ ol {
 	right: 170px;
 }
 
-/* Конец блока header */
+/* Конец блока footer */
+
+
+/* Начало блока фильмы */
+

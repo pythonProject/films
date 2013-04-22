@@ -15,6 +15,8 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}jscripts/jscripts.js" ></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jscripts/equalHeight.js"> </script>
 	<link href="{{ STATIC_URL }}css/style.css" type="text/css" rel="stylesheet" />
+    <link href="{{ STATIC_URL }}css/films.css" type="text/css" rel="stylesheet" />
+
     <!-- <link href="{{ STATIC_URL }}css/styletable.css" type="text/css" rel="stylesheet" /> -->
     {% block header %}{% endblock %}
 </head>
@@ -72,7 +74,7 @@
             <div id="searchFormExt" style="display: none;">
                 <form action="/" id="searchForm" method="GET">{% csrf_token %}
                     {{ search_form.name.errors }}
-                    <label for="id_name" value="dsfsdfdsf">Введите назву фильма:</label>
+                    <label for="id_name" value="dsfsdfdsf">Введите назву фильма:</label><p></p>
                     {{ search_form.name }}
                     <ul id="authors_list"></ul>
                     {{ search_form.add_authors.errors }}
@@ -89,7 +91,7 @@
                     </div>
                     <ul id="actors_list"></ul>
                     {{ search_form.actors.errors }}
-                    <label for="id_actors"> Акторы </label>
+                    <label for="id_actors"> Акторы </label><p></p>
                     {{ search_form.actors }}<br/>
                     <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
                     <ul id="actors_exists" style="display: none;">
@@ -99,7 +101,7 @@
                     </ul>
                     <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
                     {{ search_form.director.errors }}<br/>
-                    <label for="id_director">Введите режисёра</label>
+                    <label for="id_director">Введите режисёра</label><p></p>
                     {{ search_form.director }}<br/>
                     {% if release_dates %}
                         Выберите начальную дату:
@@ -147,7 +149,7 @@
                 </div>   
                 
                 <div id="page_number" class="BlockBorder">
-                    gshhdfhdj
+                    pages
                 </div>
             </div>
                         
