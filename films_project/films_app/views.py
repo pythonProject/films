@@ -192,7 +192,6 @@ def UploadForm(request):
             film = Films(name = cd["name"],
                         director = cd["director"],
                         description = cd["description"],
-                        link = cd["link"],
                         user = int(User.objects.filter(username = request.session["user"]).values("id")[0]["id"]),
                         release_date = cd["releaseDate"],
                         added_date = datetime.datetime.now().strftime("%Y-%m-%d"),
@@ -260,3 +259,10 @@ def like(request):
     res["error"] = True
     return HttpResponse(simplejson.dumps(res), mimetype = "application/json")
 
+def shortSearch(request):
+    film = request.POST.get("name")
+    if film != "":
+        films_list = Films.objects.filter(name = film)
+    else:
+        films_list = {}
+    return render(request, "index.html", locals())

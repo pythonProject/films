@@ -13,7 +13,7 @@
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
 
-    {% for films in films_list %}
+    {% for films in films_list reversed%}
         <img src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
         <span style="color: #ffffff;">Название:</span> <span style="color: #ffffff;"><a href="/watching/?movie={{ films.name }}">{{ films.name }}</a> </span><br/>
         <span style="color: #ffffff;">Режисёр:</span> <span style="color: #ffffff;">{{ films.director }}</span><br/>

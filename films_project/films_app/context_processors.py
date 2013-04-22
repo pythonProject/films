@@ -4,6 +4,7 @@
 from films_app.models import Genre, Author, Actors, Films
 from films_app.forms import Search
 from films_app.views import CheckSearch
+import datetime
 
 def genre_list(request):
     authors = Author.objects.values("name")
@@ -26,6 +27,8 @@ def genre_list(request):
         if release_date < release_date_min:
             release_date_min = release_date
     search = True if CheckSearch(request) else False
+    films_top_newest = Films.objects.filter(release_date__year = datetime.datetime.now().year)[:2]
+    films_top_examinations = Films.objects.all().order_by("-examinations")[:2]
     return {"GENRE_LIST": Genre.objects.all(),
             "user": request.user,
             "search_form": search_form,
@@ -35,4 +38,6 @@ def genre_list(request):
             "authors": authors,
             "search": search,
             "actors":actors,
-            "request": request}
+            "request": request,
+            "films_top_newest": films_top_newest,
+            "films_top_examinations": films_top_examinations}

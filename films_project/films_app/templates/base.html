@@ -53,10 +53,12 @@
         
 
         <div id="search">
+            <form action="/shortSearch/" name="shortSearch" method="POST" id="shortSearchForm">
+                {% csrf_token %}
             <a id="search_main_bt" href="/" onClick="checkLogin()">
                 <img id="search_main_bt" src="{{ STATIC_URL }}img/search_main_bt.png">
             </a>
-            <input type="text" >
+            <input type="text" name="name" id="shortSearch">
             <img id="icon" src="../static/img/search_16.png">
             <!-- <a id="search_main_bt" href="#" onClick="checkLogin()">
                 <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png">
@@ -64,9 +66,10 @@
 
             <img id="search_bt" src="{{ STATIC_URL }}img/search_button.png" usemap="#map_search">
             <map name="map_search">
-                <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="createAccount/"> </area>
+                <area shape="poly" coords="0,5, 17,0, 88,0, 88,35, 17,35, 0,30" href="#" id="shortSearchSubmit"> </area>
                 <area shape="poly" coords="89,0, 111,17, 111,30, 89,35" href="#" title="Расширеный поиск" id="ExtSearch"> </area>
             </map>
+            </form>
         </div> <!-- Search form Manya needs to check -->
             {% if request.path != "/upload/" %}
             <div id="searchFormExt" style="display: none;">
@@ -153,10 +156,20 @@
                         
             <div id="right_menu">
                 <div id="top_20" class="BlockBorder">
-                    <p>Top - 20</p> 
+                    <p>Top новых 20 (в девелоп версии 2)</p>
+                    <ul>
+                    {% for film in films_top_newest %}
+                        <li><a href="/watching/?movie={{ film.name }}">{{ film.name }}</a></li>
+                    {% endfor %}
+                    </ul>
                 </div>
                 <div id="top_20" class="BlockBorder">
-                    <p>Top - 20</p> 
+                    <p>Top - 20 (в девелоп версии 2)</p>
+                    <ul>
+                        {% for film in films_top_examinations %}
+                            <li><a href="/watching/?movie={{ film.name }}">{{ film.name }}</a> {{ film.examinations }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
          
