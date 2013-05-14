@@ -9,7 +9,6 @@ class UploadFilmsForm(forms.Form):
     name = forms.CharField()
     director = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
-    link = forms.CharField()
     releaseDate = forms.DateTimeField(required=False)
     add_authors = forms.CharField(required=False)
     addGenre = forms.CharField(required=False)

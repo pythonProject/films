@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+    $("#shortSearchSubmit").click(function(){
+        $("#shortSearchForm").submit();
+    });
     $("#id_add_authors").focus(function()
     {
         $("#hide_authors").css("display", "block");
@@ -212,6 +215,10 @@ $(document).ready(function()
     $("#submit_search").live('click', function()
     {
         $("#searchForm").submit();
+    });
+    $("#searchFormSubmit").click(function()
+    {
+        window.searchForm.submit();
     });
 });
 function addGenre1()

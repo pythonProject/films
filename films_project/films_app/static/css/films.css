@@ -1,0 +1,20 @@
+#filmsImg {
+	float: left;
+}
+
+#films {
+	float: right;
+	width: 350px;
+	font: normal 16px Arial, sans-serif;
+}
+
+.clear {
+	clear: both;
+}
+
+#films a {
+	font: bold 24px Arial, sans-serif;
+	color: #9F0620;
+}
+
+/* Конец блока фильмы */
