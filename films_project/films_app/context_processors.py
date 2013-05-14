@@ -27,8 +27,8 @@ def genre_list(request):
         if release_date < release_date_min:
             release_date_min = release_date
     search = True if CheckSearch(request) else False
-    films_top_newest = Films.objects.filter(release_date__year = datetime.datetime.now().year)[:2]
-    films_top_examinations = Films.objects.all().order_by("-examinations")[:2]
+    films_top_newest = Films.objects.filter(release_date__year = datetime.datetime.now().year)[:20]
+    films_top_examinations = Films.objects.all().order_by("-examinations")[:20]
     return {"GENRE_LIST": Genre.objects.all(),
             "user": request.user,
             "search_form": search_form,
