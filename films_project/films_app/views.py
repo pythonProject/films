@@ -4,7 +4,7 @@
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from forms import UploadFilmsForm, CreateAccount, Log_in, Search
-from films_app.models import Films, Author, Genre, Actors
+from films_app.models import Films, Author, Genre, Actors, Chat
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
@@ -266,3 +266,17 @@ def shortSearch(request):
     else:
         films_list = {}
     return render(request, "index.html", locals())
+
+def Chat(request):
+    if request.is_ajax():
+        if request.GET.get("message", False):
+            message = Chat(user = request.user,
+                           message = request.GET["message"].trim(),
+                           time = datetime.datetime.now())
+            message.save()
+        count = Chat.objects.all().count()
+        if count > 10:
+            resp = Chat.objects.all()[count - 10: count]
+        else:
+            resp = Chat.objects.all()
+        return HttpResponse(simplejson.dumps(resp.values()), mimetype="application/json")

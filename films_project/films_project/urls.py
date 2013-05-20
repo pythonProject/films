@@ -30,6 +30,7 @@ urlpatterns = patterns('films_app.views',
     (u"^watching/$", views.watching),
     (u"^like/$", views.like),
     (u"^shortSearch/$", views.shortSearch),
+    (u"^chat/$", views.Chat),
     (u"^", 'Index'),
 )
 

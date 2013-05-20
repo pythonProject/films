@@ -1,6 +1,11 @@
 from django.db import models
 from signals import makeThumbnails
 
+class Chat(models.Model):
+    user = models.IntegerField()
+    message = models.CharField(max_length=40)
+    time = models.TimeField()
+
 class Author(models.Model):
     name = models.CharField(max_length=50)
 

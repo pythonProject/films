@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block header %}
     <link href="{{ STATIC_URL }}css/autocomplete.css" type="text/css" rel="stylesheet" />
@@ -14,7 +13,6 @@
         <p style="color: red"> Please correct the error {{ form.error|pluralize }}</p>
     {% endif %}
 
-    <!-- <<<<<<< HEAD -->
         {% for films in films_list %}
             <img filmsImg src="{{ STATIC_URL }}media/{{ films.image }}" alt="">
             

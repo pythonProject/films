@@ -368,3 +368,14 @@ function Like(film, action){
             }
         });
 }
+function SendMessage(){
+    $.ajax({
+        url: "/chat/",
+        type: "GET  ",
+        dataType: "json",
+        data: "message=" + $("#chatMassage").val().trim(),
+        success: function(data){
+
+        }
+    });
+}
