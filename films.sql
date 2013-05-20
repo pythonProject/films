@@ -483,6 +483,7 @@ CREATE TABLE `films_app_films_genre` (
 
 LOCK TABLES `films_app_films_genre` WRITE;
 /*!40000 ALTER TABLE `films_app_films_genre` DISABLE KEYS */;
+
 /*!40000 ALTER TABLE `films_app_films_genre` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -506,6 +507,7 @@ CREATE TABLE `films_app_genre` (
 
 LOCK TABLES `films_app_genre` WRITE;
 /*!40000 ALTER TABLE `films_app_genre` DISABLE KEYS */;
+INSERT INTO `films_app_genre` VALUES (1,'аниме'),(2,'биографический'),(3,'боевик'),(4,'вестерн'),(5,'военный'),(6,'детектив'),(7,'детский'),(8,'документальный'),(9,'драма'),(10,'исторический'),(11,'комедия'),(12,'короткометражный'),(13,'криминал'),(14,'мелодрама'),(15,'мистика'),(16,'мультфильм'),(17,'мюзикл'),(18,'научный'),(19,'приключения'),(21,'реалити-шоу'),(22,'семейный'),(23,'спорт'),(24,'триллер'),(25,'ужасы'),(26,'фантастика'),(27,'фэнтези');
 /*!40000 ALTER TABLE `films_app_genre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
