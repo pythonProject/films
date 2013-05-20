@@ -84,7 +84,7 @@ CREATE TABLE `auth_permission` (
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_1bb8f392` (`content_type_id`),
   CONSTRAINT `content_type_id_refs_id_728de91f` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add author',7,'add_author'),(20,'Can change author',7,'change_author'),(21,'Can delete author',7,'delete_author'),(22,'Can add genre',8,'add_genre'),(23,'Can change genre',8,'change_genre'),(24,'Can delete genre',8,'delete_genre'),(25,'Can add actors',9,'add_actors'),(26,'Can change actors',9,'change_actors'),(27,'Can delete actors',9,'delete_actors'),(28,'Can add films',10,'add_films'),(29,'Can change films',10,'change_films'),(30,'Can delete films',10,'delete_films'),(31,'Can add comments',11,'add_comments'),(32,'Can change comments',11,'change_comments'),(33,'Can delete comments',11,'delete_comments');
+INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add chat',7,'add_chat'),(20,'Can change chat',7,'change_chat'),(21,'Can delete chat',7,'delete_chat'),(22,'Can add author',8,'add_author'),(23,'Can change author',8,'change_author'),(24,'Can delete author',8,'delete_author'),(25,'Can add genre',9,'add_genre'),(26,'Can change genre',9,'change_genre'),(27,'Can delete genre',9,'delete_genre'),(28,'Can add actors',10,'add_actors'),(29,'Can change actors',10,'change_actors'),(30,'Can delete actors',10,'delete_actors'),(31,'Can add films',11,'add_films'),(32,'Can change films',11,'change_films'),(33,'Can delete films',11,'delete_films'),(34,'Can add comments',12,'add_comments'),(35,'Can change comments',12,'change_comments'),(36,'Can delete comments',12,'delete_comments');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'oleh','','','oleh@oleh.com','pbkdf2_sha256$10000$jtE6St6X3i2m$FY0qrgtaz+S30q4lXanPnMTGMFqWAzjmdsJipwaqieQ=',1,1,1,'2013-04-14 11:25:13','2013-04-14 11:25:13');
+INSERT INTO `auth_user` VALUES (1,'oleh','','','oleh@oleh.com','pbkdf2_sha256$10000$B4sOmxxTlxxI$GrQCLnsQ8P9iDgK2LHDz1/0iuriGlDsrQqzTfaiOFQM=',1,1,1,'2013-05-20 20:18:10','2013-05-20 20:01:15');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'author','films_app','author'),(8,'genre','films_app','genre'),(9,'actors','films_app','actors'),(10,'films','films_app','films'),(11,'comments','films_app','comments');
+INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'chat','films_app','chat'),(8,'author','films_app','author'),(9,'genre','films_app','genre'),(10,'actors','films_app','actors'),(11,'films','films_app','films'),(12,'comments','films_app','comments');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('6c3c6d3edf8bda490bcaafa741ed5afd','ZDdjZTI3ODIxNzUzNWRjMjE5NGU1ZmUxZGQ1MGJkZDA5MzBmODE2YjqAAn1xAS4=\n','2013-04-28 11:57:44');
+INSERT INTO `django_session` VALUES ('591cd861d3930a27ee2d814ce02bb9b7','NTI4NmJlNmZkZGNkZDk3ZGM2NDhkNWRlZWZkNWU1NTNiN2RmNWVmNzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQR1c2VycQRYBAAAAG9sZWhxBVUNX2F1dGhfdXNlcl9pZHEGigEBdS4=\n','2013-06-03 20:18:10');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,6 +314,31 @@ LOCK TABLES `films_app_author` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `films_app_chat`
+--
+
+DROP TABLE IF EXISTS `films_app_chat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `films_app_chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `message` varchar(40) NOT NULL,
+  `time` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `films_app_chat`
+--
+
+LOCK TABLES `films_app_chat` WRITE;
+/*!40000 ALTER TABLE `films_app_chat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `films_app_chat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `films_app_comments`
 --
 
@@ -353,14 +378,13 @@ CREATE TABLE `films_app_films` (
   `name` varchar(50) NOT NULL,
   `director` varchar(50) NOT NULL,
   `description` varchar(400) NOT NULL,
-  `link` varchar(400) NOT NULL,
   `user` int(11) NOT NULL,
   `release_date` date NOT NULL,
   `added_date` date NOT NULL,
   `image` varchar(100) NOT NULL,
-  `dislike` int(11),
-  `like` int(11),
-  `examinations` int(11),
+  `dislike` int(11) DEFAULT NULL,
+  `like` int(11) default NULL,
+  `examinations` int(11) default NULL,
   `content` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -473,7 +497,7 @@ CREATE TABLE `films_app_genre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -482,7 +506,6 @@ CREATE TABLE `films_app_genre` (
 
 LOCK TABLES `films_app_genre` WRITE;
 /*!40000 ALTER TABLE `films_app_genre` DISABLE KEYS */;
-INSERT INTO `films_app_genre` VALUES (1,'аниме'),(2,'биографический'),(3,'боевик'),(4,'вестерн'),(5,'военный'),(6,'детектив'),(7,'детский'),(8,'документальный'),(9,'драма'),(10,'исторический'),(11,'комедия'),(12,'короткометражный'),(13,'криминал'),(14,'мелодрама'),(15,'мистика'),(16,'мультфильм'),(17,'мюзикл'),(18,'научный'),(19,'приключения'),(21,'реалити-шоу'),(22,'семейный'),(23,'спорт'),(24,'триллер'),(25,'ужасы'),(26,'фантастика'),(27,'фэнтези');
 /*!40000 ALTER TABLE `films_app_genre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -495,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-14 14:59:34
+-- Dump completed on 2013-05-20 23:20:34
