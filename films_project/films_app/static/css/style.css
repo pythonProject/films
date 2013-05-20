@@ -249,6 +249,11 @@ body {
 #chatButton {
 	width: 100px;
 }
+
+#chatButton:hover {
+	width: 100px;
+}
+
 #content_block {
 	width: 670px;
 	margin-left: 10px;
