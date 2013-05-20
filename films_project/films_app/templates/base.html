@@ -171,14 +171,14 @@
                     {% block content %} {% endblock %}
                 </div>   
                 
-                <div id="page_number" class="BlockBorder">
+                <!-- <div id="page_number" class="BlockBorder">
                     pages
-                </div>
+                </div> -->
             </div>
                         
             <div id="right_menu">
                 <div id="top_20" class="BlockBorder">
-                    <p>Top новых 20</p>
+                    <p>Новинки</p>
                     <ul>
                     {% for film in films_top_newest %}
                         <li><a href="/watching/?movie={{ film.name }}">{{ film.name }}</a></li>
@@ -186,7 +186,7 @@
                     </ul>
                 </div>
                 <div id="top_20" class="BlockBorder">
-                    <p>Top - 20</p>
+                    <p>Популярные</p>
                     <ul>
                         {% for film in films_top_examinations %}
                             <li><a href="/watching/?movie={{ film.name }}">{{ film.name }}</a> {{ film.examinations }}</li>
@@ -204,7 +204,7 @@
             <img id="cola" src="{{ STATIC_URL }}img/cola.png">
             <img id="popcorn" src="{{ STATIC_URL }}img/popcorn.png">
                 {% block footer %}
-            	<p>Thanks for visiting our website</p>
+            	<!-- <p>Thanks for visiting our website</p> -->
             	{% endblock %}
         </div>
 	</div>
