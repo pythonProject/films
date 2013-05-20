@@ -17,7 +17,7 @@ padding-top: 5px;
 }
 
 /*стили полей*/
-#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors {
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #id_actors {
  background: url(../img/gradient.png)  repeat-x #fbfbe7;
      padding: 5px 10px 5px 10px;    
      font-weight: normal;
@@ -38,7 +38,8 @@ background: none;background-color: #ffffff;
 #id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors[type=text], #id_actors{
    width:400px;
 }
-#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #hide_authors, #id_description {margin: 0px 0px 10px 0px;}
+#id_name, #id_director, #id_link, #id_releaseDate, #id_add_authors, #hide_authors, #hideActors,
+ #id_description, #id_actors {margin: 0px 0px 10px 0px;}
 
 
 input {   
@@ -69,28 +70,29 @@ box-shadow: 0 0 5px rgba(81, 255, 255, 1);
 /*конец стилей полей*/
 
 /*стили кнопок*/
-#addGenreButton, #hide_authors, #hideActors { 
+#addGenreButton, #hide_authors, #hideActors, #submit_id, #submit_search, #chatButton, #searchFormExt a { 
 background: url(../img/background.jpg) bottom repeat-x #576AAC;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;
      color: #fff;
      text-decoration: none; border: 1px inset #aaa;
-     -webkit-border-radius: 8px; width: auto; -moz-border-radius: 8px;  -khtml-border-radius: 8px;  border-radius: 8px;
+     -webkit-border-radius: 8px; width: 410px; -moz-border-radius: 8px;  -khtml-border-radius: 8px;  border-radius: 8px;
      -moz-box-shadow: 1px 1px 1px #666;  -webkit-box-shadow: 1px 1px 1px #666;  box-shadow: 1px 1px 1px #666;
      text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
       border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;
 }
 
 
-#addGenreButton:hover, #hide_authors:hover, #hideActors:hover { 
- background: url(../img/background2.jpg)  repeat-x #8A98C6;
+#addGenreButton:hover, #hide_authors:hover, #submit_id:hover, #hideActors:hover, #submit_search:hover, 
+#chatButton:hover, #searchFormExt a:hover{ 
+ background: url(../img/background2.jpg)  repeat-x #6B7CB6;
      padding: 5px 10px 5px 10px;
      text-align: center;
      font-weight: bold;
      color: #fff;
      text-decoration: none; border: 1px inset #aaa;
-     border-radius: 8px; width: auto; border-radius: 8px;  border-radius: 8px;  border-radius: 8px;
+     border-radius: 8px; width: 410px; border-radius: 8px;  border-radius: 8px;  border-radius: 8px;
      box-shadow: 1px 1px 1px #666;  box-shadow: 1px 1px 1px #666;  box-shadow: 1px 1px 1px #666;
      text-shadow: rgba(0,0,0, .5) 0px -1px 0px;
       border-top: inset 1px #ccc; border-left: inset 1px #ccc; border-bottom: solid 1px solid #000; border-right: 1px solid #666;      

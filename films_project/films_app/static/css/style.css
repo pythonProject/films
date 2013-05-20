@@ -1,5 +1,6 @@
 @import url(reset.css);
 @import url(styletable.css);
+/*@import url(search.css);*/
 
 body {
 	background-color: #000000;
@@ -134,7 +135,7 @@ body {
 	/*outline: solid 1px #D0FF00;*/
 	position: relative;
 	top: -25px;
-	left: 242px;
+	left: 222px;
 	z-index: 2;
 }
 
@@ -161,11 +162,38 @@ body {
 	width: 500px;
 }
 
-#searchForm {
+#searchFormExt {
 	position: relative;
-	top: 0px;
-	left: 200px;
+	height: 0px;
+	left: 255px;
+	bottom: -200px;
+	top: -100px;
+	z-index: 5;
 }
+
+#searchForm {
+	/*display: list-item;*/
+	list-style: none;
+	width: 650px;
+	background-color: #576AAC;
+	border-radius: 8px;
+	border: 1px solid #7F8187;
+	padding-left: 35px;
+	padding-top: 15px;
+}
+
+#submit_search, #submit_search:hover {
+	width: 300px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#searchFormExt a, #searchFormExt a:hover {
+	/*width: 300px;*/
+	padding-left: 75px;
+	padding-right: 75px;
+}
+
 
 #searchForm label {
 	font: bold 15px Arial, Helvetica, sans-serif;
@@ -202,17 +230,33 @@ body {
 
 #genre, #top_20 {
 	/*height: 250px;*/
-	width: 180px;
+	width: 210px;
 }
 
+#chat {
+	padding: 10px;
+	width: 190px;
+}
+
+#chatBox {
+	height: 250px;
+}
+
+#chatMassage {
+	height: 25px;
+}
+
+#chatButton {
+	width: 100px;
+}
 #content_block {
-	width: 730px;
+	width: 670px;
 	margin-left: 10px;
 	/*margin-bottom: 135px;*/
 	/*outline: solid 1px #00cc00;*/
 }
 
-#genre {
+#genre, #chat {
 	margin-left: 38px;
 }
 

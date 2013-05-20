@@ -31,10 +31,11 @@
                 <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
             <!--<div class="autocomplete">-->
             <ul id="f" class="ui-autocomplete" style="display: none">
+                <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
                 {% for d in authors_list %}
                 <li class="ac-item"> {{ d }} </li>
                 {% endfor %}
-            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
+            <!-- <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/> -->
             </ul>
             <!--</div>-->
             </div>
@@ -58,15 +59,18 @@
             <!--<input type="button" id="addGenreButton" value="Добавить жанр" onclick="addGenre1()" /><br/>-->
             <ul id="actors_list"></ul>
             {{ form.actors.errors }}
-            <label for="id_actors"><div class="question"> Акторы </div> </label>
-            {{ form.actors }}<br/>
-            <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
-            <ul id="actors_exists" style="display: none;">
-                {% for a in actors_list %}
-                    <li style="list-style-type:none;">{{ a }}</li>
-                {% endfor %}
-            </ul>
-            <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
+            <div class="autocomplete">
+                <label for="id_actors"><div class="question"> Акторы </div> </label>
+                {{ form.actors }}<br/>
+                <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
+                <ul id="actors_exists" class="ui-autocomplete" style="display: none;">
+                    <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
+                    {% for a in actors_list %}
+                        <li class="ac-item" >{{ a }}</li>
+                    {% endfor %}
+                </ul>
+                <!-- <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/> -->
+            </div>
             {{ form.image.errors }}
             <label for="id_image"><div class="question">Картинка</div></label>
             {{ form.image }}

@@ -79,33 +79,43 @@
                     {{ search_form.name.errors }}
                     <label for="id_name" value="dsfsdfdsf">Введите назву фильма:</label><p></p>
                     {{ search_form.name }}
-                    <ul id="authors_list"></ul>
-                    {{ search_form.add_authors.errors }}
+                    <!-- <ul id="authors_list"></ul>
+                    {{ search_form.add_authors.errors }} -->
                     <div class="autocomplete">
                         <label for="id_add_authors"><div class="question"> Авторы сценария </div></label>
+                        <ul id="authors_list"></ul>
+                        {{ search_form.add_authors.errors }}
                         {{ search_form.add_authors }}<br/>
                         <span style="color: #ff0000; display: none;" id="added_author">Извините, этот автор уже добавлен</span>
                         <ul id="f" class="ui-autocomplete" style="display: none">
+                             <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
                             {% for d in authors %}
                                 <li class="ac-item"> {{ d.name }} </li>
                             {% endfor %}
-                            <input type="button" id="hide_authors" style="display: none;" value="Скрыть список" onclick="HideAuthors(this)"/>
+                           
                         </ul>
                     </div>
-                    <ul id="actors_list"></ul>
-                    {{ search_form.actors.errors }}
-                    <label for="id_actors"> Акторы </label><p></p>
-                    {{ search_form.actors }}<br/>
-                    <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
-                    <ul id="actors_exists" style="display: none;">
-                        {% for a in actors %}
-                            <li style="list-style-type:none;">{{ a.name }}</li>
-                        {% endfor %}
-                    </ul>
-                    <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
+
                     {{ search_form.director.errors }}<br/>
                     <label for="id_director">Введите режисёра</label><p></p>
                     {{ search_form.director }}<br/>
+
+                    <!-- <ul id="actors_list"></ul>
+                    {{ search_form.actors.errors }} -->
+                    <div class="autocomplete">
+                        <label for="id_actors"> Акторы </label><p></p>
+                        <ul id="actors_list"></ul>
+                        {{ search_form.actors.errors }}
+                        {{ search_form.actors }}<br/>
+                        <span id="actor_added" style="color: red; display: none;">Извините, этот актёр уже добавлен</span>
+                        <ul id="actors_exists" class="ui-autocomplete" style="display: none;">
+                            <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/>
+                            {% for a in actors %}
+                                <li class="ac-item">{{ a.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
                     {% if release_dates %}
                         Выберите начальную дату:
                         <select name="start_date">
@@ -128,9 +138,12 @@
                             {% endfor %}
                         </select>
                     {% endif %}
+                    <!-- <input type="button" id="hideActors" style="display: none;" onclick="HideActors()" value="Скрыть список"/> -->
+                    <br>
                     <input type="button" value="Искать" id="submit_search">
+                    <a href="/">Отменить фильтр</a><br/>
                 </form>
-                <a href="/">Отменить фильтр</a><br/>
+                <!-- <a href="/">Отменить фильтр</a><br/> -->
             </div>
         {% endif %}
         <!-- Here should be the search div -->
@@ -143,6 +156,13 @@
                         <li id="imgList"><a href="/?&genre={{ g.name }}">{{ g.name }}</a>  {{ g.films_set.count }}</li>
                     {% endfor %}
                     </ol>
+                </div>
+
+                <div id="chat" class="BlockBorder">
+                    <textarea id="chatBox"></textarea>
+                    <br>
+                    <textarea id="chatMassage"></textarea>
+                    <input type="button" value="Отправить" id="chatButton">
                 </div>
             </div>
             
