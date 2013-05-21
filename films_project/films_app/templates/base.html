@@ -161,8 +161,10 @@
                 <div id="chat" class="BlockBorder">
                     <textarea id="chatBox"></textarea>
                     <br>
-                    <textarea id="chatMassage"></textarea>
+                    <textarea id="chatMessage"></textarea>
+                    {% if request.user.username != "" %}
                     <input type="button" value="Отправить" id="chatButton" onclick="SendMessage()">
+                    {% endif %}
                 </div>
             </div>
             

@@ -4,7 +4,7 @@
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from forms import UploadFilmsForm, CreateAccount, Log_in, Search
-from films_app.models import Films, Author, Genre, Actors, Chat
+from films_app.models import Films, Author, Genre, Actors, Chat, Comments
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
@@ -267,16 +267,39 @@ def shortSearch(request):
         films_list = {}
     return render(request, "index.html", locals())
 
-def Chat(request):
+def ChatView(request):
     if request.is_ajax():
         if request.GET.get("message", False):
-            message = Chat(user = request.user,
-                           message = request.GET["message"].trim(),
-                           time = datetime.datetime.now())
+            message = Chat(user = request.user.username,
+                           message = request.GET["message"],
+                           time = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M"))
             message.save()
-        count = Chat.objects.all().count()
-        if count > 10:
-            resp = Chat.objects.all()[count - 10: count]
+        count = Chat.objects.filter().count()
+        if count > 5:
+            resp = Chat.objects.filter()[count - 5: count]
         else:
-            resp = Chat.objects.all()
-        return HttpResponse(simplejson.dumps(resp.values()), mimetype="application/json")
+            resp = Chat.objects.filter()
+        resp = [{"message": i["message"],
+                 "time": i["time"],
+                 "id": i["id"],
+                 "user": i["user"]} for i in resp.values()]
+        return HttpResponse(simplejson.dumps(resp), mimetype="application/json")
+
+def Comment(request):
+    if request.is_ajax():
+        film = Films.objects.get(name = request.GET["film"])
+        if request.GET.get("comment", False):
+            content = request.GET["comment"]
+            user = request.user.username
+            date = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")
+            comment = Comments(content = content,
+                               user = user,
+                               film = film,
+                               date = date)
+            comment.save()
+        comments = Comments.objects.filter(film__name__exact = film.name)
+        resp = [{"message": i["content"],
+                 "time": i["date"],
+                 "user": i["user"],
+                 "id": i["id"]} for i in comments.values()]
+        return HttpResponse(simplejson.dumps(resp), mimetype="application/json")

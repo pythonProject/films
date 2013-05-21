@@ -127,7 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'oleh','','','oleh@oleh.com','pbkdf2_sha256$10000$B4sOmxxTlxxI$GrQCLnsQ8P9iDgK2LHDz1/0iuriGlDsrQqzTfaiOFQM=',1,1,1,'2013-05-20 20:18:10','2013-05-20 20:01:15');
+INSERT INTO `auth_user` VALUES (1,'oleh','','','admin@films.com','pbkdf2_sha256$10000$M07dm2zUfYQ8$nvbXMvwAecQIRQf8JDe4PTaBLwXX4I+5x1mAY3MUwEQ=',1,1,1,'2013-05-21 19:02:13','2013-05-21 19:00:26');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('591cd861d3930a27ee2d814ce02bb9b7','NTI4NmJlNmZkZGNkZDk3ZGM2NDhkNWRlZWZkNWU1NTNiN2RmNWVmNzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQR1c2VycQRYBAAAAG9sZWhxBVUNX2F1dGhfdXNlcl9pZHEGigEBdS4=\n','2013-06-03 20:18:10');
+INSERT INTO `django_session` VALUES ('6c2aebc4d8ba1be7729da81e7c8fd971','NTI4NmJlNmZkZGNkZDk3ZGM2NDhkNWRlZWZkNWU1NTNiN2RmNWVmNzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQR1c2VycQRYBAAAAG9sZWhxBVUNX2F1dGhfdXNlcl9pZHEGigEBdS4=\n','2013-06-04 19:02:13');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,9 +322,9 @@ DROP TABLE IF EXISTS `films_app_chat`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `films_app_chat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL,
+  `user` varchar(40) NOT NULL,
   `message` varchar(40) NOT NULL,
-  `time` time NOT NULL,
+  `time` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -350,9 +350,9 @@ CREATE TABLE `films_app_comments` (
   `content` varchar(50) NOT NULL,
   `user` varchar(50) NOT NULL,
   `film_id` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `film_id` (`film_id`),
+  KEY `films_app_comments_65dfe046` (`film_id`),
   CONSTRAINT `film_id_refs_id_469075a1` FOREIGN KEY (`film_id`) REFERENCES `films_app_films` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -382,7 +382,7 @@ CREATE TABLE `films_app_films` (
   `release_date` date NOT NULL,
   `added_date` date NOT NULL,
   `image` varchar(100) NOT NULL,
-  `dislike` int(11) DEFAULT NULL,
+  `dislike` int(11) default NULL,
   `like` int(11) default NULL,
   `examinations` int(11) default NULL,
   `content` varchar(100) NOT NULL,
@@ -483,7 +483,6 @@ CREATE TABLE `films_app_films_genre` (
 
 LOCK TABLES `films_app_films_genre` WRITE;
 /*!40000 ALTER TABLE `films_app_films_genre` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `films_app_films_genre` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -498,7 +497,7 @@ CREATE TABLE `films_app_genre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -520,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-20 23:20:34
+-- Dump completed on 2013-05-21 22:04:13

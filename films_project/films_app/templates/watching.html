@@ -30,6 +30,18 @@
             {% else %}
                 {{ film.examinations }}
             {% endif %}
+        </span><br/>
+        <span id="CommentArea">
+            <ul id="CommentList">
+                {% for comment in film.comments_set.values %}
+                    <li>{{ comment.user }} ({{ comment.date }}): {{ comment.content }}
+                        <span style="display: none;">{{ comment.id }}</span></li>
+                {% endfor %}
+            </ul>
+            <textarea id="Comment"></textarea><br/>
+            {% if request.user.username != "" %}
+            <button onclick="SendComment()">Отправить коментарий</button>
+            {% endif %}
         </span>
     </div>
 {% endblock %}

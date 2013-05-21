@@ -167,7 +167,6 @@ $(document).ready(function()
         $("#form_is_empty").css("display", "none");
         $("#added_genre").css("display", "none");
         var c = 0;
-//        alert($("#id_addGenre").val());
         if(e.which == 13)
         {
             if($("#id_addGenre").val() == "")
@@ -177,7 +176,6 @@ $(document).ready(function()
             }
             for(var i = 0; i < $("#list_genres li").length; i++)
             {
-//                alert($("#list_genres li").eq(i).text());
                 if($("#id_addGenre").val().trim() == $("#list_genres li").eq(i).text())
                 {
                     $("#added_genre").css("display", "block");
@@ -220,6 +218,41 @@ $(document).ready(function()
     {
         window.searchForm.submit();
     });
+    SendMessage();
+    var intervalId = window.setInterval(function(){
+        $.ajax({
+            url: "/chat/",
+            type: "GET",
+            dataType: "json",
+            data: "",
+            success: function(data){
+                $("#chatBox").val("");
+                for(var i = 0; i < data.length; i++){
+                    var text = $("#chatBox").val();
+                    $("#chatBox").val(text + data[i].user +
+                        "(" + data[i].time + "): " +
+                        data[i].message + "\n");
+                }
+            }
+        });
+        $.ajax({
+            url: "/comment/",
+            type: "GET",
+            dataType: "json",
+            data: "film=" + window.location.href.split("=")[1],
+            success: function(data){
+                var existentId = $("#CommentList li")[$("#CommentList li").length - 1].children[0].textContent;
+                var newId = data[data.length - 1].id.toString();
+                if(existentId !== newId){
+                    $("#CommentList").append("<li>" + data[data.length - 1].user +
+                        " (" + data[data.length - 1].time + "): " +
+                        data[data.length - 1].message +
+                        "<span style='display: none'>" + data[data.length - 1].id +
+                        "</span></li>");
+                }
+            }
+        });
+    }, 1000);
 });
 function addGenre1()
 {
@@ -371,11 +404,46 @@ function Like(film, action){
 function SendMessage(){
     $.ajax({
         url: "/chat/",
-        type: "GET  ",
+        type: "GET",
         dataType: "json",
-        data: "message=" + $("#chatMassage").val().trim(),
+        data: "message=" + $("#chatMessage").val().trim(),
         success: function(data){
+            if($("#chatMessage").val() !== ""){
+                $("#chatMessage").val("");
+                $("#chatBox").val("");
+                for(var i = 0; i < data.length; i++){
+                    var text = $("#chatBox").val();
+                    $("#chatBox").val(text + data[i].user +
+                                      "(" + data[i].time + "): " +
+                                      data[i].message + "\n");
+                }
+            }
+            else{
+                for(var i = 0; i < data.length; i++){
+                    var text = $("#chatBox").val();
+                    $("#chatBox").val(text + data[i].user +
+                        "(" + data[i].time + "): " +
+                        data[i].message + "\n");
+                }
+            }
+        }
+    });
+}
 
+function SendComment(){
+    $.ajax({
+        url: "/comment/",
+        type: "GET",
+        dataType: "json",
+        data: "comment=" + $("#Comment").val() + "&film=" + window.location.href.split("=")[1],
+        success: function(data){
+            $("#Comment").val("");
+            var len = data.length - 1;
+            $("#CommentList").append("<li>" + data[len].user +
+                                     " (" + data[len].time + "): " +
+                                     data[len].message +
+                                     "<span style='display: none'>" + data[data.length - 1].id +
+                                     "</span></li>");
         }
     });
 }
